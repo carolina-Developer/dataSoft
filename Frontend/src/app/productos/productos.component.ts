@@ -151,23 +151,18 @@ export class ProductosComponent implements OnInit {
       {
 
         var filtovalor = this.filtrarProducto.getRawValue()['combofiltro'];
-        console.log("318    " + filtovalor );
+        
         this.servi.getProductos('/' + filtovalor).subscribe((data: {}) => {
-          console.log("313    " + filtovalor );
-
+          
           this.MiProductos = data;
 
 
-          console.log("la data es " + data);
-          console.log("MiProductos es " + this.MiProductos);
-          //console.log("MiTipDoc es " + this.MiTipDoc[0].id_tip_doc + " - " + this.MiTipDoc[0].tipo_documento + " - " + this.MiTipDoc[0].iniciales_tip_doc);
-
           this.TituloProducto = "TIPO DE PRODUCTO SELECCIONADO";
-          this.TablaProductos[0] = "indicador";
-          this.TablaProductos[1] = "nombre";
-          this.TablaProductos[2] = "tipo";
-          this.TablaProductos[3] = "talla";
-          this.TablaProductos[4] = "color";
+          this.TabBusProductos[0] = "indicador";
+          this.TabBusProductos[1] = "nombre";
+          this.TabBusProductos[2] = "tipo";
+          this.TabBusProductos[3] = "talla";
+          this.TabBusProductos[4] = "color";
 
 
         },

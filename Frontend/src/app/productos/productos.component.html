@@ -23,7 +23,7 @@
     
           <br><br>
     
-          <h2>Titulo Productos</h2>   
+          <h2>TituloProductos</h2>   
           <table> 
               <thead>
                   <th>{{TablaProductos[0]}}</th>
@@ -64,6 +64,7 @@
             <option *ngFor="let product of comboListaProductos" [value]="product.idProducto">
               {{product.idProducto}} - 
               {{product.nombreProducto}} 
+
             </option>
         </select>       
     
@@ -74,17 +75,19 @@
       </form>
     
       <ul>
-          <h2>{{Titulo Producto}}</h2>
+          <h2>{{TituloProducto}}</h2>
     
           <table class="tabBuscar"> 
               <thead class="Colb">
                 <th class="b">{{TabBusProductos[0]}}</th> 
                 <th class="b">{{TabBusProductos[1]}}</th> 
                 <th class="b">{{TabBusProductos[2]}}</th> 
+                <th class="b">{{TabBusProductos[3]}}</th> 
+                <th class="b">{{TabBusProductos[4]}}</th> 
               </thead>
       
               <tbody class="Filb">  
-                  <tr class="b" *ngFor="let product of MiTipDoc">
+                  <tr class="b" *ngFor="let product of MiProductos">
                       <th class="b">{{ product.idProducto}} </th>
                       <th class="b">{{ product.nombreProducto}} </th>
                       <th class="b">{{ product.tipoProducto}} </th>
@@ -104,7 +107,7 @@
     
     
     <!--------------------------------------------------------------------------------------------->
-    <!-- para crear un  Tipo de documento 
+    <!-- para crear un  Tipo de documento -->
     
     <div class="crea">
       <br><br>
