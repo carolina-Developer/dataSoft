@@ -1,1 +1,182 @@
-<p>productos works!</p>
+<html xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"><head>
+  | 
+    <title></title></head><body>
+    
+      <div style="text-align:center">
+        <h1>PRODUCTOS</h1>
+        <img width="300" alt="Logo Proyecto" src="./img/logo.png">
+      </div>
+    
+      <br><br><br><br>
+    
+      <!--------------------------------------------------------------------------------------------->
+      <!-- para mostrar el listado de productos -->
+    
+      <div class="lista">
+          
+        <h2>Lista de Productos: </h2>
+    
+        <form (ngSubmit)="consultaProducto(1)" [formGroup]="ListaProducto">
+    
+          <button type="submit" style="margin-right: 30px" >Mostrar Lista de Productos</button>
+          <button (click)="LimpiarLista()" >Limpiar Lista de Productos</button>
+    
+          <br><br>
+    
+          <h2>Titulo Productos</h2>   
+          <table> 
+              <thead>
+                  <th>{{TablaProductos[0]}}</th>
+                  <th>{{TablaProductos[1]}}</th>
+                  <th>{{TablaProductos[2]}}</th>
+                  <th>{{TablaProductos[3]}}</th>
+                  <th>{{TablaProductos[4]}}</th>     
+              </thead>
+    
+              <tbody>
+                  <tr  *ngFor="let product of Productos">
+                      
+                    <th>{{ product.idProducto}} </th>
+                    <th>{{ product.nombreProducto }}</th> 
+                    <th>{{ product.tipoProducto }}</th>
+                    <th>{{ product.talla}}</th>
+                    <th>{{ product.color}}</th>
+                      
+                  </tr>
+              </tbody> 
+          </table>
+    
+        </form>
+    
+      </div>
+      <br><br><br><br>
+    
+    
+    
+    <!--------------------------------------------------------------------------------------------->
+    <!-- para mostrar el un solo Tipo de Documento 
+                              
+    <div class="buscar">
+      <h2>Mostramos el producto seleccionado: </h2>
+    
+      <form (ngSubmit)="buscarProducto()" [formGroup]="filtrarTipDoc">
+        Id del producto a mostrar
+        <select class="dropdown"  formControlName="combofiltro" (click)="consultaProducto(2)">
+            <option value="value1">Tipo de producto a buscar</option>
+            <option *ngFor="let TipDoc of comboListaTipDoc" [value]="TipDoc.id_tip_doc">
+              {{TipDoc.tipo_documento}} - 
+              {{TipDoc.iniciales_tip_doc}} 
+            </option>
+        </select>       
+    
+        <br><br>
+    
+    
+        <button type="submit">Buscar Tipo Documento</button>
+      </form>
+    
+      <ul>
+          <h2>{{TituloTipDoc}}</h2>
+    
+          <table class="tabBuscar"> 
+              <thead class="Colb">
+                <th class="b">{{TabBusTipDocs[0]}}</th> 
+                <th class="b">{{TabBusTipDocs[1]}}</th> 
+                <th class="b">{{TabBusTipDocs[2]}}</th> 
+              </thead>
+      
+              <tbody class="Filb">  
+                  <tr class="b" *ngFor="let tdoc of MiTipDoc">
+                      <th class="b">{{ tdoc.id_tip_doc}} </th>
+                      <th class="b">{{ tdoc.tipo_documento}} </th>
+                      <th class="b">{{ tdoc.iniciales_tip_doc}} </th>
+                  </tr>
+              </tbody> 
+      
+            </table>
+    
+          </ul>
+    
+        <br>
+    
+      </div>
+      <br><br><br><br>
+    
+    
+    <!--------------------------------------------------------------------------------------------->
+    <!-- para crear un  Tipo de documento 
+    
+    <div class="crea">
+      <br><br>
+      <h2>Registrar un Nuevo Tipo de Documento</h2>
+    
+      <form (ngSubmit)="InsertarTipDoc()" [formGroup]="InsertarGTipDoc">
+        Nuevo Tipo Documento
+        <label for="CTipDoc"><input type="text" name="CTipDoc" id="CTipDoc" formControlName="textTipDoc"></label>
+    
+    
+        <br><br>
+        Iniciales Nuevo Tipo de Documento
+        <label for="InTipDoc"><input type="text" name="InTipDoc" id="InTipDoc" formControlName="textIniTipDoc" maxlength="3"></label>
+    
+    
+        <br><br>
+        <button type="submit">Insertar Tipo de Documento</button>
+    
+      </form>
+      <br>
+    
+    </div>
+    <br><br><br><br>
+    
+    
+      <!--------------------------------------------------------------------------------------------->
+      <!-- para actualizar un tipo de documento 
+    
+      <div class="edit">
+        <h2> Tipo de Documento a Editar</h2>
+    
+        <form (ngSubmit)="buscarEditarTipDoc()" [formGroup]="ActualizarATipDoc">
+            id Tipo de Documento  a Editar: 
+            <select class="dropdown"  formControlName="BuscarIdTipDoc" (click)="consultaTipoDocumentos(3)">
+                <option value="value1">Tipo de Documento a editar</option>
+                <option *ngFor="let TDoc of comboEditarTipDoc" [value]="TDoc.id_tip_doc">
+                    {{TDoc.tipo_documento}} - 
+                    {{TDoc.iniciales_tip_doc}} 
+                </option>
+            </select>
+    
+          <br><br>
+          <button type="submit">Buscar Tipo Documento a Editar</button>
+     
+          <h2>{{TituloTipDocEdit}}</h2>
+    
+          <li *ngFor="let Doc of MiTipDocE">
+            Nuevo Tipo Documento 
+            <label for="ETipDoc"><input type="text" name="ETipDoc" id="ETipDoc" value={{Doc.tipo_documento}} [(ngModel)]="Doc.tipo_documento" formControlName="textnuevotipdoc"></label>
+            <br><br>
+            Nuevas Iniciales Tipo Documento
+            <label for="InTipDoc"><input type="text" name="InTipDoc" id="InTipDoc" value={{Doc.iniciales_tip_doc}} [(ngModel)]="Doc.iniciales_tip_doc" formControlName="textnuevoinicialestipdoc"></label>
+       
+            <br><br>
+    
+    
+        </li>
+        <br>
+      
+        <button (click)="ActualizarTipDoc()">Actualizar</button>
+    
+      </form>
+      <br>
+      
+      </div>
+      <br><br><br><br>
+    
+    
+    <!--*************************************************************************-->
+    <!-- se incluye el link para la otra página -->
+    <div class="dir">
+      <h3><a routerLink="/Inicio">MENÚ INICIO</a></h3>
+    </div>
+    </body>
+    

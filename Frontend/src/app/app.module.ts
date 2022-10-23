@@ -12,7 +12,7 @@ import {RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 //Servicio 
-import { ProduccionService } from './produccion.service';
+import { UrbanService } from './Urban.service';
 
 ///Componentes 
 
@@ -90,7 +90,7 @@ const appRoutes: Routes =
     HttpModule,
     RouterModule.forRoot(appRoutes),
   ],
-  providers: [ProduccionService],
+  providers: [UrbanService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
