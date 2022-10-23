@@ -4,7 +4,7 @@
     
       <div style="text-align:center">
         <h1>PRODUCTOS</h1>
-        <img width="300" alt="Logo Proyecto" src="./img/logo.png">
+        <img width="300" alt="Logo Proyecto" src="../../assets/img/logo.svg">
       </div>
     
       <br><br><br><br>
@@ -49,47 +49,47 @@
         </form>
     
       </div>
-      <br><br><br><br>
-    
-    
+      <br><br><br><br> 
     
     <!--------------------------------------------------------------------------------------------->
-    <!-- para mostrar el un solo Tipo de Documento 
+    <!-- para mostrar el un solo Tipo de Documento -->
                               
     <div class="buscar">
       <h2>Mostramos el producto seleccionado: </h2>
     
-      <form (ngSubmit)="buscarProducto()" [formGroup]="filtrarTipDoc">
+      <form (ngSubmit)="buscarProducto()" [formGroup]="filtrarProducto">
         Id del producto a mostrar
         <select class="dropdown"  formControlName="combofiltro" (click)="consultaProducto(2)">
             <option value="value1">Tipo de producto a buscar</option>
-            <option *ngFor="let TipDoc of comboListaTipDoc" [value]="TipDoc.id_tip_doc">
-              {{TipDoc.tipo_documento}} - 
-              {{TipDoc.iniciales_tip_doc}} 
+            <option *ngFor="let product of comboListaProductos" [value]="product.idProducto">
+              {{product.idProducto}} - 
+              {{product.nombreProducto}} 
             </option>
         </select>       
     
         <br><br>
     
     
-        <button type="submit">Buscar Tipo Documento</button>
+        <button type="submit">Buscar Proucto</button>
       </form>
     
       <ul>
-          <h2>{{TituloTipDoc}}</h2>
+          <h2>{{Titulo Producto}}</h2>
     
           <table class="tabBuscar"> 
               <thead class="Colb">
-                <th class="b">{{TabBusTipDocs[0]}}</th> 
-                <th class="b">{{TabBusTipDocs[1]}}</th> 
-                <th class="b">{{TabBusTipDocs[2]}}</th> 
+                <th class="b">{{TabBusProductos[0]}}</th> 
+                <th class="b">{{TabBusProductos[1]}}</th> 
+                <th class="b">{{TabBusProductos[2]}}</th> 
               </thead>
       
               <tbody class="Filb">  
-                  <tr class="b" *ngFor="let tdoc of MiTipDoc">
-                      <th class="b">{{ tdoc.id_tip_doc}} </th>
-                      <th class="b">{{ tdoc.tipo_documento}} </th>
-                      <th class="b">{{ tdoc.iniciales_tip_doc}} </th>
+                  <tr class="b" *ngFor="let product of MiTipDoc">
+                      <th class="b">{{ product.idProducto}} </th>
+                      <th class="b">{{ product.nombreProducto}} </th>
+                      <th class="b">{{ product.tipoProducto}} </th>
+                      <th class="b">{{ product.talla}} </th>
+                      <th class="b">{{ product.color}} </th>
                   </tr>
               </tbody> 
       
