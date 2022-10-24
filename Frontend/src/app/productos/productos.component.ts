@@ -48,8 +48,10 @@ export class ProductosComponent implements OnInit {
     
     InsertarGProducto =  new FormGroup(
     {
-      textProducto: new FormControl(), 
-      textIniProducto:new FormControl()
+      textNomProduct: new FormControl(), 
+      textTipProduct:new FormControl(),
+      textTalla: new FormControl(), 
+      textColor:new FormControl()
     });
   
     
@@ -57,7 +59,9 @@ export class ProductosComponent implements OnInit {
     {
       BuscarIdProducto:new FormControl(),  
       textnuevoProducto:new FormControl(), 
-      textnuevoinicialesProducto: new FormControl()
+      textnuevoTipProduct: new FormControl(),
+      textnuevoTalla:new FormControl(), 
+      textnuevoColor: new FormControl()
     });
 
   /*Contructor ----------------------------------------------------------------- */
@@ -173,12 +177,12 @@ export class ProductosComponent implements OnInit {
     /*Para insertar un nuevo producto */
       public InsertarProducto() {
 
-        var datosvalo1 = this.InsertarGProducto.getRawValue()['textProduct'];
+        var datosvalo1 = this.InsertarGProducto.getRawValue()['textNomProduct'];
         var datosvalo2 = this.InsertarGProducto.getRawValue()['textTipProduct'];
         var datosvalo3 = this.InsertarGProducto.getRawValue()['textTalla'];
-        var datosvalo4 = this.InsertarGProducto.getRawValue()['textIniColor'];
+        var datosvalo4 = this.InsertarGProducto.getRawValue()['textColor'];
   
-        var cadena = { "textIniColor":datosvalo4,"textTalla":datosvalo3,"textTipProduct": datosvalo2, "textProduct":datosvalo1 };
+        var cadena = { "textColor":datosvalo4,"textTalla":datosvalo3,"textTipProduct": datosvalo2, "textNomProduct":datosvalo1 };
       
         this.servi.insertProducto(cadena).then
           ( res => {
@@ -202,7 +206,7 @@ export class ProductosComponent implements OnInit {
         this.servi.getProductos('/' + this.BuscarEvalor).subscribe((data: {}) => {
 
           this.MiProductosE = data; 
-          this.TituloProductosEdit = "PRODUCTO A EDITAR";   
+          this.TituloProductosEdit = "PRODUCTO A EDITA";   
           
         }, error => { console.log(error) });
 
@@ -212,9 +216,11 @@ export class ProductosComponent implements OnInit {
       {
       
         var nuevoProdcut = this.ActualizarAProducto.getRawValue()['textnuevoproduct'];
-        var nuevoiniproduct = this.ActualizarAProducto.getRawValue()['textnuevoinicialesproduct'];
+        var nuevoTipProduct = this.ActualizarAProducto.getRawValue()['textnuevoTipProduct'];
+        var nuevoTalProduct = this.ActualizarAProducto.getRawValue()['textnuevoTalla'];
+        var nuevoColProduct = this.ActualizarAProducto.getRawValue()['textnuevoColor'];
       
-        var cadena = { "id_producto": this.BuscarEvalor,"producto":nuevoProdcut ,"iniciales_producto": nuevoiniproduct };
+        var cadena = { "idProducto": this.BuscarEvalor,"textnuevoproduct":nuevoProdcut ,"textnuevoTipProduct": nuevoTipProduct, "textnuevoTalla":nuevoTalProduct, "textnuevoColor":nuevoColProduct };
         
         this.servi.updateProducto(cadena).then
           (
@@ -264,8 +270,11 @@ export class ProductosComponent implements OnInit {
     this.ActualizarAProducto = this.formBuilder.group(
     {
       BuscarIdProduct: [], 
-      textnuevoProduct: [], 
-      textnuevoinicialesProduct: []
+      textnuevoproduct: [], 
+      textnuevoTipProduct: [],
+      textnuevoTalla: [],
+      textnuevoColor: []
+
     });
     this.formBuilder.group
   }

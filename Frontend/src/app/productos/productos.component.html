@@ -12,7 +12,7 @@
       <!--------------------------------------------------------------------------------------------->
       <!-- para mostrar el listado de productos -->
     
-      <div class="lista">
+      <div class="Listar">
           
         <h2>Lista de Productos: </h2>
     
@@ -54,7 +54,7 @@
     <!--------------------------------------------------------------------------------------------->
     <!-- para mostrar el un solo Tipo de Documento -->
                               
-    <div class="buscar">
+    <div class="Buscar">
       <h2>Mostramos el producto seleccionado: </h2>
     
       <form (ngSubmit)="buscarProducto()" [formGroup]="filtrarProducto">
@@ -109,20 +109,34 @@
     <!--------------------------------------------------------------------------------------------->
     <!-- para crear un  Tipo de documento -->
     
-    <div class="crea">
+    <div class="Insertar">
       <br><br>
-      <h2>Registrar un Nuevo Tipo de Documento</h2>
+      <h2>Registrar un Nuevo Producto</h2>
     
-      <form (ngSubmit)="InsertarTipDoc()" [formGroup]="InsertarGTipDoc">
-        Nuevo Tipo Documento
-        <label for="CTipDoc"><input type="text" name="CTipDoc" id="CTipDoc" formControlName="textTipDoc"></label>
+      <form (ngSubmit)="InsertarProducto()" [formGroup]="InsertarGProducto">
+        Nombre Producto
+        <label for="CProduct"><input type="text" name="CProduct" id="CProduct" formControlName="textNomProduct"></label>
     
     
         <br><br>
-        Iniciales Nuevo Tipo de Documento
-        <label for="InTipDoc"><input type="text" name="InTipDoc" id="InTipDoc" formControlName="textIniTipDoc" maxlength="3"></label>
+        Tipo de producto
+        
+          <select class="dropdown"  formControlName="combofiltro" (click)="consultaProducto(2)">
+            <option value="value1">Tipo de producto</option>
+            <option *ngFor="let product of comboListaProductos" [value]="product.idProducto">
+              {{product.tipoProducto}} 
+
+            </option>
+          </select>  
+
+        <br><br>
+        Talla Producto
+        <label for="TaProduct"><input type="text" name="TaProduct" id="TaProduct" formControlName="textTalla"></label>
     
-    
+        <br><br>
+        Color Producto
+        <label for="ColProduct"><input type="text" name="ColProduct" id="ColProduct" formControlName="textColor"></label>
+
         <br><br>
         <button type="submit">Insertar Tipo de Documento</button>
     
@@ -134,40 +148,47 @@
     
     
       <!--------------------------------------------------------------------------------------------->
-      <!-- para actualizar un tipo de documento 
+      <!-- para actualizar un tipo de documento -->
     
-      <div class="edit">
-        <h2> Tipo de Documento a Editar</h2>
+      <div class="Modificar">
+        <h2> Producto a Editar</h2>
     
-        <form (ngSubmit)="buscarEditarTipDoc()" [formGroup]="ActualizarATipDoc">
-            id Tipo de Documento  a Editar: 
-            <select class="dropdown"  formControlName="BuscarIdTipDoc" (click)="consultaTipoDocumentos(3)">
-                <option value="value1">Tipo de Documento a editar</option>
-                <option *ngFor="let TDoc of comboEditarTipDoc" [value]="TDoc.id_tip_doc">
-                    {{TDoc.tipo_documento}} - 
-                    {{TDoc.iniciales_tip_doc}} 
+        <form (ngSubmit)="buscarEditarProducto()" [formGroup]="ActualizarAProducto">
+            id Producto a Editar: 
+            <select class="dropdown"  formControlName="BuscarIdProducto" (click)="consultaProducto(3)">
+                <option value="value1">Producto a editar</option>
+                <option *ngFor="let product of comboEditarProductos" [value]="product.idProducto">
+                    {{product.idProducto}} - 
+                    {{product.nombreProducto}} 
                 </option>
             </select>
     
           <br><br>
-          <button type="submit">Buscar Tipo Documento a Editar</button>
+          <button type="submit">Buscar Producto a Editar</button>
      
-          <h2>{{TituloTipDocEdit}}</h2>
+          <h2>{{TituloProductosEdit}}</h2>
     
-          <li *ngFor="let Doc of MiTipDocE">
-            Nuevo Tipo Documento 
-            <label for="ETipDoc"><input type="text" name="ETipDoc" id="ETipDoc" value={{Doc.tipo_documento}} [(ngModel)]="Doc.tipo_documento" formControlName="textnuevotipdoc"></label>
+          <li *ngFor="let product of MiProductosE">
+            Nombre Producto
+            <label for="eProduct"><input type="text" name="eProduct" id="eProduct" value={{product.nombreProducto}} [(ngModel)]="product.nombreProducto" formControlName="textnuevoproduct"></label>
             <br><br>
-            Nuevas Iniciales Tipo Documento
-            <label for="InTipDoc"><input type="text" name="InTipDoc" id="InTipDoc" value={{Doc.iniciales_tip_doc}} [(ngModel)]="Doc.iniciales_tip_doc" formControlName="textnuevoinicialestipdoc"></label>
-       
+
+            Tipo de producto
+            <label for="tipProduct"><input type="text" name="tipProduct" id="tipProduct" value={{product.tipoProducto}} [(ngModel)]="product.tipoProducto" formControlName="textnuevoTipProduct"></label>
             <br><br>
-    
+
+            Talla producto
+            <label for="talProduct"><input type="text" name="talProduct" id="talProduct" value={{product.talla}} [(ngModel)]="product.talla" formControlName="textnuevoTalla"></label>
+            <br><br>
+
+            Color producto
+            <label for="colProduct"><input type="text" name="colProduct" id="colProduct" value={{product.color}} [(ngModel)]="product.color" formControlName="textnuevoColor"></label>
+            <br><br>
     
         </li>
         <br>
       
-        <button (click)="ActualizarTipDoc()">Actualizar</button>
+        <button (click)="ActualizarProducto()">Actualizar</button>
     
       </form>
       <br>
