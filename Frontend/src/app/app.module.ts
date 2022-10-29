@@ -17,9 +17,7 @@ import { UrbanService } from './Urban.service';
 ///Componentes 
 
 import { CatalogoComponent } from './catalogo/catalogo.component';
-import { ContactosComponent } from './contactos/contactos.component';
 import { DetallesproductosComponent } from './detallesproductos/detallesproductos.component';
-import { EncargadosComponent } from './encargados/encargados.component';
 import { MaterialesComponent } from './materiales/materiales.component';
 import { ProduccionComponent } from './produccion/produccion.component';
 import { ProductosComponent } from './productos/productos.component';
@@ -35,6 +33,11 @@ const appRoutes: Routes =
     pathMatch: 'prefix',
     redirectTo: 'Inicio'
   },
+  {
+    path: 'empleado',
+    loadChildren: () => import('./empleado/empleado.module').then(m => m.EmpleadoModule)
+  },
+  
   { 
     path: 'Inicio',
     component: MenuInicioComponent,
@@ -44,16 +47,8 @@ const appRoutes: Routes =
     component: CatalogoComponent,
   },
   {
-    path: 'contactos',
-    component: ContactosComponent,
-  },
-  {
     path: 'detallesproductos',
     component: DetallesproductosComponent,
-  },
-  {
-    path: 'encargados',
-    component: EncargadosComponent,
   },
   {
     path: 'materiales',
@@ -73,9 +68,7 @@ const appRoutes: Routes =
   declarations: [
     AppComponent,
     CatalogoComponent,
-    ContactosComponent,
     DetallesproductosComponent,
-    EncargadosComponent,
     MaterialesComponent,
     ProduccionComponent,
     ProductosComponent,
