@@ -1,4 +1,4 @@
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+//import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup,FormBuilder,Validators,ReactiveFormsModule, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -18,23 +18,23 @@ export class ProduccionComponent implements OnInit
   title = " PRODUCCION";
   
   //listar 
-  produccion: any = [];               //Lista de Tipos de produccion
-  TituloProduccion = "";              //Titulo Lista de Tipos de produccion
-  TablaProduccion: any = [];          //Encabezados tabla Lista de Tipos de produccion 
+  produccion: any = [];              //Lista de Tipos de produccion
+  TituloProduccion = "";             //Titulo Lista de Tipos de produccion
+  TablaProduccion: any = [];        //Encabezados tabla Lista de Tipos de produccion 
   
   //Mostrar
   Miproduccion: any = [];             //Tipo de produccion Buscado
-  TitProduccion = "";                 //Nombre de produccion buscado
-  TabBusProduccion: any = [];         //Encabezados tabla Tipo de produccion Buscado 
+  TitProduccion = "";              //Nombre de produccion buscado
+  TabBusProduccion: any = [];        //Encabezados tabla Tipo de produccion Buscado 
   comboListaProduccion: any = [];     //Combo Buscar Tipo de Documento
   
-  //Modificar
-  TituloProduccionEdit = "";          //Titulo de Tipo de Documento a Editar
+  //Actualizar
+  TituloProduccionEdit = "";      //Titulo de Tipo de Documento a Editar
   MiProduccionE: any = [];            //Tipo de Documento a Editar
   comboEditarProduccion: any = [];    //Combo Editar Tipo de Documento
 
-  controlLista = 1;                   //Control para limpiar la lista
-  BuscarEvalor = 1;                   //Control para carga del valor a buscar
+  controlLista = 1;               //Control para limpiar la lista
+  BuscarEvalor = 1;               //Control para carga del valor a buscar
 
 /*--------------------------------*/
 /*        Form Groups             */
@@ -83,7 +83,7 @@ export class ProduccionComponent implements OnInit
 /*       CRUD PRODUCCION          */
 /*--------------------------------*/
 
-/*  Lista produccion */
+/*  Lista produccion ********/
 public consultaProduccionI()
 {
   this.servi.getProduccion().subscribe((data:any) =>
@@ -94,7 +94,6 @@ public consultaProduccionI()
     this.TablaProduccion[0]="Indicador";
     this.TablaProduccion[1]="Encargado";
     this.TablaProduccion[2]="Productos Malos";
-    this.TablaProduccion[3]="Productos Buenos";
     this.TablaProduccion[4]="Tipo de camiseta";
     this.TablaProduccion[5]="Fecha";
     this.TablaProduccion[6]="Total";
@@ -110,15 +109,15 @@ public consultaProduccion(op:any)
       {
         if(op == 1)
         {
+          let dat = data;
           this.produccion = data;
           this.TituloProduccion = "LISTA PRODUCCION";
           this.TablaProduccion[0]="Indicador";
           this.TablaProduccion[1]="Encargado";
           this.TablaProduccion[2]="Productos Malos";
-          this.TablaProduccion[3]="Productos Buenos";
-          this.TablaProduccion[4]="Tipo de camiseta";
-          this.TablaProduccion[5]="Fecha";
-          this.TablaProduccion[6]="Total";
+          this.TablaProduccion[3]="Tipo de ";
+          this.TablaProduccion[4]="Fecha";
+          this.TablaProduccion[5]="Total";
         }
         else if(op == 2)
         {
@@ -131,9 +130,9 @@ public consultaProduccion(op:any)
           this.TabBusProduccion[3] = "";
           this.TabBusProduccion[4] = "";
           this.TabBusProduccion[5] = "";
-          this.TabBusProduccion[6] = "";
         }
         else if(op == 3)
+
         {
           this.comboEditarProduccion = data;
           this.MiProduccionE = null;
@@ -152,7 +151,6 @@ public consultaProduccion(op:any)
     this.TablaProduccion[3]="";
     this.TablaProduccion[4]="";
     this.TablaProduccion[5]="";
-    this.TablaProduccion[6]="";
     this.controlLista = 1;
   }
 }
@@ -168,12 +166,11 @@ public Mproduccion ()
 
     this.TitProduccion = "Produccion Seleccionada";
     this.TabBusProduccion[0] = "Indicador";
-    this.TabBusProduccion[1] = "Nombre Encargado";
+    this.TabBusProduccion[1] = "Encargado";
     this.TabBusProduccion[2] = "Productos Malos";
-    this.TabBusProduccion[3] = "Productos Buenos";
-    this.TabBusProduccion[4] = "Nombre Producto";
-    this.TabBusProduccion[5] = "Fecha";
-    this.TabBusProduccion[6] = "Total";
+    this.TabBusProduccion[3] = "Nombre Producto";
+    this.TabBusProduccion[4] = "Fecha";
+    this.TabBusProduccion[5] = "Total";
 
   },
   error => {console.log(error) });
@@ -271,7 +268,12 @@ ngOnInit(): void
   this.InsertarGProduccion = this.formBuilder.group(
     {
       textProduccion: [],
-      textIniProduccion: []
+      textIniProduccion: [],
+      textEncargado: [],
+      textProductMalo: [],
+      textProducto: [],
+      textFecha: [],
+      textTotal: []
     });
     this.formBuilder.group
 
@@ -283,6 +285,7 @@ ngOnInit(): void
       textNewProducto: [],
       textNewFecha: [],
       textNewTotal: []
-    })
+    });
+    this.formBuilder.group
 }
 }
