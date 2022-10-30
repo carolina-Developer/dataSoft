@@ -1,1 +1,145 @@
 <p>produccion works!</p>
+
+<html xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"><head>
+    | 
+      <title></title></head><body>
+      
+        <div style="text-align:center">
+          <h1>PRODUCTOS</h1>
+          <img width="300" alt="Logo Proyecto" src="../../assets/img/logo.svg">
+        </div>
+      
+        <br><br><br><br>
+<!----------------------------------------------------------------------------------------------------------->
+
+<!----------------------------------------->
+<!--  Mostrar el listado de producciones -->
+<!----------------------------------------->
+
+<div class="Listar">
+    <h2>Lista de Producciones: </h2>
+
+    <form (ngSubmit)="consultaProduccion(1)" [formGroup]="ListaProduccion">
+
+        <button type="submit" style="margin-right: 30px" > Mostrar Lista de Producciones</button>
+        <button (click)="LimpiarLista()" >Limpiar Lista de Produccion</button>
+
+        <br><br>
+
+        <h2>TituloProduccion</h2>   
+          <table> 
+              <thead>
+                  <th>{{TablaProduccion[0]}}</th>
+                  <th>{{TablaProduccion[1]}}</th>
+                  <th>{{TablaProduccion[2]}}</th>
+                  <th>{{TablaProduccion[3]}}</th>
+                  <th>{{TablaProduccion[4]}}</th>   
+                  <th>{{TablaProduccion[5]}}</th> 
+                  <th>{{TablaProduccion[6]}}</th>   
+              </thead>
+    
+              <tbody>
+                  <tr  *ngFor="let prod of Produccion">
+                      
+                    <th>{{ prod.idProduccion}} </th>
+                    <th>{{ prod.nombreEncargado }}</th> 
+                    <th>{{ prod.NoProductosMalos }}</th>
+                    <th>{{ prod.NoPductosBuenos}}</th>
+                    <th>{{ prod.nombreProducto}}</th>
+                    <th>{{ prod.Fecha}}</th>
+                    <th>{{ prod.Total}}</th>
+                      
+                  </tr>
+              </tbody> 
+          </table>
+    
+        </form>
+    
+      </div>
+      <br><br><br><br> 
+<!---------------------------------------------------------------------------------------->
+
+<!---------------------------------------->
+<!----  Mostrar un tipo de produccion ---->
+<!---------------------------------------->
+
+<div class="Buscar">
+  <h2> Mostramos la produccion seleccionada: </h2>
+
+  <form (ngSubmit)="MProduccion()" [formGroup]="filtrarProduccion">
+    Id de la porduccion a Mostrar
+    <select class="dropdown" formControlName="combofiltro" (click)="consultaProduccion(2)">
+      <option value="value1">tipo de produccion a Buscar</option>
+      <option *ngFor="let prod of comboListaProduccion" [value]="prod.idProduccion">
+        {{prod.idProduccion}} - 
+        {{prod.nombreProduccion}} 
+
+      </option>
+    </select>
+
+    <br><br>
+
+    <button type="submit">Buscar Produccion</button>
+  </form>
+
+  <ul>
+      <h2>{{TituloProduccion}}</h2>
+
+      <table class="tabBuscar">
+        <thead class="Colb">
+          <th class="b">{{TabBusProduccion[0]}}</th>
+          <th class="b">{{TabBusProduccion[1]}}</th>
+          <th class="b">{{TabBusProduccion[2]}}</th>
+          <th class="b">{{TabBusProduccion[3]}}</th>
+          <th class="b">{{TabBusProduccion[4]}}</th>
+          <th class="b">{{TabBusProduccion[5]}}</th>
+          <th class="b">{{TabBusProduccion[6]}}</th>
+        </thead>
+
+        <tbody class="Filb">  
+          <tr class="b" *ngFor="let prod of MiProduccion">
+              <th class="b">{{ prod.idProduccion} </th>
+              <th class="b">{{ prod.nombreEncargado}} </th>
+              <th class="b">{{ prod.noProductosMalos}} </th>
+              <th class="b">{{ prod.noProductosBuenos}} </th>
+              <th class="b">{{ prod.nombreProducto}} </th>
+              <th class="b">{{ prod.fecha}} </th>
+              <th class="b">{{ prod.total}} </th>
+          </tr>
+      </tbody> 
+
+      </table>
+
+  </ul>
+
+</div>
+<br><br><br><br>
+
+<!---------------------------------------------------------------------------------------->
+
+<!-------------------------------------->
+<!----  Crear un tipo de produccion ---->
+<!-------------------------------------->
+
+<div class="Insertar">
+    <br><br>
+    <h2>Registrar Produccion</h2>
+
+    <form (ngSubmit)="InsertarProduccion()" [formGroup]="InsertarGProduccion">
+        nombreEncargado
+        <label for="CEncar"><input type="text" name="CProduc" id="CProduc" formControlName="textNomProduc"></label>
+
+        <br><br>
+        nombreProducto
+        <select class="dropdown"  formControlName="combofiltro" (click)="consultaProduccion(2)">
+            <option value="value1">Tipo de produccion</option>
+            <option *ngFor="let prod of comboListaProduccion" [value]="prod.idProduccion">
+              {{prod.tipoProduccion}} 
+
+            </option>
+          </select> 
+
+          <br><br>
+          
+    </form>
+</div>

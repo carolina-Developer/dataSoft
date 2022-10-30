@@ -6,8 +6,8 @@ import {UrbanService} from '../Urban.service'
 
 @Component({
   selector: 'app-materiales',
-  templateUrl: './materiales.component.html',
-  styleUrls: ['./materiales.component.css']
+  templateUrl: './material.component.html',
+  styleUrls: ['./material.component.css']
 })
 
 export class MaterialesComponent implements OnInit {
