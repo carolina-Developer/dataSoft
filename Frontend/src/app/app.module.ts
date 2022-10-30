@@ -16,13 +16,8 @@ import { UrbanService } from './Urban.service';
 
 ///Componentes 
 
-import { CatalogoComponent } from './catalogo/catalogo.component';
-import { DetallesproductosComponent } from './detallesproductos/detallesproductos.component';
-import { MaterialesComponent } from './materiales/materiales.component';
-import { ProduccionComponent } from './produccion/produccion.component';
 import { ProductosComponent } from './productos/productos.component';
 import { MenuInicioComponent } from './menu-inicio/menu-inicio.component';
-
 
 
 //Rutas
@@ -37,27 +32,19 @@ const appRoutes: Routes =
     path: 'empleado',
     loadChildren: () => import('./empleado/empleado.module').then(m => m.EmpleadoModule)
   },
-  
+  {
+    path: 'productividad',
+    loadChildren: () => import('./productividad/productividad.module').then(m => m.ProductividadModule)
+  },
+  {
+    path: 'global',
+    loadChildren: () => import('./global/global.module').then(m => m.GlobalModule)
+  },
   { 
     path: 'Inicio',
     component: MenuInicioComponent,
   },
-  {
-    path: 'catalogo',
-    component: CatalogoComponent,
-  },
-  {
-    path: 'detallesproductos',
-    component: DetallesproductosComponent,
-  },
-  {
-    path: 'materiales',
-    component: MaterialesComponent,
-  },
-  {
-    path: 'produccion',
-    component: ProduccionComponent,
-  },
+ 
   {
     path: 'productos',
     component: ProductosComponent,
@@ -67,12 +54,8 @@ const appRoutes: Routes =
 @NgModule({
   declarations: [
     AppComponent,
-    CatalogoComponent,
-    DetallesproductosComponent,
-    MaterialesComponent,
-    ProduccionComponent,
     ProductosComponent,
-    MenuInicioComponent
+    MenuInicioComponent,
   ],
   imports: [
     BrowserModule,

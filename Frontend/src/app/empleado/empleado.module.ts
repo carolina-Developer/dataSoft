@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 
 import { EmpleadoRoutingModule } from './empleado-routing.module';
 
+
 import {ContactosComponent} from './contactos/contactos.component'; 
 import{EncargadosComponent} from './encargados/encargados.component';
 
@@ -19,6 +20,6 @@ import{EncargadosComponent} from './encargados/encargados.component';
   imports: [
     CommonModule,
     EmpleadoRoutingModule
-  ]
+  ],
 })
 export class EmpleadoModule { }
