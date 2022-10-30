@@ -108,4 +108,52 @@ export class UrbanService {
     });
   }
 
+    /******************************************/
+    /** SERVICIO CRUD DE TIPOS DE PRODUCCION **/
+    /******************************************/
+
+    /* 
+    Metodo listar produccion 
+    */
+
+    getProduccion(): Observable <any>
+    {
+      return this.http.get(this.Url + "/produccion" , httpOptions);
+    }
+
+    /* 
+    Metodo mostrar produccion 
+    */
+
+    getTipoProduccion(id:any): Observable<any> {
+      return this.http.get(this.Url + "/produccion"+id , httpOptions);
+    }
+
+    /* 
+    Metodo insertar produccion 
+    */
+
+    async insertProduccion(produccionData:any): Promise<any> {   
+      return new Promise((resolve, reject) => {
+        this.http.post(this.Url + "/produccion", produccionData, httpOptions).toPromise()
+      });
+    }
+
+    /* 
+    Metodo Modoficar produccion 
+    */
+
+    async updateProduccion(produccionData:any): Promise<any> {
+        return new Promise((resolve, reject) => {
+        this.http.put(this.Url + "/produccion", produccionData, httpOptions).toPromise()
+      });
+    }
+
+    /*
+    Metodo mostrar informe produccion 
+    */
+
+    getInforme(id:any, fechaIn:any, fechaFi:any): Observable<any> {
+      return this.http.get(this.Url + "/produccion/"+id+"/"+ fechaIn+"/"+ fechaFi+ httpOptions);
+    }
 }
