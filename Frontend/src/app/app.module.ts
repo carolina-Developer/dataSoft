@@ -18,7 +18,7 @@ import { UrbanService } from './Urban.service';
 
 import { CatalogoComponent } from './catalogo/catalogo.component';
 import { ContactosComponent } from './contactos/contactos.component';
-import { DetallesproductosComponent } from './detallesProductos/detallesProductos.component';
+import { DetallesproductosComponent } from './detallesproductos/detallesproductos.component';
 import { EncargadosComponent } from './encargados/encargados.component';
 import { MaterialesComponent } from './material/material.component';
 import { ProduccionComponent } from './produccion/produccion.component';
