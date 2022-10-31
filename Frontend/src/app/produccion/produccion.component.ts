@@ -1,4 +1,3 @@
-//import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup,FormBuilder,Validators,ReactiveFormsModule, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -26,12 +25,12 @@ export class ProduccionComponent implements OnInit
   Miproduccion: any = [];             //Tipo de produccion Buscado
   TitProduccion = "";              //Nombre de produccion buscado
   TabBusProduccion: any = [];        //Encabezados tabla Tipo de produccion Buscado 
-  comboListaProduccion: any = [];     //Combo Buscar Tipo de Documento
+  comboListaProduccion: any = [];     //Combo Buscar Tipo de produccion
   
   //Actualizar
-  TituloProduccionEdit = "";      //Titulo de Tipo de Documento a Editar
-  MiProduccionE: any = [];            //Tipo de Documento a Editar
-  comboEditarProduccion: any = [];    //Combo Editar Tipo de Documento
+  TituloProduccionEdit = "";      //Titulo de Tipo de produccion a Editar
+  MiProduccionE: any = [];            //Tipo de produccion a Editar
+  comboEditarProduccion: any = [];    //Combo Editar produccion
 
   controlLista = 1;               //Control para limpiar la lista
   BuscarEvalor = 1;               //Control para carga del valor a buscar
