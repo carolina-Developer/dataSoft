@@ -1,7 +1,3 @@
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
 import { Component, OnInit } from '@angular/core';
 import {
   FormGroup,
