@@ -157,15 +157,67 @@ export class UrbanService {
 
   }
 
- //--------------------------------------------------------------------------------------
- 
-  /*
-      Metodo listar encargados
-  */
-  getEncargados(): Observable<any> {
-    return this.http.get(this.Url + '/encargados', httpOptions);
+//--------------------------------------------------------------------------------------
+
+// --Servicios de ENCARGADOS-- //
+//--------------------------------------------------------------------------------------
+  // Metodo listar encargados
+
+  getEncargados(): Observable<any>
+  {
+
+    return this.http.get(this.Url + "/encargados", httpOptions);
+
   }
 
+  //--------------------------------------------------------------------------------------
+  // Metodo mostrar encargados
+
+  getEncargado(id:any): Observable<any>
+  {
+    
+    return this.http.get(this.Url + "/encargados" + id, httpOptions);
+
+  }
+
+  //--------------------------------------------------------------------------------------
+  // Metodo mostrar font-end
+
+  getEncargadoFront(id:any): Observable<any>
+  {
+    
+    return this.http.get(this.Url + "/encargados/encarg" + id, httpOptions);
+
+  }
+
+  //--------------------------------------------------------------------------------------
+  // Metodo crear encargado
+
+  async insertEncargado(nuevoEncargado:any): Promise<any>
+  {
+
+    return new Promise((resolve, rejects) => {
+      this.http.post(this.Url + "/encargados", nuevoEncargado, httpOptions).toPromise()
+    
+    });
+
+  }
+
+  //--------------------------------------------------------------------------------------
+  // Metodo modificar encargado
+
+  async updateEncargado(cadena:any): Promise<any>
+  {
+
+    return new Promise((resolve, reject) => { 
+      this.http.put(this.Url + "/encargados", cadena, httpOptions).toPromise()
+
+    });
+
+  }
+
+//---------------------------------------------------------------------------------------
+  
   /*Servicio CRUD PRODUCTO */
 
   /*Metodo listar productos */

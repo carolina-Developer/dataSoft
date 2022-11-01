@@ -72,6 +72,42 @@ encargadosModel.getEncargado = function (id, callback)
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------
+// MOSTRAR PARA FRONT-END
+
+encargadosModel.getEncargadoFront = function (id, callback)
+{
+    if(connection)
+    {
+        var sql =   "SELECT `idEncargado`, " +
+                    "`primerNom`, " +
+                    "`segNom`, " +
+                    "`primApellido`, " +
+                    "`segApellido`, " +
+                    "`tipoIdentificacion`, " +
+                    "`numIdentificacion`, " +
+                    "date_format(`fechaNacimiento`, '%Y-%m-%d') AS 'FechaNacimiento', " +
+                    //"E.`fechaNacimiento`, " +
+                    "`eps`, " +
+                    "`sueldo` " +
+                    "FROM `encargados`" +
+                    "WHERE idEncargado = " + connection.escape(id) + ";";
+        
+        connection.query(sql, function (error, rows)
+        {
+            if(error)
+            {
+                throw error;
+            }
+            else
+            {
+                callback(null,rows);
+                
+            }
+        });
+    }
+}
+
+//----------------------------------------------------------------------------------------------------------------------------------
 //CREAR
 
 encargadosModel.insertEncargado = function (encargadoData, callback)
