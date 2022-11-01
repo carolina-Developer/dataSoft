@@ -45,7 +45,6 @@ catalogosModel.getCatalogos = function (id, callback)
                     "INNER JOIN `catalogos` AS D ON C.`llaveForanea` = D.`idCatalogo` " +
                     "WHERE C.llaveForanea = " + connection.escape(id) + ";";
 
-        console.log("Estamos aca 14 " + id);
         
         connection.query(sql, function (error, rows)
         {

@@ -20,7 +20,7 @@ import { CatalogoComponent } from './catalogo/catalogo.component';
 import { ContactosComponent } from './contactos/contactos.component';
 import { DetallesproductosComponent } from './detallesproductos/detallesproductos.component';
 import { EncargadosComponent } from './encargados/encargados.component';
-import { MaterialesComponent } from './materiales/materiales.component';
+import { MaterialesComponent } from './material/material.component';
 import { ProduccionComponent } from './produccion/produccion.component';
 import { ProductosComponent } from './productos/productos.component';
 import { MenuInicioComponent } from './menu-inicio/menu-inicio.component';

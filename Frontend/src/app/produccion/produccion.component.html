@@ -1,1 +1,298 @@
-<p>produccion works!</p>
+<html xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"><head></head>
+<body>
+  <div style="text-align: center">
+    <h1>{{ title }}</h1>
+    <img width="300" alt="Logo Proyecto" src="../../assets/img/logo.svg" />
+  </div>
+
+  <br /><br /><br /><br />
+  <!----------------------------------------------------------------------------------------------------------->
+
+  <!----------------------------------------->
+  <!--  Mostrar el listado de producciones -->
+  <!----------------------------------------->
+
+  <div class="Listar">
+    <h2>LISTAR PRODUCCION</h2>
+
+    <form (ngSubmit)="consultaProduccion(1)" [formGroup]="ListaProduccion">
+      <button type="submit" style="margin-right: 30px">
+        Mostrar Lista de Producciones
+      </button>
+      <button (click)="LimpiarLista()">Limpiar Lista de Produccion</button>
+
+      <br /><br />
+
+      <h2>TituloProduccion</h2>
+      <table>
+        <thead>
+          <th>{{ TablaProduccion[0] }}</th>
+          <th>{{ TablaProduccion[1] }}</th>
+          <th>{{ TablaProduccion[2] }}</th>
+          <th>{{ TablaProduccion[3] }}</th>
+          <th>{{ TablaProduccion[4] }}</th>
+          <th>{{ TablaProduccion[5] }}</th>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let prod of produccion">
+            <th>{{ prod.idProduccion }}</th>
+            <th>{{ prod.nombreEncargado }}</th>
+            <th>{{ prod.noProductosMalos }}</th>
+            <th>{{ prod.nombreProducto }}</th>
+            <th>{{ prod.fecha }}</th>
+            <th>{{ prod.total }}</th>
+          </tr>
+        </tbody>
+      </table>
+    </form>
+  </div>
+  <br /><br />
+  <!---------------------------------------------------------------------------------------->
+
+  <!---------------------------------------->
+  <!----  Mostrar un tipo de produccion ---->
+  <!---------------------------------------->
+
+  <div class="Buscar">
+    <h2>MOSTRAR PRODUCCION</h2>
+
+    <form (ngSubmit)="buscarProduccion()" [formGroup]="filtrarProduccion">
+      ID Produccion
+      <select
+        class="dropdown"
+        formControlName="combofiltro"
+        (click)="consultaProduccion(2)"
+      >
+        <option value="value1">Produccion No.</option>
+        <option
+          *ngFor="let prod of comboListaProduccion"
+          [value]="prod.idProduccion"
+        >
+          {{ prod.idProduccion }} - 
+          {{ prod.nombreEncargado }}
+          
+        </option>
+      </select>
+
+      <br /><br />
+
+      <button type="submit">Buscar Produccion</button>
+    </form>
+
+    <ul>
+      <h2>{{ TituloProduccion }}</h2>
+
+      <table class="tabBuscar">
+        <thead class="Colb">
+          <th class="b">{{ TabBusProduccion[0] }}</th>
+          <th class="b">{{ TabBusProduccion[1] }}</th>
+          <th class="b">{{ TabBusProduccion[2] }}</th>
+          <th class="b">{{ TabBusProduccion[3] }}</th>
+          <th class="b">{{ TabBusProduccion[4] }}</th>
+          <th class="b">{{ TabBusProduccion[5] }}</th>
+        </thead>
+
+        <tbody class="Filb">
+          <tr class="b" *ngFor="let prod of Miproduccion">
+            <th class="b">{{ prod.idProduccion }}</th>
+            <th class="b">{{ prod.nombreEncargado }}</th>
+            <th class="b">{{ prod.noProductosMalos }}</th>
+            <th class="b">{{ prod.nombreProducto }}</th>
+            <th class="b">{{ prod.fecha }}</th>
+            <th class="b">{{ prod.total }}</th>
+          </tr>
+        </tbody>
+      </table>
+    </ul>
+  </div>
+  <br /><br />
+
+  <!---------------------------------------------------------------------------------------->
+
+  <!-------------------------------------->
+  <!----  Crear un tipo de produccion ---->
+  <!-------------------------------------->
+
+  <div class="Insertar">
+    <br /><br />
+    <h2>CREAR PRODUCCION</h2>
+
+    <form (ngSubmit)="InsertarProduccion()" [formGroup]="InsertarGProduccion">
+      <br /><br />
+      nombreEncargado
+      <select
+        class="dropdown"
+        formControlName="textEncargadoProduc"
+        (click)="filtroEncargado()"
+      >
+        <option value="value1">nombre de Encargado</option>
+        <option
+          *ngFor="let prod of combo3"
+          [value]="prod.idEncargado"
+        >
+          {{ prod.encargado }}
+        </option>
+      </select>
+      <br /><br />
+
+      noProductosMalos
+      <label for="nProduc"
+        ><input
+          type="text"
+          name="nProduc"
+          id="nProduc"
+          formControlName="textProducMalo"
+      /></label>
+
+      <br /><br />
+      Tipo camiseta
+      <select
+        class="dropdown-1"
+        formControlName="textProducto"
+        (click)="filtroProducto()"
+      >
+        <option value="value1">Tipo camiseta</option>
+        <option
+          *ngFor="let prod of combo4"
+          [value]="prod.idProducto"
+        >
+          {{ prod.nombreProducto }}
+        </option>
+      </select>
+      <br /><br />
+      fecha
+      <label for="fProduc"
+        ><input
+          type="text"
+          name="fProduc"
+          id="fProduc"
+          formControlName="textFecha"
+      /></label>
+
+      total
+      <label for="tProduc"
+        ><input
+          type="text"
+          name="tProduc"
+          id="tProduc"
+          formControlName="textTotal"
+      /></label>
+      <br /><br />
+      <button type="submit">Insertar Produccion</button>
+    </form>
+    <br />
+  </div>
+
+  <!---------------------------------------------------------------------------------------->
+
+  <!-------------------------------------->
+  <!---  Modificar tipo de produccion ---->
+  <!-------------------------------------->
+
+  <div class="Modificar">
+    <h2>ACTUALIZAR PRODUCCION</h2>
+
+    <form
+      (ngSubmit)="buscarEditProduccion()"
+      [formGroup]="ActualizarAProduccion"
+    >
+      ID Produccion a Editar:
+      <select
+        class="dropdown"
+        formControlName="buscarIdProduccionA"
+        (click)="consultaProduccion(3)"
+      >
+        <option value="value1">Producccion a editar</option>
+        <option
+          *ngFor="let prod of comboEditarProduccion"
+          [value]="prod.idProduccion"
+        >
+          {{ prod.idProduccion }} - 
+          {{ prod.nombreEncargado }}
+        </option>
+      </select>
+      <br /><br />
+
+      <button type="submit">Buscar Produccion a Editar</button>
+
+      <h2>{{ TituloProduccionEdit }}</h2>
+
+      <li *ngFor="let prod of MiProduccionE">
+        nombreEncargado
+        <label for="eProd"
+          ><input
+            type="text"
+            name="eProd"
+            id="eProd"
+            value="{{ prod.nombreEncargado }}"
+            [(ngModel)]="prod.nombreEncargado"
+            formControlName="textEncargadoProducA"
+        /></label>
+        <br /><br />
+
+        Productos Malos
+        <label for="mProduc"
+          ><input
+            type="text"
+            name="mProduc"
+            id="mProduc"
+            value="{{ prod.noProductosMalos }}"
+            [(ngModel)]="prod.noProductosMalos"
+            formControlName="textProducMalosA"
+        /></label>
+        <br /><br />
+
+        Tipo camiseta
+        <select
+          class="dropdown-1"
+          formControlName="textProductoA"
+          (click)="filtroProducto()"
+        >
+          <option value="value1">Tipo camiseta</option>
+          <option
+            *ngFor="let prod of combo4"
+            [value]="prod.idProducto"
+          >
+            {{ prod.nombreProducto }}
+          </option>
+        </select>
+        <br /><br />
+
+        fecha
+        <label for="fProduc"
+          ><input
+            type="text"
+            name="fProduc"
+            id="fProduc"
+            value="{{ prod.fecha }}"
+            [(ngModel)]="prod.fecha"
+            formControlName="textFechaA"
+        /></label>
+        <br /><br />
+
+        total
+        <label for="tProduc"
+          ><input
+            type="text"
+            name="tProduc"
+            id="tProduc"
+            value="{{ prod.total }}"
+            [(ngModel)]="prod.total"
+            formControlName="textTotalA"
+        /></label>
+        <br /><br />
+      </li>
+      <br />
+
+      <button (click)="ActualizaProduccion()">Actualizar</button>
+    </form>
+    <br />
+  </div>
+  <br /><br /><br /><br />
+  <!--*************************************************************************-->
+  <!-- se incluye el link para la otra página -->
+  <div class="dir">
+    <h3><a routerLink="/Inicio">MENÚ INICIOO</a></h3>
+  </div>
+</body>
