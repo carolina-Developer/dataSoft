@@ -89,7 +89,76 @@ export class UrbanService {
   }
 
   //---------------------------------------------------------------------------------------------------
-  
+
+  // --Servicios de CONTACTOS-- //
+  //--------------------------------------------------------------------------------------
+  // Metodo listar contacto
+
+  getContactos(): Observable<any>
+  {
+
+    return this.http.get(this.Url + "/contactos", httpOptions);
+
+  }
+
+  //--------------------------------------------------------------------------------------
+  // Metodo mostrar contactos por id
+
+  getContacto(id:any): Observable<any>
+  {
+    
+    return this.http.get(this.Url + "/contactos" + id, httpOptions);
+
+  }
+
+  //--------------------------------------------------------------------------------------
+  // Metodo mostrar contactos por idEncargado
+
+  getContactoEncargado(id:any): Observable<any>
+  {
+
+    return this.http.get(this.Url + "/contactos/encargado" + id, httpOptions);
+
+  }
+
+  //--------------------------------------------------------------------------------------
+  // Metodo crear contacto
+
+  async insertContacto(nuevoContacto:any): Promise<any>
+  {
+
+    return new Promise((resolve, rejects) => {
+      this.http.post(this.Url + "/contactos", nuevoContacto, httpOptions).toPromise()
+    
+    });
+
+  }
+
+  //--------------------------------------------------------------------------------------
+  // Metodo mostrar contacto front-end
+
+  getContactoFront(id:any): Observable<any>
+  {
+    
+    return this.http.get(this.Url + "/contactos/contac" + id, httpOptions);
+
+  }
+
+  //--------------------------------------------------------------------------------------
+  // Metodo modificar contacto
+
+  async updateContacto(cadena:any): Promise<any>
+  {
+
+    return new Promise((resolve, reject) => { 
+      this.http.put(this.Url + "/contactos", cadena, httpOptions).toPromise()
+
+    });
+
+  }
+
+ //--------------------------------------------------------------------------------------
+ 
   /*
       Metodo listar encargados
   */
