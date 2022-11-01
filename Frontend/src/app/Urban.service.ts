@@ -31,13 +31,65 @@ export class UrbanService {
     };
   }
 
-  /*
-      Metodo listar catalogo
-   */
-  getCatalogos(id: any): Observable<any> {
-    return this.http.get(this.Url + '/catalogos' + id, httpOptions);
+
+  // --Servicios de CATALOGOS-- //
+  //--------------------------------------------------------------------------------------
+  // Metodo listar catalogos
+
+  getCatalogo(): Observable<any>
+  {
+
+    return this.http.get(this.Url + "/catalogos", httpOptions);
+
   }
 
+  //--------------------------------------------------------------------------------------
+  // Metodo mostrar catalogos llave
+
+  getCatalogos(id:any): Observable<any>
+  {
+    
+    return this.http.get(this.Url + "/catalogos" + id, httpOptions);
+
+  }
+
+  //--------------------------------------------------------------------------------------
+  // Metodo mostrar catalogos id
+  
+  getCatalogosId(id:any): Observable<any>
+  {
+    
+    return this.http.get(this.Url + "/catalogos/catalo" + id, httpOptions);
+
+  }
+
+  //--------------------------------------------------------------------------------------
+  // Metodo crear catalogo
+  async insertCat(nuevoCat:any): Promise<any>
+  {
+
+    return new Promise((resolve, rejects) => {
+      this.http.post(this.Url + "/catalogos", nuevoCat, httpOptions).toPromise()
+    
+    });
+
+  }
+
+  //--------------------------------------------------------------------------------------
+  // Metodo modificar catalogo
+
+  async updateCat(cadena:any): Promise<any>
+  {
+
+    return new Promise((resolve, reject) => { 
+      this.http.put(this.Url + "/catalogos", cadena, httpOptions).toPromise()
+
+    });
+
+  }
+
+  //---------------------------------------------------------------------------------------------------
+  
   /*
       Metodo listar encargados
   */
