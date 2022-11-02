@@ -33,6 +33,11 @@ export class ProductosComponent implements OnInit {
   MiProductosE: any = []; //Tipo de Producto a Editar
   comboEditarProductos: any = []; //Combo Editar Tipo de Producto
 
+  MiProductoIn: any = []; //Tipo de Producto Buscado
+  TituloProductoIn = ''; //Titulo de Tipo de Producto Buscado
+  TabInProductos: any = []; //Encabezados tabla Tipo de Producto Buscado
+  comboListaProducIn: any = []; //Combo Buscar Tipo de Documento
+
   controlLista = 1; //Control para limpiar la lista
   BuscarEvalor = 1; //Control para carga del valor a buscar
 
@@ -62,6 +67,12 @@ export class ProductosComponent implements OnInit {
     textnuevoTalla: new FormControl(),
     textnuevoColor: new FormControl(),
   });
+
+  InformeProducto = new FormGroup({
+    BuscarIdProducto: new FormControl(),
+    textFechaIn: new FormControl(),
+    textFechaFi: new FormControl(),
+  })
 
   /*Contructor ----------------------------------------------------------------- */
   constructor(
@@ -113,6 +124,15 @@ export class ProductosComponent implements OnInit {
             this.comboEditarProductos = data;
             this.MiProductosE = null;
             this.TituloProductosEdit = '';
+          }else if (op == 4) {
+            this.comboListaProducIn = data;
+            this.MiProductoIn = null;
+            this.TituloProductoIn = '';
+            this.TabInProductos[0] = '';
+            this.TabInProductos[1] = '';
+            this.TabInProductos[2] = '';
+            this.TabInProductos[3] = '';
+            this.TabInProductos[4] = '';
           }
         },
         (error) => {
@@ -221,6 +241,28 @@ export class ProductosComponent implements OnInit {
     this.BuscarEvalor = 0;
     this.ActualizarAProducto.reset();
   }
+
+  /*public informeProducto() {
+    var id = this.InformeProducto.getRawValue()['BuscarIdProducto'];
+    var fechaIn = this.InformeProducto.getRawValue()['FechaIn'];
+    var fechaFi = this.InformeProducto.getRawValue()['FechaFi'];
+
+    this.servi.getInformeProduc('/' + id+ '/' + fechaIn + '/' + fechaFi).subscribe(
+      (data: {}) => {
+        this.MiProductoIn = data;
+
+        this.TituloProducto = 'Tipo de producto seleccionado';
+        this.TabBusProductos[0] = 'ID';
+        this.TabBusProductos[1] = 'Nombre';
+        this.TabBusProductos[2] = 'Tipo';
+        this.TabBusProductos[3] = 'Talla';
+        this.TabBusProductos[4] = 'Color';
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }*/
 
   /*Filtro tipo de producto -----------------------------------------------------------*/
   public filtroTipoProduct(){
