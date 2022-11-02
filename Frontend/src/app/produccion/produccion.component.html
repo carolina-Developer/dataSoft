@@ -236,8 +236,7 @@
         Tipo camiseta
         <select
           class="dropdown-1"
-          formControlName="textProductoA"
-          (click)="filtroProducto()"
+          formControlName="textProductoA" [(ngModel)]="prod.idProducto"
         >
           <option value="value1">Tipo camiseta</option>
           <option
