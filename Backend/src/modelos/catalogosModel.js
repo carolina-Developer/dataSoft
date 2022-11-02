@@ -31,7 +31,7 @@ catalogosModel.getCatalogo = function (callback)
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------
-// MOSTRAR CATALOGO
+// MOSTRAR CATALOGO POR LLAVE
 
 catalogosModel.getCatalogos = function (id, callback)
 {
@@ -61,6 +61,34 @@ catalogosModel.getCatalogos = function (id, callback)
     }
 }
 
+//----------------------------------------------------------------------------------------------------------------------------------
+// MOSTRAR CATALOGO POR ID
+
+catalogosModel.getCatalogosId = function (id, callback)
+{
+    if(connection)
+    {
+        var sql =   "SELECT `idCatalogo`, " + 
+                    "`nombreCat`, "+
+                    "`tipoCatalogo`, " +
+                    "`llaveForanea` " +
+                    "FROM `catalogos`" +
+                    "WHERE idCatalogo = " + connection.escape(id) + ";";
+
+        connection.query(sql, function (error, rows)
+        {
+            if(error)
+            {
+                throw error;
+            }
+            else
+            {
+                callback(null,rows);
+                
+            }
+        });
+    }
+}
 
 //----------------------------------------------------------------------------------------------------------------------------------
 // CREAR

@@ -50,6 +50,35 @@ router.get("/:id", function (req, res)
     
 });
 
+//-------------------------------------------------------------------------------------------------------------------------------
+// MOSTRAR FRONT-END
+
+router.get("/contac/:id", function (req, res)
+{
+    var id = req.params.id;
+
+    if(!isNaN(id))
+    {
+        contactosModel.getContactoFront(id, function (error, data)
+        {
+            if (typeof data !== 'undefined' && data.length > 0)
+            {
+                res.status(200).json(data);
+            }
+            else
+            {
+                res.json(404, {"msg": "Registro no existe"});
+            }
+        
+        });
+    }
+    else
+    {
+        res.status(500).json({"msg":"error"});
+    }
+    
+});
+
 //----------------------------------------------------------------------------------------------------------
 // CREAR  
 
