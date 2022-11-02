@@ -127,10 +127,12 @@ export class ProduccionComponent implements OnInit {
             this.comboEditarProduccion = data;
             this.MiProduccionE = null;
             this.TituloProduccionEdit = "";
+
+            console.error(' El listado 5 ');
           }
         },
         (error) => {
-          console.error(error + " ");
+          console.error(error + ' ');
         }
       );
     } else {
