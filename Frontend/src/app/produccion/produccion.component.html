@@ -17,13 +17,15 @@
 
     <form (ngSubmit)="consultaProduccion(1)" [formGroup]="ListaProduccion">
       <button type="submit" style="margin-right: 30px">
-        Mostrar Lista de Producciones
+        Listar Produccion
       </button>
-      <button (click)="LimpiarLista()">Limpiar Lista de Produccion</button>
+      <button (click)="LimpiarLista()">
+        Limpiar Lista
+      </button>
 
       <br /><br />
 
-      <h2>TituloProduccion</h2>
+      <h2>{{ TituloProduccion }}</h2>
       <table>
         <thead>
           <th>{{ TablaProduccion[0] }}</th>
@@ -32,6 +34,7 @@
           <th>{{ TablaProduccion[3] }}</th>
           <th>{{ TablaProduccion[4] }}</th>
           <th>{{ TablaProduccion[5] }}</th>
+          <th>{{ TablaProduccion[6] }}</th>
         </thead>
 
         <tbody>
@@ -39,6 +42,7 @@
             <th>{{ prod.idProduccion }}</th>
             <th>{{ prod.nombreEncargado }}</th>
             <th>{{ prod.noProductosMalos }}</th>
+            <th>{{ prod.noProductosBuenos }}</th>
             <th>{{ prod.nombreProducto }}</th>
             <th>{{ prod.fecha }}</th>
             <th>{{ prod.total }}</th>
@@ -64,24 +68,20 @@
         formControlName="combofiltro"
         (click)="consultaProduccion(2)"
       >
-        <option value="value1">Produccion No.</option>
-        <option
-          *ngFor="let prod of comboListaProduccion"
-          [value]="prod.idProduccion"
-        >
-          {{ prod.idProduccion }} - 
+        <option select disabled value="value1">Produccion No.</option>
+        <option *ngFor="let prod of comboListaProduccion" [value]="prod.idProduccion">
           {{ prod.nombreEncargado }}
-          
+          {{ prod.fecha }}          
         </option>
       </select>
 
-      <br /><br />
+      <br><br>
 
       <button type="submit">Buscar Produccion</button>
     </form>
 
     <ul>
-      <h2>{{ TituloProduccion }}</h2>
+      <h2>{{ TitProduccion }}</h2>
 
       <table class="tabBuscar">
         <thead class="Colb">
@@ -91,6 +91,7 @@
           <th class="b">{{ TabBusProduccion[3] }}</th>
           <th class="b">{{ TabBusProduccion[4] }}</th>
           <th class="b">{{ TabBusProduccion[5] }}</th>
+          <th class="b">{{ TabBusProduccion[6] }}</th>
         </thead>
 
         <tbody class="Filb">
@@ -98,6 +99,7 @@
             <th class="b">{{ prod.idProduccion }}</th>
             <th class="b">{{ prod.nombreEncargado }}</th>
             <th class="b">{{ prod.noProductosMalos }}</th>
+            <th class="b">{{ prod.noProductosBuenos }}</th>
             <th class="b">{{ prod.nombreProducto }}</th>
             <th class="b">{{ prod.fecha }}</th>
             <th class="b">{{ prod.total }}</th>
@@ -119,58 +121,32 @@
     <h2>CREAR PRODUCCION</h2>
 
     <form (ngSubmit)="InsertarProduccion()" [formGroup]="InsertarGProduccion">
-      <br /><br />
-      nombreEncargado
-      <select
-        class="dropdown"
-        formControlName="textEncargadoProduc"
-        (click)="filtroEncargado()"
-      >
-        <option value="value1">nombre de Encargado</option>
-        <option
-          *ngFor="let prod of combo3"
-          [value]="prod.idEncargado"
-        >
+      <br><br>
+      Encargado
+      <select class="dropdown" formControlName="textEncargadoProduc" (click)="filtroEncargado()">
+        <option select disabled value="value1">Encargado</option>
+        <option *ngFor="let prod of combo3" [value]="prod.idEncargado">
           {{ prod.encargado }}
         </option>
       </select>
-      <br /><br />
+      <br><br>
 
-      noProductosMalos
-      <label for="nProduc"
-        ><input
-          type="text"
-          name="nProduc"
-          id="nProduc"
-          formControlName="textProducMalo"
-      /></label>
+      Productos Malos
+      <label for="nProduc"><input type="text" name="nProduc" id="nProduc" formControlName="textProducMalos"></label>
+      <br><br>
 
-      <br /><br />
       Tipo camiseta
-      <select
-        class="dropdown-1"
-        formControlName="textProducto"
-        (click)="filtroProducto()"
-      >
-        <option value="value1">Tipo camiseta</option>
-        <option
-          *ngFor="let prod of combo4"
-          [value]="prod.idProducto"
-        >
+      <select class="dropdown-1" formControlName="textProducto" (click)="filtroProducto()">
+        <option select disabled value="value1">Tipo camiseta</option>
+        <option *ngFor="let prod of combo4" [value]="prod.idProducto">
           {{ prod.nombreProducto }}
         </option>
       </select>
-      <br /><br />
-      fecha
-      <label for="fProduc"
-        ><input
-          type="text"
-          name="fProduc"
-          id="fProduc"
-          formControlName="textFecha"
-      /></label>
-
-      total
+      <br><br>
+      Fecha
+      <label for="fProduc"><input type="date" name="fProduc" id="fProduc" formControlName="textFecha"></label>
+      <br><br>
+      Total
       <label for="tProduc"
         ><input
           type="text"
@@ -208,18 +184,32 @@
           *ngFor="let prod of comboEditarProduccion"
           [value]="prod.idProduccion"
         >
-          {{ prod.idProduccion }} - 
           {{ prod.nombreEncargado }}
+          {{ prod.fecha }}
         </option>
       </select>
       <br /><br />
 
-      <button type="submit">Buscar Produccion a Editar</button>
+      <button type="submit" (click)="filtroProducto()" (click)="filtroEncargado()">Buscar Produccion a Editar</button>
 
       <h2>{{ TituloProduccionEdit }}</h2>
 
       <li *ngFor="let prod of MiProduccionE">
-        nombreEncargado
+        
+        Encargado
+        <select class="dropdown-1" formControlName="textEncargadoProducA" [(ngModel)]="prod.idEncargado">
+          <option value="value1">Encargados</option>
+          <option
+            *ngFor="let prod of combo3"
+            [value]="prod.idEncargado"
+          >
+            {{ prod.encargado }}
+
+          </option>
+        </select>
+        <br><br>
+
+        <!----
         <label for="eProd"
           ><input
             type="text"
@@ -229,8 +219,8 @@
             [(ngModel)]="prod.nombreEncargado"
             formControlName="textEncargadoProducA"
         /></label>
-        <br /><br />
-
+        <br><br>
+        -->
         Productos Malos
         <label for="mProduc"
           ><input
@@ -244,11 +234,7 @@
         <br /><br />
 
         Tipo camiseta
-        <select
-          class="dropdown-1"
-          formControlName="textProductoA"
-          (click)="filtroProducto()"
-        >
+        <select class="dropdown-1" formControlName="textProductoA" [(ngModel)]="prod.idProducto">
           <option value="value1">Tipo camiseta</option>
           <option
             *ngFor="let prod of combo4"
@@ -257,21 +243,21 @@
             {{ prod.nombreProducto }}
           </option>
         </select>
-        <br /><br />
+        <br><br>
 
-        fecha
+        Fecha
         <label for="fProduc"
           ><input
             type="text"
             name="fProduc"
             id="fProduc"
             value="{{ prod.fecha }}"
-            [(ngModel)]="prod.fecha"
+            [(ngModel)]="prod.fecha1"
             formControlName="textFechaA"
         /></label>
         <br /><br />
 
-        total
+        Total
         <label for="tProduc"
           ><input
             type="text"
@@ -293,6 +279,6 @@
   <!--*************************************************************************-->
   <!-- se incluye el link para la otra página -->
   <div class="dir">
-    <h3><a routerLink="/Inicio">MENÚ INICIO</a></h3>
+    <h3><a routerLink="/Inicio">INICIO</a></h3>
   </div>
 </body>
