@@ -113,8 +113,6 @@ export class ProductosComponent implements OnInit {
             this.comboEditarProductos = data;
             this.MiProductosE = null;
             this.TituloProductosEdit = '';
-
-            console.error(' El listado 5 ');
           }
         },
         (error) => {

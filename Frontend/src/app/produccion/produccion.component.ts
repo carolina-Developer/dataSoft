@@ -41,7 +41,6 @@ export class ProduccionComponent implements OnInit {
 
   combo3: any = [];
   combo4: any = [];
-  combo5: any = [];
 
   /*--------------------------------*/
   /*        Form Groups             */
@@ -181,7 +180,7 @@ export class ProduccionComponent implements OnInit {
       "nombreEncargado": dato1,
       "noProductosMalos": dato2,
       "nombreProducto": dato3,
-      "fecga": dato4,
+      "fecha": dato4,
       "total": dato5,
     };
 

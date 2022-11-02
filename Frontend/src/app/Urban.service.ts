@@ -159,25 +159,9 @@ export class UrbanService {
   /*
     Metodo mostrar informe produccion 
     */
-<<<<<<< HEAD
     getInforme(id:any, fechaIn:any, fechaFi:any): Observable<any> {
       return this.http.get(this.Url + "/produccion/"+id+"/"+ fechaIn+"/"+ fechaFi+ httpOptions);
     }
 
 
-=======
-
-  getInforme(id: any, fechaIn: any, fechaFi: any): Observable<any> {
-    return this.http.get(
-      this.Url +
-        '/produccion/' +
-        id +
-        '/' +
-        fechaIn +
-        '/' +
-        fechaFi +
-        httpOptions
-    );
-  }
->>>>>>> 84a39d9fab834879066321cb19c6d4e9696d8a32
 }
