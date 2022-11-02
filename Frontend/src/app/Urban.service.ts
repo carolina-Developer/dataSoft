@@ -253,7 +253,7 @@ export class UrbanService {
   }
 
   getInformeProduc(id:any, fechaIn:any, fechaFi:any): Observable<any> {
-    return this.http.get(this.Url + '/produccion/'+id+'/'+ fechaIn+'/'+ fechaFi+ httpOptions);
+    return this.http.get(this.Url + '/produccion'+id+ fechaIn+ fechaFi+ httpOptions);
   }
 
   /*Servicio CRUD  MATERIALES */

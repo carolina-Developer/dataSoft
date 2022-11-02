@@ -54,7 +54,7 @@
     </div>
     <br /><br />
     <!--------------------------------------------------------------------------------------------->
-    <!-- para mostrar el un solo Tipo de Documento -->
+    <!-- para mostrar el un solo producto -->
 
     <div class="Buscar">
       <h2>MOSTRAR PRODUCTO</h2>
@@ -269,6 +269,82 @@
       <br />
     </div>
     <br /><br /><br /><br />
+
+        <!--------------------------------------------------------------------------------------------->
+    <!-- Informe para mostrar talla vs tiempo -->
+
+    <div class="Buscar">
+      <h2>INFORME TALLA/TIEMPO</h2>
+
+      <form (ngSubmit)="informeProducto()" [formGroup]="InformeProducto">
+        ID del producto
+        <select
+          class="dropdown"
+          formControlName="comboFiltroIn"
+          (click)="consultaProducto(4)"
+        >
+          <option value="value1"> ID producto</option>
+          <option
+            *ngFor="let product of comboListaProducIn"
+            [value]="product.idProducto"
+          >
+            {{ product.idProducto }} -
+            {{ product.nombreProducto }}
+          </option>
+        </select>
+
+        <br /><br />
+
+        Fecha inicio produccción
+        <label for="fechaIn"
+          ><input
+            type="text"
+            name="fechaIn"
+            id="fechaIn"
+            formControlName="FechaIn"
+        /></label>
+        <br /><br />
+
+        Fecha fin produccción
+        <label for="fechaFi"
+          ><input
+            type="text"
+            name="fechaFi"
+            id="fechaFi"
+            formControlName="FechaFi"
+        /></label>
+        <br /><br />
+
+        <button type="submit">GENERAR INFORME</button>
+      </form>
+
+      <ul>
+        <h2>{{ TituloProducto }}</h2>
+
+        <table class="tabBuscar">
+          <thead class="Colb">
+            <th class="b">{{ TabBusProductos[0] }}</th>
+            <th class="b">{{ TabBusProductos[1] }}</th>
+            <th class="b">{{ TabBusProductos[2] }}</th>
+            <th class="b">{{ TabBusProductos[3] }}</th>
+            <th class="b">{{ TabBusProductos[4] }}</th>
+          </thead>
+
+          <tbody class="Filb">
+            <tr class="b" *ngFor="let product of MiProductos">
+              <th class="b">{{ product.idProducto }}</th>
+              <th class="b">{{ product.nombreProducto }}</th>
+              <th class="b">{{ product.tipoProducto }}</th>
+              <th class="b">{{ product.talla }}</th>
+              <th class="b">{{ product.color }}</th>
+            </tr>
+          </tbody>
+        </table>
+      </ul>
+    </div>
+    <br /><br />
+
+    <!--------------------------------------------------------------------------------------------->
 
     <!--*************************************************************************-->
     <!-- se incluye el link para la otra página -->
