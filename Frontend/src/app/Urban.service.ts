@@ -31,20 +31,193 @@ export class UrbanService {
     };
   }
 
-  /*
-      Metodo listar catalogo
-   */
-  getCatalogos(id: any): Observable<any> {
-    return this.http.get(this.Url + '/catalogos' + id, httpOptions);
+
+  // --Servicios de CATALOGOS-- //
+  //--------------------------------------------------------------------------------------
+  // Metodo listar catalogos
+
+  getCatalogo(): Observable<any>
+  {
+
+    return this.http.get(this.Url + "/catalogos", httpOptions);
+
   }
 
-  /*
-      Metodo listar encargados
-  */
-  getEncargados(): Observable<any> {
-    return this.http.get(this.Url + '/encargados', httpOptions);
+  //--------------------------------------------------------------------------------------
+  // Metodo mostrar catalogos llave
+
+  getCatalogos(id:any): Observable<any>
+  {
+    
+    return this.http.get(this.Url + "/catalogos" + id, httpOptions);
+
   }
 
+  //--------------------------------------------------------------------------------------
+  // Metodo mostrar catalogos id
+  
+  getCatalogosId(id:any): Observable<any>
+  {
+    
+    return this.http.get(this.Url + "/catalogos/catalo" + id, httpOptions);
+
+  }
+
+  //--------------------------------------------------------------------------------------
+  // Metodo crear catalogo
+  async insertCat(nuevoCat:any): Promise<any>
+  {
+
+    return new Promise((resolve, rejects) => {
+      this.http.post(this.Url + "/catalogos", nuevoCat, httpOptions).toPromise()
+    
+    });
+
+  }
+
+  //--------------------------------------------------------------------------------------
+  // Metodo modificar catalogo
+
+  async updateCat(cadena:any): Promise<any>
+  {
+
+    return new Promise((resolve, reject) => { 
+      this.http.put(this.Url + "/catalogos", cadena, httpOptions).toPromise()
+
+    });
+
+  }
+
+  //---------------------------------------------------------------------------------------------------
+
+  // --Servicios de CONTACTOS-- //
+  //--------------------------------------------------------------------------------------
+  // Metodo listar contacto
+
+  getContactos(): Observable<any>
+  {
+
+    return this.http.get(this.Url + "/contactos", httpOptions);
+
+  }
+
+  //--------------------------------------------------------------------------------------
+  // Metodo mostrar contactos por id
+
+  getContacto(id:any): Observable<any>
+  {
+    
+    return this.http.get(this.Url + "/contactos" + id, httpOptions);
+
+  }
+
+  //--------------------------------------------------------------------------------------
+  // Metodo mostrar contactos por idEncargado
+
+  getContactoEncargado(id:any): Observable<any>
+  {
+
+    return this.http.get(this.Url + "/contactos/encargado" + id, httpOptions);
+
+  }
+
+  //--------------------------------------------------------------------------------------
+  // Metodo crear contacto
+
+  async insertContacto(nuevoContacto:any): Promise<any>
+  {
+
+    return new Promise((resolve, rejects) => {
+      this.http.post(this.Url + "/contactos", nuevoContacto, httpOptions).toPromise()
+    
+    });
+
+  }
+
+  //--------------------------------------------------------------------------------------
+  // Metodo mostrar contacto front-end
+
+  getContactoFront(id:any): Observable<any>
+  {
+    
+    return this.http.get(this.Url + "/contactos/contac" + id, httpOptions);
+
+  }
+
+  //--------------------------------------------------------------------------------------
+  // Metodo modificar contacto
+
+  async updateContacto(cadena:any): Promise<any>
+  {
+
+    return new Promise((resolve, reject) => { 
+      this.http.put(this.Url + "/contactos", cadena, httpOptions).toPromise()
+
+    });
+
+  }
+
+//--------------------------------------------------------------------------------------
+
+// --Servicios de ENCARGADOS-- //
+//--------------------------------------------------------------------------------------
+  // Metodo listar encargados
+
+  getEncargados(): Observable<any>
+  {
+
+    return this.http.get(this.Url + "/encargados", httpOptions);
+
+  }
+
+  //--------------------------------------------------------------------------------------
+  // Metodo mostrar encargados
+
+  getEncargado(id:any): Observable<any>
+  {
+    
+    return this.http.get(this.Url + "/encargados" + id, httpOptions);
+
+  }
+
+  //--------------------------------------------------------------------------------------
+  // Metodo mostrar font-end
+
+  getEncargadoFront(id:any): Observable<any>
+  {
+    
+    return this.http.get(this.Url + "/encargados/encarg" + id, httpOptions);
+
+  }
+
+  //--------------------------------------------------------------------------------------
+  // Metodo crear encargado
+
+  async insertEncargado(nuevoEncargado:any): Promise<any>
+  {
+
+    return new Promise((resolve, rejects) => {
+      this.http.post(this.Url + "/encargados", nuevoEncargado, httpOptions).toPromise()
+    
+    });
+
+  }
+
+  //--------------------------------------------------------------------------------------
+  // Metodo modificar encargado
+
+  async updateEncargado(cadena:any): Promise<any>
+  {
+
+    return new Promise((resolve, reject) => { 
+      this.http.put(this.Url + "/encargados", cadena, httpOptions).toPromise()
+
+    });
+
+  }
+
+//---------------------------------------------------------------------------------------
+  
   /*Servicio CRUD PRODUCTO */
 
   /*Metodo listar productos */
@@ -77,6 +250,10 @@ export class UrbanService {
         .put(this.Url + '/productos', productoData, httpOptions)
         .toPromise();
     });
+  }
+
+  getInformeProduc(id:any, fechaIn:any, fechaFi:any): Observable<any> {
+    return this.http.get(this.Url + '/produccion/'+id+'/'+ fechaIn+'/'+ fechaFi+ httpOptions);
   }
 
   /*Servicio CRUD  MATERIALES */
@@ -160,7 +337,7 @@ export class UrbanService {
     Metodo mostrar informe produccion 
     */
     getInforme(id:any, fechaIn:any, fechaFi:any): Observable<any> {
-      return this.http.get(this.Url + "/produccion/"+id+"/"+ fechaIn+"/"+ fechaFi+ httpOptions);
+      return this.http.get(this.Url + '/produccion' + id + '/' + fechaIn + '/' + fechaFi, httpOptions);
     }
 
 

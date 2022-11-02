@@ -22,7 +22,7 @@ module.exports = function()
 
 
 //-------------------------------------------------------------------------------------------------------------------------------
-// MOSTRAR CATALOGO
+// MOSTRAR CATALOGO POR LLAVE
 
 router.get("/:id", function (req, res)
 {
@@ -50,8 +50,37 @@ router.get("/:id", function (req, res)
     
 });
 
-//----------------------------------------------------------------------------------------------------------
 
+//-------------------------------------------------------------------------------------------------------------------------------
+// MOSTRAR CATALOGO POR ID
+
+router.get("/catalo/:id", function (req, res)
+{
+    var id = req.params.id;
+
+    if(!isNaN(id))
+    {
+        catalogosModel.getCatalogosId(id, function (error, data)
+        {
+            if (typeof data !== 'undefined' && data.length > 0)
+            {
+                res.status(200).json(data);
+            }
+            else
+            {
+                res.json(404, {"msg": "Registro no existe"});
+            }
+        
+        });
+    }
+    else
+    {
+        res.status(500).json({"msg":"error"});
+    }
+    
+});
+
+//----------------------------------------------------------------------------------------------------------
 // CREAR
 
 router.post("/", function(req, res)

@@ -66,6 +66,37 @@ contactosModel.getContacto = function (id, callback)
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------
+// MOSTRAR FRONT-END
+
+contactosModel.getContactoFront = function (id, callback)
+{
+    if(connection)
+    {
+        var sql =   "SELECT `idContacto`, " +
+                    "`idEncargado`, " +
+                    "`dato`, " +
+                    "`tipoDato` " +
+                    "FROM `contactos`" + 
+                    "WHERE `idContacto` = " + connection.escape(id) + ";";
+        
+        //console.log("Estamos aca 14 " + id);
+        
+        connection.query(sql, function (error, rows)
+        {
+            if(error)
+            {
+                throw error;
+            }
+            else
+            {
+                callback(null,rows);
+                
+            }
+        });
+    }
+}
+
+//----------------------------------------------------------------------------------------------------------------------------------
 // CREAR
 
 contactosModel.insertContacto = function (contactoData, callback)

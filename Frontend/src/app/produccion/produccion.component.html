@@ -234,7 +234,11 @@
         <br /><br />
 
         Tipo camiseta
-        <select class="dropdown-1" formControlName="textProductoA" [(ngModel)]="prod.idProducto">
+        <select
+          class="dropdown-1"
+          formControlName="textProductoA"
+          (click)="filtroProducto()"
+        >
           <option value="value1">Tipo camiseta</option>
           <option
             *ngFor="let prod of combo4"

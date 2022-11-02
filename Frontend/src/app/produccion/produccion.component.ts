@@ -41,7 +41,6 @@ export class ProduccionComponent implements OnInit {
 
   combo3: any = [];
   combo4: any = [];
-  combo5: any = [];
 
   /*--------------------------------*/
   /*        Form Groups             */
