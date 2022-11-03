@@ -328,7 +328,7 @@ export class UrbanService {
   async updateProduccion(produccionData: any): Promise<any> {
     return new Promise((resolve, reject) => {
       this.http
-        .put(this.Url + '/produccion', produccionData, httpOptions)
+        .put(this.Url + "/produccion", produccionData, httpOptions)
         .toPromise();
     });
   }
@@ -337,7 +337,7 @@ export class UrbanService {
     Metodo mostrar informe produccion 
     */
     getInforme(id:any, fechaIn:any, fechaFi:any): Observable<any> {
-      return this.http.get(this.Url + '/produccion' + id + '/' + fechaIn + '/' + fechaFi, httpOptions);
+      return this.http.get(this.Url + "/productos/" + id + "/" + fechaIn + "/" + fechaFi, httpOptions);
     }
 
 

@@ -70,21 +70,9 @@ export class ProductosComponent implements OnInit {
 
   InformeProducto = new FormGroup({
     BuscarIdProducIn: new FormControl(),
-    fechaIn: new FormControl(),
-    fechaFi: new FormControl(),
-
-    /*nombreProducIn: new FormControl(),
-    tipoProductIn: new FormControl(),
-    tallaProducIn: new FormControl(),
-    colorProductIn: new FormControl(),
-    fechaProductIn: new FormControl(),
-    noProductMaloIn: new FormControl(),
-    noProductBuenoIn: new FormControl(),
-    totalIn: new FormControl(),*/
-
-    comboFiltroIn: new FormControl(),
-
-  })
+    FechaIn: new FormControl(),
+    FechaFi: new FormControl()
+  });
 
   /*Contructor ----------------------------------------------------------------- */
   constructor(
@@ -264,16 +252,16 @@ export class ProductosComponent implements OnInit {
     var fechaIn = this.InformeProducto.getRawValue()['FechaIn'];
     var fechaFi = this.InformeProducto.getRawValue()['FechaFi'];
 
-    //console.log("aqui 2 "+id +" "+ fechaIn +" "+ fechaFi);
+    //console.log(fechaIn);
 
-    this.servi.getInformeProduc(id, fechaIn, fechaFi).subscribe(
+    this.servi.getInforme(id, fechaIn, fechaFi).subscribe(
       (data: {}) => {
         this.MiProductoIn = data;
 
-        this.TituloProducto = 'INFORME talla tiempo';
-        this.TabInProductos[0] = 'ID';
-        this.TabInProductos[1] = 'Nombre producto';
-        this.TabInProductos[2] = 'Tipo producto';
+        this.TituloProductoIn = 'INFORME talla tiempo';
+        this.TabInProductos[0] = 'ID Producto';
+        this.TabInProductos[1] = 'Nombre Producto';
+        this.TabInProductos[2] = 'Tipo Producto';
         this.TabInProductos[3] = 'Talla';
         this.TabInProductos[4] = 'Color';
         this.TabInProductos[5] = 'Fecha';
@@ -336,5 +324,13 @@ export class ProductosComponent implements OnInit {
       textnuevoColor: [],
     });
     this.formBuilder.group;
+
+    this.InformeProducto = this.formBuilder.group({
+      BuscarIdProducto: [],
+      FechaIn: [],
+      FechaFi: [],
+    });
+    this.formBuilder.group;
+
   }
 }

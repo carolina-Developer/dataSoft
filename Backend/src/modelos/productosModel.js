@@ -42,6 +42,7 @@ productosModel.getProductos = function(id, callback)
         
         var sql =   "SELECT P.`idProducto`, " + 
                     "P.`nombreProducto`, " + 
+                    "P.`tipoProducto`, " +
                     "D.`nombreCat` AS 'tipoProducto', " +
                     "P.`talla`, " + 
                     "C.`nombreCat` AS 'color' " +

@@ -2,10 +2,6 @@
   xmlns:mso="urn:schemas-microsoft-com:office:office"
   xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"
 >
-  <head>
-    |
-    <title></title>
-  </head>
   <body>
     <div style="text-align: center">
       <h1>PRODUCTOS</h1>
@@ -201,7 +197,7 @@
         </select>
         <br /><br />
 
-        <button type="submit">Buscar Producto a Editar</button>
+        <button type="submit" (click)="filtroTipoProduct()">Buscar Producto a Editar</button>
 
         <h2>{{ TituloProductosEdit }}</h2>
 
@@ -221,9 +217,7 @@
           Tipo de producto
           <select
           class="dropdown-2"
-          formControlName="textnuevoTipProduct"
-          (click)="filtroTipoProduct()"
-        >
+          formControlName="textnuevoTipProduct" [(ngModel)]="product.tipoProducto">
           <option value="value2">Tipo de producto</option>
           <option
             *ngFor="let product of combo3"
@@ -273,74 +267,56 @@
         <!--------------------------------------------------------------------------------------------->
     <!-- Informe para mostrar talla vs tiempo -->
 
-    <div class="Buscar">
+    <div class="Informe">
       <h2>INFORME TALLA/TIEMPO</h2>
 
       <form (ngSubmit)="informeProducto()" [formGroup]="InformeProducto">
-        ID del producto
-        <select
-          class="dropdown"
-          formControlName="comboFiltroIn"
-          (click)="consultaProducto(4)"
-        >
-          <option value="value1"> ID producto</option>
-          <option
-            *ngFor="let product of comboListaProducIn"
-            [value]="product.idProducto"
-          >
-            {{ product.idProducto }} -
-            {{ product.nombreProducto }}
-          </option>
-        </select>
+        Talla
+        <label for="tall"><input type="text" name="tall" id="tall" formControlName="BuscarIdProducto"></label>
+        <br><br>
 
-        <br /><br />
+        Fecha Inicial
+        <label for="fecha1"><input type="date" name="fecha1" id="fecha1" formControlName="FechaIn"></label>
+        <br><br>
 
-        Fecha inicio produccción
-        <label for="fechaIn"
-          ><input
-            type="text"
-            name="fechaIn"
-            id="fechaIn"
-            formControlName="FechaIn"
-        /></label>
-        <br /><br />
-
-        Fecha fin produccción
-        <label for="fechaFi"
-          ><input
-            type="text"
-            name="fechaFi"
-            id="fechaFi"
-            formControlName="FechaFi"
-        /></label>
-        <br /><br />
+        Fecha Final
+        <label for="fecha2"><input type="date" name="fecha2" id="fecha2" formControlName="FechaFi"></label>
+        <br><br>
 
         <button type="submit">GENERAR INFORME</button>
       </form>
 
       <ul>
-        <h2>{{ TituloProducto }}</h2>
+        <h2>{{ TituloProductoIn }}</h2>
 
-        <table class="tabBuscar">
+        <table class="tabInforme">
           <thead class="Colb">
-            <th class="b">{{ TabBusProductos[0] }}</th>
-            <th class="b">{{ TabBusProductos[1] }}</th>
-            <th class="b">{{ TabBusProductos[2] }}</th>
-            <th class="b">{{ TabBusProductos[3] }}</th>
-            <th class="b">{{ TabBusProductos[4] }}</th>
+            <th class="b">{{ TabInProductos[0] }}</th>
+            <th class="b">{{ TabInProductos[1] }}</th>
+            <th class="b">{{ TabInProductos[2] }}</th>
+            <th class="b">{{ TabInProductos[3] }}</th>
+            <th class="b">{{ TabInProductos[4] }}</th>
+            <th class="b">{{ TabInProductos[5] }}</th>
+            <th class="b">{{ TabInProductos[6] }}</th>
+            <th class="b">{{ TabInProductos[7] }}</th>
+            <th class="b">{{ TabInProductos[8] }}</th>
           </thead>
 
           <tbody class="Filb">
-            <tr class="b" *ngFor="let product of MiProductos">
+            <tr class="b" *ngFor="let product of MiProductoIn">
               <th class="b">{{ product.idProducto }}</th>
               <th class="b">{{ product.nombreProducto }}</th>
               <th class="b">{{ product.tipoProducto }}</th>
               <th class="b">{{ product.talla }}</th>
               <th class="b">{{ product.color }}</th>
+              <th class="b">{{ product.Fecha }}</th>
+              <th class="b">{{ product.noProductosMalos }}</th>
+              <th class="b">{{ product.noProductosBuenos }}</th>
+              <th class="b">{{ product.total }}</th>
             </tr>
           </tbody>
         </table>
-      </ul>
+      </ul> 
     </div>
     <br /><br />
 
