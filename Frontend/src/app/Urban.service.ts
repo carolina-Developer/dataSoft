@@ -340,5 +340,46 @@ export class UrbanService {
       return this.http.get(this.Url + '/produccion' + id + '/' + fechaIn + '/' + fechaFi, httpOptions);
     }
 
+    /************************************
+    SERVICIO CRUD DE DETALLES PRODUCTO
+    *************************************/
+
+    /* 
+    Listar Detalles producto
+    */
+
+    getDetalleProducto(): Observable <any>
+    {
+      return this.http.get(this.Url + "/detallesproductos" , httpOptions);
+    }
+
+    /* 
+    Mostrar Detalles Producto 
+    */
+
+    getDetalleProd(id:any): Observable<any> {
+
+      return this.http.get(this.Url + "/detallesproductos"+ id , httpOptions);
+    }
+
+    /* 
+    Crear Detalles Producto
+    */
+
+    async insertDetalleProducto(produccionData:any): Promise<any> {   
+      return new Promise((resolve, reject) => {
+        this.http.post(this.Url + "/detallesproductos", produccionData, httpOptions).toPromise()
+      });
+    }
+
+    /* 
+    Modoficar Detalles Producto
+    */
+
+    async updateDetalleProducto(produccionData:any): Promise<any> {
+        return new Promise((resolve, reject) => {
+        this.http.put(this.Url + "/detallesproductos", produccionData, httpOptions).toPromise()
+      });
+    }
 
 }

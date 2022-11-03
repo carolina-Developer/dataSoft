@@ -40,7 +40,9 @@ detallesproductoModel.getDetalleProd = function (id, callback)
     {
         var sql = "SELECT D.`idDetalleProducto`, " +
                 "P.`nombreProducto`, " +
+                "D.`idProducto`, " +
                 "M.`nombreMaterial`, " +
+                "D.`idMaterial`, " +
                 "D.`observacionesProducto`, " +
                 "D.`cantidad` " +
                 "FROM `detallesproducto`AS D " +
