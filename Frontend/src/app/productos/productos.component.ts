@@ -146,7 +146,7 @@ export class ProductosComponent implements OnInit {
       );
     } else {
       this.Productos = null;
-      this.TituloProducto = '';
+      this.TituloProductos = '';
       this.TablaProductos[0] = '';
       this.TablaProductos[1] = '';
       this.TablaProductos[2] = '';
