@@ -70,7 +70,7 @@
       >
         <option select disabled value="value1">Produccion No.</option>
         <option *ngFor="let prod of comboListaProduccion" [value]="prod.idProduccion">
-          {{ prod.nombreEncargado }}
+          {{ prod.nombreEncargado }} /
           {{ prod.fecha }}          
         </option>
       </select>
