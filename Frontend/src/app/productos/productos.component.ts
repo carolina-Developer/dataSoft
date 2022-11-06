@@ -38,6 +38,12 @@ export class ProductosComponent implements OnInit {
   TabInProductos: any = []; //Encabezados tabla Tipo de Producto Buscado
   comboListaProducIn: any = []; //Combo Buscar Tipo de Documento
 
+  miTalla: any = []; //talla seleccionada data
+  tallaInTitulo: any = ''; //titulo
+  tabInTalla: any = []; //encabezados
+  comboInTalla: any = []; //data
+
+
   controlLista = 1; //Control para limpiar la lista
   BuscarEvalor = 1; //Control para carga del valor a buscar
 
@@ -73,6 +79,10 @@ export class ProductosComponent implements OnInit {
     FechaIn: new FormControl(),
     FechaFi: new FormControl()
   });
+
+  tallaIn = new FormGroup({
+    BuscarIdTalla: new FormControl()
+  })
 
   /*Contructor ----------------------------------------------------------------- */
   constructor(
@@ -247,6 +257,26 @@ export class ProductosComponent implements OnInit {
     this.ActualizarAProducto.reset();
   }
 
+  public tallaInfo(){
+    var id = this.tallaIn.getRawValue()['BuscarIdTalla'];
+
+    this.servi.getProductosTalla(id).subscribe(
+        (data: {}) => {
+            this.miTalla = data;
+            this.tallaInTitulo = 'REPORTE TALLA';
+            this.tabInTalla[0] = 'ID';
+            this.tabInTalla[1] = 'Nombre';
+            this.tabInTalla[2] = 'Tipo';
+            this.tabInTalla[3] = 'Talla';
+            this.tabInTalla[4] = 'Color';
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+
+}
+
   public informeProducto() {
     var id = this.InformeProducto.getRawValue()['BuscarIdProducto'];
     var fechaIn = this.InformeProducto.getRawValue()['FechaIn'];
@@ -329,6 +359,11 @@ export class ProductosComponent implements OnInit {
       BuscarIdProducto: [],
       FechaIn: [],
       FechaFi: [],
+    });
+    this.formBuilder.group;
+
+    this.tallaIn = this.formBuilder.group({
+        BuscarIdTalla: [],
     });
     this.formBuilder.group;
 

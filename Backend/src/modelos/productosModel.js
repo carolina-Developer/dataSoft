@@ -41,11 +41,12 @@ productosModel.getProductos = function(id, callback)
     {
         
         var sql =   "SELECT P.`idProducto`, " + 
-                    "P.`nombreProducto`, " + 
-                    "P.`tipoProducto`, " +
+                    "P.`nombreProducto`, " +                     
                     "D.`nombreCat` AS 'tipoProducto', " +
+                    "P.`tipoProducto`, " +
                     "P.`talla`, " + 
-                    "C.`nombreCat` AS 'color' " +
+                    "C.`nombreCat` AS 'color', " +
+                    "P.`color` " +
                     "FROM `productos` AS P " +
                     "INNER JOIN `catalogos` AS D ON P.`tipoProducto` = D.`idCatalogo` " +
                     "INNER JOIN `catalogos` AS C ON P.`color` = C.`idCatalogo` " +
