@@ -4,3 +4,22 @@ body{
 h1{
     text-align: center;
 }
+
+
+.inicio{
+    border: solid;
+}
+
+.box {
+    display: flex;
+    justify-content: space-between;
+    padding: 30px;
+}
+
+.box1 {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 200px;
+    padding-right: 200px;
+}
+
