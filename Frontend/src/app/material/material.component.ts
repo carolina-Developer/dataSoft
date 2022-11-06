@@ -13,7 +13,7 @@ import {UrbanService} from '../Urban.service'
 export class MaterialesComponent implements OnInit {
     /*Variables ------------------------------------------------------------------ */
   
-    title = 'MANEJO DE PRODUCTOS';
+    title = 'MANEJO DE MATERIALES';
   
     Material: any = []; //Lista de Tipos de Producto
     TituloMateriales = ''; //Titulo Lista de Tipos de Producto
@@ -122,7 +122,7 @@ export class MaterialesComponent implements OnInit {
         );
       } else {
         this.Material = null;
-        this.TituloMaterial = '';
+        this.TituloMateriales = '';
         this.TablaMateriales[0] = '';
         this.TablaMateriales[1] = '';
         this.TablaMateriales[2] = '';
