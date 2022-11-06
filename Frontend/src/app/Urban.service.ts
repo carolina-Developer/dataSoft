@@ -253,6 +253,9 @@ export class UrbanService {
   }
   /*Infome PRODCUTOS */
 
+  getInformeP(id:any, fechaIn:any, fechaFi:any): Observable<any> {
+    return this.http.get(this.Url + "/productos/" + id + "/" + fechaIn + "/" + fechaFi, httpOptions);
+  }
 
   getProductosTalla(id:any): Observable<any>{
     return this.http.get(this.Url + '/productos/talla/' + id, httpOptions);
@@ -291,9 +294,9 @@ export class UrbanService {
     });
   }
 
-  /******************************************/
-  /** SERVICIO CRUD DE TIPOS DE PRODUCCION **/
-  /******************************************/
+  /**************/
+  /* SERVICIO CRUD DE TIPOS DE PRODUCCION */
+  /**************/
 
   /* 
     Metodo listar produccion 
@@ -338,9 +341,54 @@ export class UrbanService {
   /*
     Metodo mostrar informe produccion 
     */
-    getInforme(id:any, fechaIn:any, fechaFi:any): Observable<any> {
-      return this.http.get(this.Url + "/productos/" + id + "/" + fechaIn + "/" + fechaFi, httpOptions);
+
+  getInforme(id:any, fechaIn:any, fechaFi:any): Observable<any>
+  {
+    
+    return this.http.get(this.Url + "/produccion/" + id + "/" + fechaIn + "/" + fechaFi, httpOptions);
+
+  }
+
+    /************
+    SERVICIO CRUD DE DETALLES PRODUCTO
+    *************/
+
+    /* 
+    Listar Detalles producto
+    */
+
+    getDetalleProducto(): Observable <any>
+    {
+      return this.http.get(this.Url + "/detallesproductos" , httpOptions);
     }
 
+    /* 
+    Mostrar Detalles Producto 
+    */
+
+    getDetalleProd(id:any): Observable<any> {
+
+      return this.http.get(this.Url + "/detallesproductos"+ id , httpOptions);
+    }
+
+    /* 
+    Crear Detalles Producto
+    */
+
+    async insertDetalleProducto(produccionData:any): Promise<any> {   
+      return new Promise((resolve, reject) => {
+        this.http.post(this.Url + "/detallesproductos", produccionData, httpOptions).toPromise()
+      });
+    }
+
+    /* 
+    Modoficar Detalles Producto
+    */
+
+    async updateDetalleProducto(produccionData:any): Promise<any> {
+        return new Promise((resolve, reject) => {
+        this.http.put(this.Url + "/detallesproductos", produccionData, httpOptions).toPromise()
+      });
+    }
 
 }

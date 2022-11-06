@@ -1,3 +1,217 @@
-<p>detallesproductos works!</p>
+<body>
+        
+    <div style="text-align:center">
+    <h1>{{title}}</h1>
+    <img width="300" alt="Logo Proyecto" src="../../assets/img/logo.svg">
+    </div>
 
-<h2>hola mundo</h2>
+    <br><br><br><br>
+<!-------------------------------------------------------->
+
+<!--  
+Mostrar el listado de producciones 
+-->
+
+<div class="Listar">
+    <h2>Detalles productos Listados</h2>
+
+        <form (ngSubmit)="consultaDetalle(1)" [formGroup]="ListaDetalle">
+
+            <button type="submit" style="margin-right: 30px" > Mostrar Lista Detalle</button>
+            <button (click)="LimpiarLista()" >Limpiar Lista Detalle</button>
+
+            <br><br>
+
+            <h2>{{ TituloDetalle }}</h2>   
+            <table> 
+                <thead>
+                    <th>{{TablaDetalle[0]}}</th>
+                    <th>{{TablaDetalle[1]}}</th>
+                    <th>{{TablaDetalle[2]}}</th>
+                    <th>{{TablaDetalle[3]}}</th>
+                    <th>{{TablaDetalle[4]}}</th>    
+                </thead>
+
+                <tbody>
+                    <tr  *ngFor="let prod of detalle">
+                        
+                        <th>{{ prod.idDetalleProducto}} </th>
+                        <th>{{ prod.nombreProducto }}</th> 
+                        <th>{{ prod.nombreMaterial }}</th>
+                        <th>{{ prod.observacionesProducto}}</th>
+                        <th>{{ prod.cantidad}}</th>
+                
+                    </tr>
+                </tbody> 
+            </table>
+
+        </form>
+
+</div>
+<br><br><br><br> 
+<!-------------------------------------------->
+
+<!----  
+Mostrar un tipo de produccion 
+---->
+
+
+<div class="Buscar">
+<h2> Detalles productos seleccionado </h2>
+
+<form (ngSubmit)="mostrarDetalle()" [formGroup]="filtrarDetalle">
+  Producto
+  <select class="dropdown" formControlName="combofiltro" (click)="consultaDetalle(2)">
+    <option selected disabled value="value1">Detalle producto No.</option>
+    <option *ngFor="let prod of comboListaDetalle" [value]="prod.idDetalleProducto">
+        <th>{{ prod.idDetalleProducto}} </th>
+        <th>{{ prod.nombreProducto }}</th> 
+    </option>
+  </select>
+
+  <br><br>
+
+  <button type="submit">Buscar Detalle Producto</button>
+</form>
+
+<ul>
+    <h2>{{TitDetalle}}</h2>
+
+    <table class="tabBuscar">
+      <thead class="Colb">
+        <th class="b">{{TabBusDetalle[0]}}</th>
+        <th class="b">{{TabBusDetalle[1]}}</th>
+        <th class="b">{{TabBusDetalle[2]}}</th>
+        <th class="b">{{TabBusDetalle[3]}}</th>
+        <th class="b">{{TabBusDetalle[4]}}</th>
+      </thead>
+
+      <tbody class="Filb">  
+        <tr class="b" *ngFor="let prod of Midetalle">
+            <th>{{ prod.idDetalleProducto}} </th>
+            <th>{{ prod.nombreProducto }}</th> 
+            <th>{{ prod.nombreMaterial }}</th>
+            <th>{{ prod.observacionesProducto}}</th>
+            <th>{{ prod.cantidad}}</th>
+        </tr>
+    </tbody> 
+
+    </table>
+
+</ul>
+
+</div>
+<br>
+
+<!---------------------------------------------------------------------------------------->
+
+<!----  
+Crear detalle Producto 
+---->
+
+<div class="Insertar">
+<h2>Crear Detalle Producto</h2>
+
+<form (ngSubmit)="insertarDetalle()" [formGroup]="InsertarGDetalle">
+  Producto
+  <select class="dropdown" formControlName="textDproducto" (click)="filtroProducto()">
+    <option select disabled value="value1">Producto</option>
+    <option
+      *ngFor="let prod of combo1"
+      [value]="prod.idProducto"
+    >
+      {{ prod.nombreProducto }}
+    </option>
+  </select>
+  <br /><br />
+
+  Material
+    <select class="dropdown"  formControlName="textDmaterial" (click)="filtroMaterial()">
+        <option selected disabled value="value1">Material</option>
+        <option *ngFor="let prod of combo2" [value]="prod.idMaterial">
+            {{prod.nombreMaterial}} 
+
+        </option>
+      </select> 
+      <br><br>
+      
+    Observaciones  
+    <label for="oProduc"><input type="text" name="oProduc" id="oProduc" formControlName="textDobservaciones"></label>
+      <br><br>
+    Cantidad
+    <label for="cProduc"><input type="text" name="cProduc" id="cProduc" formControlName="textDcantidad"></label>
+    <br><br>
+      <button type="submit">Insertar Detalle Producto</button>
+</form>
+<br>
+</div>
+
+<!---------------------------------------------------------------------------------------->
+
+<!---  
+Modificar tipo de produccion 
+---->
+
+<div class="Modificar">
+<h2> Detalle producto a Editar</h2>
+
+<form (ngSubmit)="buscarEditDetalle()" [formGroup]="ActualizarADetalle">
+  id Detalle Producto 
+  <select class="dropdown" formControlName="buscarIdDetalle" (click)="consultaDetalle(3)" (click)="filtroMaterial()">
+      <option selected disabled value="value1">Detalle Producto a editar</option>
+      <option *ngFor="let produc of comboEditarDetalle" [value]="produc.idDetalleProducto">
+          {{produc.idDetalleProducto}} -
+          {{produc.nombreMaterial}} - 
+          {{produc.nombreProducto}}
+      </option>
+  </select>
+<br><br>
+
+<button type="submit" (click)="filtroProducto()">Buscar Produccion a Editar</button>
+
+<h2>{{TituloDetalleEdit}}</h2>
+
+<li *ngFor="let prod of MiDetalleE">
+
+  Producto
+  <select class="dropdown" formControlName="textDproductoA" [(ngModel)]="prod.idProducto">
+      <option select disabled value="value1">Producto</option>
+      <option *ngFor="let prod of combo1" [value]="prod.idProducto">
+        {{prod.nombreProducto}}
+      </option>
+  </select>
+  <br><br>
+
+  Material
+  <select class="dropdown" formControlName="textDmaterialA" [(ngModel)]="prod.idMaterial">
+      <option select disabled value="value1">Material</option>
+      <option *ngFor="let prodc of combo2" [value]="prodc.idMaterial">
+        {{prodc.nombreMaterial}}
+      </option>
+  </select>
+  <br><br>
+  Observaciones
+  <label for="oProduc"><input type="text" name="oProduc" id="oProduc" value={{prod.observacionesProducto}} [(ngModel)]="prod.observacionesProducto" formControlName="textDobservacionesA"></label>
+  <br><br>
+
+  Cantidad
+  <label for="cProduc"><input type="text" name="cProduc" id="cProduc" value={{prod.cantidad}} [(ngModel)]="prod.cantidad" formControlName="textDcantidadA"></label>
+  <br><br>
+
+</li>
+<br>
+
+<button (click)="ActualizarDetalle()">Actualizar</button>
+
+</form>
+<br>
+
+</div>
+<br><br><br><br>
+
+<!--------------------------------->
+<!-- se incluye el link para la otra página -->
+<div class="dir">
+    <h3><a routerLink="/Inicio">MENÚ INICIO</a></h3>
+  </div>
+  </body>

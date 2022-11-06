@@ -42,10 +42,13 @@ produccionModel.getTipoProduccion = function (id, callback)
     {
         var sql =   "SELECT P.`idProduccion`, " +
                     "CONCAT(E.`primerNom`,' ',E.`segNom`, ' ',E.`primApellido`, ' ',E.`segApellido`) AS 'nombreEncargado', " +
+                    "P.`idEncargado`," +
                     "P.`noProductosMalos`, " +
                     "P.`total`- P.`noProductosMalos` AS 'noProductosBuenos', " +
                     "O.`nombreProducto`, " +
+                    "P.`idProducto`, " +
                     "date_format(p.`fecha`, '%d-%m-%Y') AS 'fecha', " +
+                    "date_format(p.`fecha`, '%Y-%m-%d') AS 'fecha1', " + //modifique
                     "P.`total` " +
                     "FROM	`produccion` AS P " +
                     "INNER JOIN `encargados` AS E ON P.`idEncargado` = E.`idEncargado` " +

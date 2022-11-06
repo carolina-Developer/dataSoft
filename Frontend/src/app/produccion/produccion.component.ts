@@ -39,6 +39,10 @@ export class ProduccionComponent implements OnInit {
   controlLista = 1; //Control para limpiar la lista
   BuscarEvalor = 1; //Control para carga del valor a buscar
 
+  //informe
+  informeD: any = []; 
+  tituloInforme = ""; 
+  tablaInforme: any = []; 
   combo3: any = [];
   combo4: any = [];
 
@@ -68,6 +72,14 @@ export class ProduccionComponent implements OnInit {
     textTotalA: new FormControl(),
   });
 
+  informe = new FormGroup(
+    {
+      encar: new FormControl(),
+      fecha1: new FormControl(),
+      fecha2: new FormControl()
+  
+    });
+
   /*--------------------------------*/
   /*         Constructor            */
   /*--------------------------------*/
@@ -81,22 +93,6 @@ export class ProduccionComponent implements OnInit {
   /*       CRUD PRODUCCION          */
   /*--------------------------------*/
 
-  /*  Lista produccion ********/
-  public consultaProduccionI() {
-    this.servi.getProduccion().subscribe((data: any) => {
-      let dat = data;
-
-      this.produccion = data;
-      this.TituloProduccion = "LISTA PRODUCCION";
-      this.TablaProduccion[0] = "Id";
-      this.TablaProduccion[1] = "Encargado";
-      this.TablaProduccion[2] = "Productos malos";
-      this.TablaProduccion[3] = "Tipo camiseta";
-      this.TablaProduccion[4] = "Fecha";
-      this.TablaProduccion[5] = "Total";
-    });
-  }
-
   /* Lista tipo de produccion */
   public consultaProduccion(op: any) {
     if (this.controlLista == 1) {
@@ -109,9 +105,10 @@ export class ProduccionComponent implements OnInit {
             this.TablaProduccion[0] = "Id";
             this.TablaProduccion[1] = "Encargado";
             this.TablaProduccion[2] = "Productos malos";
-            this.TablaProduccion[3] = "Tipo camiseta";
-            this.TablaProduccion[4] = "Fecha";
-            this.TablaProduccion[5] = "Total";
+            this.TablaProduccion[3] = "Productos Buenos";
+            this.TablaProduccion[4] = "Tipo camiseta";
+            this.TablaProduccion[5] = "Fecha";
+            this.TablaProduccion[6] = "Total";
           } else if (op == 2) {
             this.comboListaProduccion = data;
             this.Miproduccion = null;
@@ -122,6 +119,7 @@ export class ProduccionComponent implements OnInit {
             this.TabBusProduccion[3] = "";
             this.TabBusProduccion[4] = "";
             this.TabBusProduccion[5] = "";
+            this.TabBusProduccion[6] = "";
           } else if (op == 3) {
             this.comboEditarProduccion = data;
             this.MiProduccionE = null;
@@ -141,6 +139,7 @@ export class ProduccionComponent implements OnInit {
       this.TablaProduccion[3] = "";
       this.TablaProduccion[4] = "";
       this.TablaProduccion[5] = "";
+      this.TablaProduccion[6] = "";
       this.controlLista = 1;
     }
   }
@@ -153,12 +152,14 @@ export class ProduccionComponent implements OnInit {
         this.Miproduccion = data;
 
         this.TitProduccion = 'Produccion Seleccionada';
-        this.TabBusProduccion[0] = 'Indicador';
-        this.TabBusProduccion[1] = 'Encargado';
-        this.TabBusProduccion[2] = 'productos malos';
-        this.TabBusProduccion[3] = 'nombre producto';
-        this.TabBusProduccion[4] = 'Fecha';
-        this.TabBusProduccion[5] = 'Total';
+        this.TabBusProduccion[0] = "Id";
+        this.TabBusProduccion[1] = "Encargado";
+        this.TabBusProduccion[2] = "Productos malos";
+        this.TabBusProduccion[3] = "Productos Buenos";
+        this.TabBusProduccion[4] = "Tipo camiseta";
+        this.TabBusProduccion[5] = "Fecha";
+        this.TabBusProduccion[6] = "Total";
+
 
       },
       (error) => {
@@ -177,9 +178,9 @@ export class ProduccionComponent implements OnInit {
     var dato5 = this.InsertarGProduccion.getRawValue()['textTotal'];
 
     var cadena = {
-      "nombreEncargado": dato1,
+      "idEncargado": dato1,
       "noProductosMalos": dato2,
-      "nombreProducto": dato3,
+      "idProducto": dato3,
       "fecha": dato4,
       "total": dato5,
     };
@@ -222,9 +223,9 @@ export class ProduccionComponent implements OnInit {
 
     var cadena = {
       "idProduccion": this.BuscarEvalor,
-      "nombreEncargado": nuevo1,
+      "idEncargado": nuevo1,
       "noProductosMalos": nuevo2,
-      "nombreProducto": nuevo3,
+      "idProducto": nuevo3,
       "fecha": nuevo4,
       "total": nuevo5,
     };
@@ -238,11 +239,42 @@ export class ProduccionComponent implements OnInit {
         console.log(err);
       });
 
-    this.BuscarEvalor = 0;
+    //this.BuscarEvalor = 0;
     this.ActualizarAProduccion.reset();
   }
 
+  //  /* 
+  //  Actualizar Produccion 
+  //  */
 
+  // public filtroEncargado()
+  // {
+  //   this.server.getEncargados().subscribe((data:any) =>{
+  //     this.combo3 = data;
+  //   },
+  //   error => {console.log(error)});
+  // }
+
+  public informeProduccion()
+  {
+    var info1 = this.informe.getRawValue()['encar'];
+    var info2 = this.informe.getRawValue()['fecha1'];
+    var info3 = this.informe.getRawValue()['fecha2'];
+
+    this.servi.getInforme(info1, info2, info3).subscribe((data:{}) => {
+      this.informeD = data;
+      this.tituloInforme ="INFORME ENCARGADO-PRODUCCION";
+      this.tablaInforme[0] = "ID Produccion";
+      this.tablaInforme[1] = "Encargado";
+      this.tablaInforme[2] = "Producto Malos";
+      this.tablaInforme[3] = "Productos Buenos";
+      this.tablaInforme[4] = "Producto";
+      this.tablaInforme[5] = "Fecha";
+      this.tablaInforme[6] = "Total";
+      },
+      error => {console.log(error)});
+  }
+  
   /*--------------------------------*/
   /*         Limpiar Lista          */
   /*--------------------------------*/
@@ -296,5 +328,12 @@ export class ProduccionComponent implements OnInit {
       textTotalA: [],
     });
     this.formBuilder.group;
+
+    this.informe = this.formBuilder.group(
+      {
+        encar: [],
+        fecha1: [],
+        fecha2: []
+      });
   }
 }
