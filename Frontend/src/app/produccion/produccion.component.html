@@ -209,18 +209,6 @@
         </select>
         <br><br>
 
-        <!----
-        <label for="eProd"
-          ><input
-            type="text"
-            name="eProd"
-            id="eProd"
-            value="{{ prod.nombreEncargado }}"
-            [(ngModel)]="prod.nombreEncargado"
-            formControlName="textEncargadoProducA"
-        /></label>
-        <br><br>
-        -->
         Productos Malos
         <label for="mProduc"
           ><input
@@ -278,6 +266,66 @@
     </form>
     <br />
   </div>
+
+  <!---------------------------------------------------------------------------------------->
+
+  <!---------------------------------------------->
+  <!---  Mostrar Informe Produccion-Encargado ---->
+  <!---------------------------------------------->
+
+  <div class="informe">
+    <h2>INFORME</h2>
+    <form (ngSubmit)="informeProduccion()" [formGroup]="informe">
+        Encargado
+        <select class="dropdown" formControlName="encar" (click)="filtroEncargado()">
+            <option disabled selected value="value1">Encargado</option>
+            <option *ngFor="let ex of combo3" [value]="ex.idEncargado">
+                {{ ex.encargado }}
+            </option>
+        </select>
+        <br><br>
+        Fecha Inicial
+        <label for="fechaI"><input type="date" name="fechaI" id="fechaI" formControlName="fecha1"></label>
+        <br><br>
+        Fecha Final
+        <label for="fechaF"><input type="date" name="fechaF" id="fechaF" formControlName="fecha2"></label>
+        <br><br>
+
+        <button type="submit">Generar Informe</button>
+
+    </form>
+
+    <ul>
+        <h2>{{ tituloInforme }}</h2>
+        <table class="informe">
+            <thead>
+                <th>{{ tablaInforme[0] }}</th>
+                <th>{{ tablaInforme[1] }}</th>
+                <th>{{ tablaInforme[2] }}</th>
+                <th>{{ tablaInforme[3] }}</th>
+                <th>{{ tablaInforme[4] }}</th>
+                <th>{{ tablaInforme[5] }}</th>
+                <th>{{ tablaInforme[6] }}</th>
+            </thead>
+
+            <tbody class="filt">
+                <tr *ngFor="let in of informeD">
+                    
+                    <th>{{ in.idProduccion }}</th>
+                    <th>{{ in.encargado }}</th>
+                    <th>{{ in.noProductosMalos }}</th>
+                    <th>{{ in.noProductosBuenos}}</th>
+                    <th>{{ in.idProducto}}</th>
+                    <th>{{ in.Fecha}}</th>
+                    <th>{{ in.total}}</th>
+                   
+                </tr>
+            </tbody>
+        </table>
+    </ul>
+
+</div>
+
   <br /><br /><br /><br />
   <!--*************************************************************************-->
   <!-- se incluye el link para la otra página -->

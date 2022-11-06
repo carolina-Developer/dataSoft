@@ -39,6 +39,10 @@ export class ProduccionComponent implements OnInit {
   controlLista = 1; //Control para limpiar la lista
   BuscarEvalor = 1; //Control para carga del valor a buscar
 
+  //informe
+  informeD: any = []; 
+  tituloInforme = ""; 
+  tablaInforme: any = []; 
   combo3: any = [];
   combo4: any = [];
 
@@ -68,6 +72,14 @@ export class ProduccionComponent implements OnInit {
     textTotalA: new FormControl(),
   });
 
+  informe = new FormGroup(
+    {
+      encar: new FormControl(),
+      fecha1: new FormControl(),
+      fecha2: new FormControl()
+  
+    });
+
   /*--------------------------------*/
   /*         Constructor            */
   /*--------------------------------*/
@@ -81,24 +93,6 @@ export class ProduccionComponent implements OnInit {
   /*       CRUD PRODUCCION          */
   /*--------------------------------*/
 
-  /*  Lista produccion ********/
-  /*
-  public consultaProduccionI() {
-    this.servi.getProduccion().subscribe((data: any) => {
-      let dat = data;
-
-      this.produccion = data;
-      this.TituloProduccion = "LISTA PRODUCCION";
-      this.TablaProduccion[0] = "Id Encargado";
-      this.TablaProduccion[1] = "Encargado";
-      this.TablaProduccion[2] = "Productos Malos";
-      this.TablaProduccion[3] = "Productos Buenos";
-      this.TablaProduccion[4] = "Tipo camiseta";
-      this.TablaProduccion[5] = "Fecha";
-      this.TablaProduccion[6] = "Total";
-    });
-  }
-*/
   /* Lista tipo de produccion */
   public consultaProduccion(op: any) {
     if (this.controlLista == 1) {
@@ -249,7 +243,38 @@ export class ProduccionComponent implements OnInit {
     this.ActualizarAProduccion.reset();
   }
 
+  //  /* 
+  //  Actualizar Produccion 
+  //  */
 
+  // public filtroEncargado()
+  // {
+  //   this.server.getEncargados().subscribe((data:any) =>{
+  //     this.combo3 = data;
+  //   },
+  //   error => {console.log(error)});
+  // }
+
+  public informeProduccion()
+  {
+    var info1 = this.informe.getRawValue()['encar'];
+    var info2 = this.informe.getRawValue()['fecha1'];
+    var info3 = this.informe.getRawValue()['fecha2'];
+
+    this.servi.getInforme(info1, info2, info3).subscribe((data:{}) => {
+      this.informeD = data;
+      this.tituloInforme ="INFORME ENCARGADO-PRODUCCION";
+      this.tablaInforme[0] = "ID Produccion";
+      this.tablaInforme[1] = "Encargado";
+      this.tablaInforme[2] = "Producto Malos";
+      this.tablaInforme[3] = "Productos Buenos";
+      this.tablaInforme[4] = "Producto";
+      this.tablaInforme[5] = "Fecha";
+      this.tablaInforme[6] = "Total";
+      },
+      error => {console.log(error)});
+  }
+  
   /*--------------------------------*/
   /*         Limpiar Lista          */
   /*--------------------------------*/
@@ -303,5 +328,12 @@ export class ProduccionComponent implements OnInit {
       textTotalA: [],
     });
     this.formBuilder.group;
+
+    this.informe = this.formBuilder.group(
+      {
+        encar: [],
+        fecha1: [],
+        fecha2: []
+      });
   }
 }
