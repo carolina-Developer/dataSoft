@@ -1,5 +1,4 @@
 const express = require('express');
-const { route } = require('../../app');
 const router = express.Router();
 
 var encargadosModel	= require('../modelos/encargadosModel');

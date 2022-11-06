@@ -44,7 +44,9 @@ materialModel.getMateriales = function(id, callback)
         var sql =   "SELECT M.`idMaterial`, " +
                     "M.`nombreMaterial`, " + 
                     "C.`nombreCat` AS 'tipoMaterial', " + 
+                    "M.`tipoMaterial`, " +
                     "D.`nombreCat` AS 'colorMaterial', " + 
+                    "M.`colorMaterial`, " +
                     "M.`existencias` " + 
                     "FROM `materiales` AS M "+
                     "INNER JOIN `catalogos` AS C ON M.`tipoMaterial` = C.`idCatalogo` " +

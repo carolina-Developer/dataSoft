@@ -38,6 +38,12 @@ export class ProductosComponent implements OnInit {
   TabInProductos: any = []; //Encabezados tabla Tipo de Producto Buscado
   comboListaProducIn: any = []; //Combo Buscar Tipo de Documento
 
+  miTalla: any = []; //talla seleccionada data
+  tallaInTitulo: any = ''; //titulo
+  tabInTalla: any = []; //encabezados
+  comboInTalla: any = []; //data
+
+
   controlLista = 1; //Control para limpiar la lista
   BuscarEvalor = 1; //Control para carga del valor a buscar
 
@@ -69,9 +75,13 @@ export class ProductosComponent implements OnInit {
   });
 
   InformeProducto = new FormGroup({
-    BuscarIdProducto: new FormControl(),
-    textFechaIn: new FormControl(),
-    textFechaFi: new FormControl(),
+    BuscarIdProducIn: new FormControl(),
+    FechaIn: new FormControl(),
+    FechaFi: new FormControl()
+  });
+
+  tallaIn = new FormGroup({
+    BuscarIdTalla: new FormControl()
   })
 
   /*Contructor ----------------------------------------------------------------- */
@@ -125,6 +135,7 @@ export class ProductosComponent implements OnInit {
             this.MiProductosE = null;
             this.TituloProductosEdit = '';
           }else if (op == 4) {
+
             this.comboListaProducIn = data;
             this.MiProductoIn = null;
             this.TituloProductoIn = '';
@@ -133,6 +144,10 @@ export class ProductosComponent implements OnInit {
             this.TabInProductos[2] = '';
             this.TabInProductos[3] = '';
             this.TabInProductos[4] = '';
+            this.TabInProductos[5] = '';
+            this.TabInProductos[6] = '';
+            this.TabInProductos[7] = '';
+            this.TabInProductos[8] = '';
           }
         },
         (error) => {
@@ -141,7 +156,7 @@ export class ProductosComponent implements OnInit {
       );
     } else {
       this.Productos = null;
-      this.TituloProducto = '';
+      this.TituloProductos = '';
       this.TablaProductos[0] = '';
       this.TablaProductos[1] = '';
       this.TablaProductos[2] = '';
@@ -238,31 +253,58 @@ export class ProductosComponent implements OnInit {
         console.log(err);
       });
 
-    this.BuscarEvalor = 0;
+    //this.BuscarEvalor = 0;
     this.ActualizarAProducto.reset();
   }
 
-  /*public informeProducto() {
+  public tallaInfo(){
+    var id = this.tallaIn.getRawValue()['BuscarIdTalla'];
+
+    this.servi.getProductosTalla(id).subscribe(
+        (data: {}) => {
+            this.miTalla = data;
+            this.tallaInTitulo = 'REPORTE TALLA';
+            this.tabInTalla[0] = 'ID';
+            this.tabInTalla[1] = 'Nombre';
+            this.tabInTalla[2] = 'Tipo';
+            this.tabInTalla[3] = 'Talla';
+            this.tabInTalla[4] = 'Color';
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+
+}
+
+  public informeProducto() {
     var id = this.InformeProducto.getRawValue()['BuscarIdProducto'];
     var fechaIn = this.InformeProducto.getRawValue()['FechaIn'];
     var fechaFi = this.InformeProducto.getRawValue()['FechaFi'];
 
-    this.servi.getInformeProduc('/' + id+ '/' + fechaIn + '/' + fechaFi).subscribe(
+    //console.log(fechaIn);
+
+    this.servi.getInforme(id, fechaIn, fechaFi).subscribe(
       (data: {}) => {
         this.MiProductoIn = data;
 
-        this.TituloProducto = 'Tipo de producto seleccionado';
-        this.TabBusProductos[0] = 'ID';
-        this.TabBusProductos[1] = 'Nombre';
-        this.TabBusProductos[2] = 'Tipo';
-        this.TabBusProductos[3] = 'Talla';
-        this.TabBusProductos[4] = 'Color';
+        this.TituloProductoIn = 'INFORME talla tiempo';
+        this.TabInProductos[0] = 'ID Producto';
+        this.TabInProductos[1] = 'Nombre Producto';
+        this.TabInProductos[2] = 'Tipo Producto';
+        this.TabInProductos[3] = 'Talla';
+        this.TabInProductos[4] = 'Color';
+        this.TabInProductos[5] = 'Fecha';
+        this.TabInProductos[6] = 'No. productos malos';
+        this.TabInProductos[7] = 'No. productos buenos';
+        this.TabInProductos[8] = 'Total';
+
       },
       (error) => {
         console.log(error);
       }
     );
-  }*/
+  }
 
   /*Filtro tipo de producto -----------------------------------------------------------*/
   public filtroTipoProduct(){
@@ -312,5 +354,18 @@ export class ProductosComponent implements OnInit {
       textnuevoColor: [],
     });
     this.formBuilder.group;
+
+    this.InformeProducto = this.formBuilder.group({
+      BuscarIdProducto: [],
+      FechaIn: [],
+      FechaFi: [],
+    });
+    this.formBuilder.group;
+
+    this.tallaIn = this.formBuilder.group({
+        BuscarIdTalla: [],
+    });
+    this.formBuilder.group;
+
   }
 }

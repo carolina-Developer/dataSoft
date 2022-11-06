@@ -251,10 +251,12 @@ export class UrbanService {
         .toPromise();
     });
   }
+  /*Infome PRODCUTOS */
 
-  getInformeProduc(id:any, fechaIn:any, fechaFi:any): Observable<any> {
-    return this.http.get(this.Url + '/produccion/'+id+'/'+ fechaIn+'/'+ fechaFi+ httpOptions);
-  }
+
+  getProductosTalla(id:any): Observable<any>{
+    return this.http.get(this.Url + '/productos/talla/' + id, httpOptions);
+}
 
   /*Servicio CRUD  MATERIALES */
 
@@ -328,7 +330,7 @@ export class UrbanService {
   async updateProduccion(produccionData: any): Promise<any> {
     return new Promise((resolve, reject) => {
       this.http
-        .put(this.Url + '/produccion', produccionData, httpOptions)
+        .put(this.Url + "/produccion", produccionData, httpOptions)
         .toPromise();
     });
   }
