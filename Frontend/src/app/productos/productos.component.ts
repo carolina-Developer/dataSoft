@@ -278,13 +278,13 @@ export class ProductosComponent implements OnInit {
 }
 
   public informeProducto() {
-    var id = this.InformeProducto.getRawValue()['BuscarIdProducto'];
+    var id = this.InformeProducto.getRawValue()['BuscarIdProducIn'];
     var fechaIn = this.InformeProducto.getRawValue()['FechaIn'];
     var fechaFi = this.InformeProducto.getRawValue()['FechaFi'];
 
     //console.log(fechaIn);
 
-    this.servi.getInforme(id, fechaIn, fechaFi).subscribe(
+    this.servi.getInformeP(id, fechaIn, fechaFi).subscribe(
       (data: {}) => {
         this.MiProductoIn = data;
 
@@ -356,7 +356,7 @@ export class ProductosComponent implements OnInit {
     this.formBuilder.group;
 
     this.InformeProducto = this.formBuilder.group({
-      BuscarIdProducto: [],
+      BuscarIdProducIn: [],
       FechaIn: [],
       FechaFi: [],
     });

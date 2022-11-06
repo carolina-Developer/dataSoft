@@ -253,6 +253,9 @@ export class UrbanService {
   }
   /*Infome PRODCUTOS */
 
+  getInformeP(id:any, fechaIn:any, fechaFi:any): Observable<any> {
+    return this.http.get(this.Url + "/productos/" + id + "/" + fechaIn + "/" + fechaFi, httpOptions);
+  }
 
   getProductosTalla(id:any): Observable<any>{
     return this.http.get(this.Url + '/productos/talla/' + id, httpOptions);

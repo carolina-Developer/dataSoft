@@ -42,10 +42,10 @@ productosModel.getProductos = function(id, callback)
         
         var sql =   "SELECT P.`idProducto`, " + 
                     "P.`nombreProducto`, " +                     
-                    "D.`nombreCat` AS 'tipoProducto', " +
+                    "D.`nombreCat` AS 'TipoProducto', " +
                     "P.`tipoProducto`, " +
                     "P.`talla`, " + 
-                    "C.`nombreCat` AS 'color', " +
+                    "C.`nombreCat` AS 'Color', " +
                     "P.`color` " +
                     "FROM `productos` AS P " +
                     "INNER JOIN `catalogos` AS D ON P.`tipoProducto` = D.`idCatalogo` " +
@@ -156,7 +156,7 @@ productosModel.getProductosTalla = function(id, callback)
 //-----------------------------------------------------------------------------------------------------------------
 // INFORME DE CAMISETAS POR TALLA EN UN PERIODO DE TIEMPO
 
-productosModel.getInforme = function(id, fechaIn, fechaFi, callback)
+productosModel.getInformeP = function(id, fechaIn, fechaFi, callback)
 {
     if(connection)
     {

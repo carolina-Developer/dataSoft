@@ -143,7 +143,7 @@ router.get("/:id/:fechaIn/:fechaFi", function (req, res)
 
     if(!isNaN(id))
     {
-        productosModel.getInforme(id, fechaIn, fechaFi, function (error, data)
+        productosModel.getInformeP(id, fechaIn, fechaFi, function (error, data)
         {
             if (typeof data !== 'undefined' && data.length > 0)
             {

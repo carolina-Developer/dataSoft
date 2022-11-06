@@ -78,9 +78,9 @@
                         <tr class="b" *ngFor="let product of MiProductos">
                             <th class="b">{{ product.idProducto }}</th>
                             <th class="b">{{ product.nombreProducto }}</th>
-                            <th class="b">{{ product.tipoProducto }}</th>
+                            <th class="b">{{ product.TipoProducto }}</th>
                             <th class="b">{{ product.talla }}</th>
-                            <th class="b">{{ product.color }}</th>
+                            <th class="b">{{ product.Color }}</th>
                         </tr>
                     </tbody>
                 </table>
@@ -101,7 +101,7 @@
             </form>
 
             <ul>
-                <h2>{{ TituloProducto }}</h2>
+                <h2>{{ tallaInTitulo }}</h2>
 
                 <table class="tabReporte">
                     <thead class="Colb">
@@ -235,7 +235,7 @@
 
             <form (ngSubmit)="informeProducto()" [formGroup]="InformeProducto">
                 Talla
-                <label for="tall"><input type="text" name="tall" id="tall" formControlName="BuscarIdProducto"></label>
+                <label for="tall"><input type="text" name="tall" id="tall" formControlName="BuscarIdProducIn"></label>
                 <br><br>
 
                 Fecha Inicial
