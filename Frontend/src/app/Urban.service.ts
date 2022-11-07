@@ -294,9 +294,9 @@ export class UrbanService {
     });
   }
 
-  /******************************************/
-  /** SERVICIO CRUD DE TIPOS DE PRODUCCION **/
-  /******************************************/
+  /**************/
+  /* SERVICIO CRUD DE TIPOS DE PRODUCCION */
+  /**************/
 
   /* 
     Metodo listar produccion 
@@ -349,9 +349,9 @@ export class UrbanService {
 
   }
 
-    /************************************
+    /************
     SERVICIO CRUD DE DETALLES PRODUCTO
-    *************************************/
+    *************/
 
     /* 
     Listar Detalles producto
