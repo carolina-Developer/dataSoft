@@ -1,1 +1,34 @@
-/* You can add global styles to this file, and also import other style files */
+/*Estilo separacion hr - linea*/
+hr{
+    width:80%;
+
+}
+/*Estilos container*/
+.container{
+    text-align:center;
+}
+/*Estilo fuente ruta nav*/
+.rutaInicio{
+    font-size: 55px;
+}
+/*Estilos imagenes*/
+.container-nav img{
+    width:200px;
+    height:200px;
+}
+/*Estilos links*/
+a{
+    color: #1995ad;
+}
+/*Estilo cuerpos*/
+body{
+
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+
+    font-family: 'Nunito', sans-serif;
+    font-size: 18px;
+}
