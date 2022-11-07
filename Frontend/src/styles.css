@@ -1,13 +1,15 @@
 /*Estilo separacion hr - linea*/
 hr{
     width:80%;
-
 }
 /*Estilos container*/
 .container{
     text-align:center;
 }
 /*Estilo fuente ruta nav*/
+.rutaInicio p{ 
+    margin: 0px;
+}
 .rutaInicio{
     font-size: 55px;
 }
