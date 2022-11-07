@@ -1,292 +1,308 @@
 <html>
     <body>
-        <div style="text-align: center">
-            <h1>{{ title }}</h1>
-            <img width="300" alt="Logo Proyecto" src="../../assets/img/logo.svg" />
+        <!--Navbar-->
+        <div class="container-navar">
+            <div class="container-nav py-4 text-center">
+                <a class="rutaInicio" routerLink="/Inicio">
+                    <img class="logo d-block mx-auto" src="../../assets/img/logo.svg" alt="#">
+                    <p>Productos</p>
+                </a>
+                <p class="lead">Tú eliges Urban Clothe, nosotros hacemos el resto. </p>
+            </div>
         </div>
+        <hr>
+        <br />
+        <!--Navbar-->
 
-        <br /><br /><br /><br />
+        <!--Container general-->
+        <div class="container">
+            <!--------------------------------------------------------------------------------------------->
+            <div class="Listar">
+                <h2>LISTA DE PRODUCTOS</h2>
 
-        <!--------------------------------------------------------------------------------------------->
-        <!-- para mostrar el listado de productos -->
+                <form (ngSubmit)="consultaProducto(1)" [formGroup]="ListaProducto">
 
-        <div class="Listar">
-            <h2>LISTA DE PRODUCTOS:</h2>
-
-            <form (ngSubmit)="consultaProducto(1)" [formGroup]="ListaProducto">
-
-                <button type="submit" style="margin-right: 30px"> Mostrar Lista de Productos </button>
-                <button (click)="LimpiarLista()"> Limpiar Lista de Productos </button>
-                <br /><br />
-
-                <h2>{{TituloProductos}}</h2>
-                <table>
-                    <thead>
-                        <th>{{ TablaProductos[0] }}</th>
-                        <th>{{ TablaProductos[1] }}</th>
-                        <th>{{ TablaProductos[2] }}</th>
-                        <th>{{ TablaProductos[3] }}</th>
-                        <th>{{ TablaProductos[4] }}</th>
-                    </thead>
-
-                    <tbody>
-                        <tr *ngFor="let product of Productos">
-                            <th>{{ product.idProducto }}</th>
-                            <th>{{ product.nombreProducto }}</th>
-                            <th>{{ product.tipoProducto }}</th>
-                            <th>{{ product.talla }}</th>
-                            <th>{{ product.color }}</th>
-                        </tr>
-                    </tbody>
-                </table>
-            </form>
-        </div>
-        <br /><br />
-        <!--------------------------------------------------------------------------------------------->
-        <!-- para mostrar el un solo producto -->
-
-        <div class="Buscar">
-            <h2>MOSTRAR PRODUCTO</h2>
-
-            <form (ngSubmit)="buscarProducto()" [formGroup]="filtrarProducto">
-                ID del producto
-                <select class="dropdown" formControlName="combofiltro" (click)="consultaProducto(2)">
-                    <option value="value1">Tipo de producto a buscar</option>
-                    <option *ngFor="let product of comboListaProductos" [value]="product.idProducto">
-                        {{ product.idProducto }} -
-                        {{ product.nombreProducto }}
-                    </option>
-                </select>
-                <br /><br />
-
-                <button type="submit">Buscar Proucto</button>
-            </form>
-
-            <ul>
-                <h2>{{ TituloProducto }}</h2>
-
-                <table class="tabBuscar">
-                    <thead class="Colb">
-                        <th class="b">{{ TabBusProductos[0] }}</th>
-                        <th class="b">{{ TabBusProductos[1] }}</th>
-                        <th class="b">{{ TabBusProductos[2] }}</th>
-                        <th class="b">{{ TabBusProductos[3] }}</th>
-                        <th class="b">{{ TabBusProductos[4] }}</th>
-                    </thead>
-
-                    <tbody class="Filb">
-                        <tr class="b" *ngFor="let product of MiProductos">
-                            <th class="b">{{ product.idProducto }}</th>
-                            <th class="b">{{ product.nombreProducto }}</th>
-                            <th class="b">{{ product.TipoProducto }}</th>
-                            <th class="b">{{ product.talla }}</th>
-                            <th class="b">{{ product.Color }}</th>
-                        </tr>
-                    </tbody>
-                </table>
-            </ul>
-        </div>
-        <br /><br />
-        <!--------------------------------------------------------------------------------------------->
-        <div class="buscarTalla">
-            <h2>MOSTRAR TALLA</h2>
-
-            <form (ngSubmit)="tallaInfo()" [formGroup]="tallaIn">
-
-                Talla
-                <label for="reporte"><input type="text" name="reporte" id="reporte" formControlName="BuscarIdTalla"></label>
-                <br><br>
-
-                <button type="submit">Buscar reporte</button>
-            </form>
-
-            <ul>
-                <h2>{{ tallaInTitulo }}</h2>
-
-                <table class="tabReporte">
-                    <thead class="Colb">
-                        <th class="b">{{ tabInTalla[0] }}</th>
-                        <th class="b">{{ tabInTalla[1] }}</th>
-                        <th class="b">{{ tabInTalla[2] }}</th>
-                        <th class="b">{{ tabInTalla[3] }}</th>
-                        <th class="b">{{ tabInTalla[4] }}</th>
-                    </thead>
-
-                    <tbody class="Filb">
-                        <tr class="b" *ngFor="let product of miTalla">
-                            <th class="b">{{ product.idProducto }}</th>
-                            <th class="b">{{ product.nombreProducto }}</th>
-                            <th class="b">{{ product.tipoProducto }}</th>
-                            <th class="b">{{ product.talla }}</th>
-                            <th class="b">{{ product.color }}</th>
-                        </tr>
-                    </tbody>
-                </table>
-            </ul>
-        </div>
-        <br /><br />
-        <!--------------------------------------------------------------------------------------------->
-        <!-- para crear un  Tipo de documento -->
-
-        <div class="Insertar">
-            <br /><br />
-            <h2>INSERTAR PRODUCTO</h2>
-
-            <form (ngSubmit)="InsertarProducto()" [formGroup]="InsertarGProducto">
-
-                Nombre Producto
-                <label for="CProduct"><input type="text" name="CProduct" id="CProduct" formControlName="textNomProduct" /></label>
-                <br /><br />
-
-                Tipo de producto
-                <select class="dropdown" formControlName="textTipProduct" (click)="filtroTipoProduct()">
-                    <option value="value1">Tipo de producto</option>
-                    <option *ngFor="let product of combo3" [value]="product.idCatalogo">
-                        {{ product.nombreCat }}
-                    </option>
-                </select>
-
-                <br /><br />
-                Talla Producto
-                <label for="TaProduct"><input type="text" name="TaProduct" id="TaProduct" formControlName="textTalla" /></label>
-                <br /><br />
-
-                Color Producto
-                <select class="dropdown" formControlName="textColor" (click)="filtroTipoColor()">
-                    <option value="value1">Tipo de color</option>
-                    <option *ngFor="let product of combo4" [value]="product.idCatalogo">
-                        {{ product.nombreCat }}
-                    </option>
-                </select>
-                <br /><br />
-
-                <button type="submit">Insertar Tipo de Documento</button>
-            </form>
-            <br />
-        </div>
-        <br /><br /><br /><br />
-
-        <!--------------------------------------------------------------------------------------------->
-        <!-- para actualizar un tipo de documento -->
-
-        <div class="Modificar">
-            <h2>ACTUALIZAR</h2>
-
-            <form (ngSubmit)="buscarEditarProducto()" [formGroup]="ActualizarAProducto">
-
-                ID Producto a Editar:
-                <select class="dropdown" formControlName="BuscarIdProducto" (click)="consultaProducto(3)">
-                    <option value="value1">Producto a editar</option>
-                    <option *ngFor="let product of comboEditarProductos" [value]="product.idProducto">
-                        {{ product.idProducto }} -
-                        {{ product.nombreProducto }}
-                    </option>
-                </select>
-                <br /><br />
-
-                <button type="submit" (click)="filtroTipoProduct()" (click)="filtroTipoColor()">Buscar</button>
-
-                <h2>{{ TituloProductosEdit }}</h2>
-
-                <li *ngFor="let product of MiProductosE">
-
-                    Nombre Producto
-                    <label for="eProduct"><input type="text" name="eProduct" id="eProduct"
-                            value="{{ product.nombreProducto }}" [(ngModel)]="product.nombreProducto"
-                            formControlName="textnuevoProducto" /></label>
+                    <button type="submit" style="margin-right: 30px"> Mostrar Lista de Productos </button>
+                    <button (click)="LimpiarLista()"> Limpiar Lista de Productos </button>
                     <br /><br />
 
-                    Tipo de producto
-                    <select class="dropdown-2" formControlName="textnuevoTipProduct" [(ngModel)]="product.tipoProducto">
-                        <option value="value2">Tipo de producto</option>
-                        <option *ngFor="let product of combo3" [value]="product.idCatalogo">
-                            {{ product.nombreCat }}
+                    <h2>{{TituloProductos}}</h2>
+                    <table>
+                        <thead>
+                            <th>{{ TablaProductos[0] }}</th>
+                            <th>{{ TablaProductos[1] }}</th>
+                            <th>{{ TablaProductos[2] }}</th>
+                            <th>{{ TablaProductos[3] }}</th>
+                            <th>{{ TablaProductos[4] }}</th>
+                        </thead>
+
+                        <tbody>
+                            <tr *ngFor="let product of Productos">
+                                <th>{{ product.idProducto }}</th>
+                                <th>{{ product.nombreProducto }}</th>
+                                <th>{{ product.tipoProducto }}</th>
+                                <th>{{ product.talla }}</th>
+                                <th>{{ product.color }}</th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+            <br />
+            <!--------------------------------------------------------------------------------------------->
+
+            <div class="Buscar">
+                <h2>MOSTRAR PRODUCTO</h2>
+
+                <form (ngSubmit)="buscarProducto()" [formGroup]="filtrarProducto">
+                    ID del producto
+                    <select class="dropdown" formControlName="combofiltro" (click)="consultaProducto(2)">
+                        <option value="value1">Tipo de producto a buscar</option>
+                        <option *ngFor="let product of comboListaProductos" [value]="product.idProducto">
+                            {{ product.idProducto }} -
+                            {{ product.nombreProducto }}
                         </option>
                     </select>
                     <br /><br />
 
-                    Talla producto
-                    <label for="talProduct"><input type="text" name="talProduct" id="talProduct" value="{{ product.talla }}"
-                            [(ngModel)]="product.talla" formControlName="textnuevoTalla" /></label>
+                    <button type="submit">Buscar Proucto</button>
+                </form>
+
+                <ul>
+                    <h2>{{ TituloProducto }}</h2>
+
+                    <table class="tabBuscar">
+                        <thead class="Colb">
+                            <th class="b">{{ TabBusProductos[0] }}</th>
+                            <th class="b">{{ TabBusProductos[1] }}</th>
+                            <th class="b">{{ TabBusProductos[2] }}</th>
+                            <th class="b">{{ TabBusProductos[3] }}</th>
+                            <th class="b">{{ TabBusProductos[4] }}</th>
+                        </thead>
+
+                        <tbody class="Filb">
+                            <tr class="b" *ngFor="let product of MiProductos">
+                                <th class="b">{{ product.idProducto }}</th>
+                                <th class="b">{{ product.nombreProducto }}</th>
+                                <th class="b">{{ product.TipoProducto }}</th>
+                                <th class="b">{{ product.talla }}</th>
+                                <th class="b">{{ product.Color }}</th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </ul>
+            </div>
+            <br />
+            <!--------------------------------------------------------------------------------------------->
+            <div class="buscarTalla">
+                <h2>MOSTRAR TALLA</h2>
+
+                <form (ngSubmit)="tallaInfo()" [formGroup]="tallaIn">
+
+                    Talla
+                    <label for="reporte"><input type="text" name="reporte" id="reporte"
+                            formControlName="BuscarIdTalla"></label>
+                    <br><br>
+
+                    <button type="submit">Buscar reporte</button>
+                </form>
+
+                <ul>
+                    <h2>{{ tallaInTitulo }}</h2>
+
+                    <table class="tabReporte">
+                        <thead class="Colb">
+                            <th class="b">{{ tabInTalla[0] }}</th>
+                            <th class="b">{{ tabInTalla[1] }}</th>
+                            <th class="b">{{ tabInTalla[2] }}</th>
+                            <th class="b">{{ tabInTalla[3] }}</th>
+                            <th class="b">{{ tabInTalla[4] }}</th>
+                        </thead>
+
+                        <tbody class="Filb">
+                            <tr class="b" *ngFor="let product of miTalla">
+                                <th class="b">{{ product.idProducto }}</th>
+                                <th class="b">{{ product.nombreProducto }}</th>
+                                <th class="b">{{ product.tipoProducto }}</th>
+                                <th class="b">{{ product.talla }}</th>
+                                <th class="b">{{ product.color }}</th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </ul>
+            </div>
+            <br />
+            <!--------------------------------------------------------------------------------------------->
+
+            <div class="Insertar">
+
+                <h2>INSERTAR PRODUCTO</h2>
+
+                <form (ngSubmit)="InsertarProducto()" [formGroup]="InsertarGProducto">
+
+                    Nombre Producto
+                    <label for="CProduct"><input type="text" name="CProduct" id="CProduct"
+                            formControlName="textNomProduct" /></label>
                     <br /><br />
 
-                    Color producto
-                    <select class="dropdown" formControlName="textnuevoColor" [(ngModel)]="product.color">
+                    Tipo de producto
+                    <select class="dropdown" formControlName="textTipProduct" (click)="filtroTipoProduct()">
+                        <option value="value1">Tipo de producto</option>
+                        <option *ngFor="let product of combo3" [value]="product.idCatalogo">
+                            {{ product.nombreCat }}
+                        </option>
+                    </select>
+
+                    <br /><br />
+                    Talla Producto
+                    <label for="TaProduct"><input type="text" name="TaProduct" id="TaProduct"
+                            formControlName="textTalla" /></label>
+                    <br /><br />
+
+                    Color Producto
+                    <select class="dropdown" formControlName="textColor" (click)="filtroTipoColor()">
                         <option value="value1">Tipo de color</option>
                         <option *ngFor="let product of combo4" [value]="product.idCatalogo">
                             {{ product.nombreCat }}
                         </option>
                     </select>
                     <br /><br />
-                </li>
+
+                    <button type="submit">Insertar Tipo de Documento</button>
+                </form>
                 <br />
-
-                <button (click)="ActualizarProducto()">Actualizar</button>
-            </form>
+            </div>
             <br />
+
+            <!--------------------------------------------------------------------------------------------->
+
+            <div class="Modificar">
+                <h2>ACTUALIZAR</h2>
+
+                <form (ngSubmit)="buscarEditarProducto()" [formGroup]="ActualizarAProducto">
+
+                    ID Producto a Editar:
+                    <select class="dropdown" formControlName="BuscarIdProducto" (click)="consultaProducto(3)">
+                        <option value="value1">Producto a editar</option>
+                        <option *ngFor="let product of comboEditarProductos" [value]="product.idProducto">
+                            {{ product.idProducto }} -
+                            {{ product.nombreProducto }}
+                        </option>
+                    </select>
+                    <br /><br />
+
+                    <button type="submit" (click)="filtroTipoProduct()" (click)="filtroTipoColor()">Buscar</button>
+
+                    <h2>{{ TituloProductosEdit }}</h2>
+
+                    <li *ngFor="let product of MiProductosE">
+
+                        Nombre Producto
+                        <label for="eProduct"><input type="text" name="eProduct" id="eProduct"
+                                value="{{ product.nombreProducto }}" [(ngModel)]="product.nombreProducto"
+                                formControlName="textnuevoProducto" /></label>
+                        <br /><br />
+
+                        Tipo de producto
+                        <select class="dropdown-2" formControlName="textnuevoTipProduct" [(ngModel)]="product.tipoProducto">
+                            <option value="value2">Tipo de producto</option>
+                            <option *ngFor="let product of combo3" [value]="product.idCatalogo">
+                                {{ product.nombreCat }}
+                            </option>
+                        </select>
+                        <br /><br />
+
+                        Talla producto
+                        <label for="talProduct"><input type="text" name="talProduct" id="talProduct"
+                                value="{{ product.talla }}" [(ngModel)]="product.talla"
+                                formControlName="textnuevoTalla" /></label>
+                        <br /><br />
+
+                        Color producto
+                        <select class="dropdown" formControlName="textnuevoColor" [(ngModel)]="product.color">
+                            <option value="value1">Tipo de color</option>
+                            <option *ngFor="let product of combo4" [value]="product.idCatalogo">
+                                {{ product.nombreCat }}
+                            </option>
+                        </select>
+                        <br /><br />
+                    </li>
+                    <br />
+
+                    <button (click)="ActualizarProducto()">Actualizar</button>
+                </form>
+                <br />
+            </div>
+            <br />
+
+            <!--------------------------------------------------------------------------------------------->
+
+            <div class="Informe">
+                <h2>INFORME TALLA/TIEMPO</h2>
+
+                <form (ngSubmit)="informeProducto()" [formGroup]="InformeProducto">
+                    Talla
+                    <label for="tall"><input type="text" name="tall" id="tall" formControlName="BuscarIdProducIn"></label>
+                    <br><br>
+
+                    Fecha Inicial
+                    <label for="fecha1"><input type="date" name="fecha1" id="fecha1" formControlName="FechaIn"></label>
+                    <br><br>
+
+                    Fecha Final
+                    <label for="fecha2"><input type="date" name="fecha2" id="fecha2" formControlName="FechaFi"></label>
+                    <br><br>
+
+                    <button type="submit">GENERAR INFORME</button>
+                </form>
+
+                <ul>
+                    <h2>{{ TituloProductoIn }}</h2>
+
+                    <table class="tabInforme">
+                        <thead class="Colb">
+                            <th class="b">{{ TabInProductos[0] }}</th>
+                            <th class="b">{{ TabInProductos[1] }}</th>
+                            <th class="b">{{ TabInProductos[2] }}</th>
+                            <th class="b">{{ TabInProductos[3] }}</th>
+                            <th class="b">{{ TabInProductos[4] }}</th>
+                            <th class="b">{{ TabInProductos[5] }}</th>
+                            <th class="b">{{ TabInProductos[6] }}</th>
+                            <th class="b">{{ TabInProductos[7] }}</th>
+                            <th class="b">{{ TabInProductos[8] }}</th>
+                        </thead>
+
+                        <tbody class="Filb">
+                            <tr class="b" *ngFor="let product of MiProductoIn">
+                                <th class="b">{{ product.idProducto }}</th>
+                                <th class="b">{{ product.nombreProducto }}</th>
+                                <th class="b">{{ product.tipoProducto }}</th>
+                                <th class="b">{{ product.talla }}</th>
+                                <th class="b">{{ product.color }}</th>
+                                <th class="b">{{ product.Fecha }}</th>
+                                <th class="b">{{ product.noProductosMalos }}</th>
+                                <th class="b">{{ product.noProductosBuenos }}</th>
+                                <th class="b">{{ product.total }}</th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </ul>
+            </div>
+            <br /><br />
         </div>
-        <br /><br /><br /><br />
-
-        <!--------------------------------------------------------------------------------------------->
-        <!-- Informe para mostrar talla vs tiempo -->
-
-        <div class="Informe">
-            <h2>INFORME TALLA/TIEMPO</h2>
-
-            <form (ngSubmit)="informeProducto()" [formGroup]="InformeProducto">
-                Talla
-                <label for="tall"><input type="text" name="tall" id="tall" formControlName="BuscarIdProducIn"></label>
-                <br><br>
-
-                Fecha Inicial
-                <label for="fecha1"><input type="date" name="fecha1" id="fecha1" formControlName="FechaIn"></label>
-                <br><br>
-
-                Fecha Final
-                <label for="fecha2"><input type="date" name="fecha2" id="fecha2" formControlName="FechaFi"></label>
-                <br><br>
-
-                <button type="submit">GENERAR INFORME</button>
-            </form>
-
-            <ul>
-                <h2>{{ TituloProductoIn }}</h2>
-
-                <table class="tabInforme">
-                    <thead class="Colb">
-                        <th class="b">{{ TabInProductos[0] }}</th>
-                        <th class="b">{{ TabInProductos[1] }}</th>
-                        <th class="b">{{ TabInProductos[2] }}</th>
-                        <th class="b">{{ TabInProductos[3] }}</th>
-                        <th class="b">{{ TabInProductos[4] }}</th>
-                        <th class="b">{{ TabInProductos[5] }}</th>
-                        <th class="b">{{ TabInProductos[6] }}</th>
-                        <th class="b">{{ TabInProductos[7] }}</th>
-                        <th class="b">{{ TabInProductos[8] }}</th>
-                    </thead>
-
-                    <tbody class="Filb">
-                        <tr class="b" *ngFor="let product of MiProductoIn">
-                            <th class="b">{{ product.idProducto }}</th>
-                            <th class="b">{{ product.nombreProducto }}</th>
-                            <th class="b">{{ product.tipoProducto }}</th>
-                            <th class="b">{{ product.talla }}</th>
-                            <th class="b">{{ product.color }}</th>
-                            <th class="b">{{ product.Fecha }}</th>
-                            <th class="b">{{ product.noProductosMalos }}</th>
-                            <th class="b">{{ product.noProductosBuenos }}</th>
-                            <th class="b">{{ product.total }}</th>
-                        </tr>
-                    </tbody>
-                </table>
-            </ul>
+        <!--Container general-->
+        <!--Footer-->
+        <div class="container-footer">
+            <footer class="my-5 pt-4 text-muted text-center text-small">
+                <p class="mb-1">© 2022 DataSoft</p>
+                <ul class="list-inline">
+                    <li class="list-inline-item"><a href="#">Privacidad</a></li>
+                    <li class="list-inline-item"><a href="#">Terminos</a></li>
+                    <li class="list-inline-item"><a href="#">Condiciones</a></li>
+                    <li class="list-inline-item"><a href="#">Menú Inicio</a></li>
+                </ul>
+            </footer>
         </div>
-        <br /><br />
-
-        <!-- se incluye el link para la otra página -->
-        <div class="dir">
-            <h3><a routerLink="/Inicio">Menú Inicio</a></h3>
-        </div>
+        <!--Footer-->
     </body>
-
 </html>
