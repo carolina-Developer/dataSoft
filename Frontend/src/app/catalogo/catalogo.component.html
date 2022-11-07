@@ -1,178 +1,192 @@
-<div style="text-align: center;">
-    <h1>
-    {{ title }}
-    </h1>
-</div>
-<br><br>
+<html>
+    <body>
+        <!--Navbar-->
+        <div class="container-navar">
+            <div class="container-nav py-4 text-center">
+                <a class="rutaInicio" routerLink="/Inicio">
+                    <img class="logo d-block mx-auto" src="../../assets/img/logo.svg" alt="#">
+                    <p>catalogos</p>
+                </a>
+                <p class="lead">Tú eliges Urban Clothe, nosotros hacemos el resto. </p>
+            </div>
+        </div>
+        <hr>
+        <br />
+        <!--Navbar-->
 
-<!------------------------------------------------------------------------->
-<!-- Para listar los catalogos------------------------>
+        <!--Container general-->
+        <div class="container">
+            <!------------------------------------------------------------------------->
+                <div class = "Listar">
+                    <h2>LISTAR</h2>
+                    <form (ngSubmit)="listarCat(1)" [formGroup]="listaCatalogos">
+                        <button type = "submit" style="margin-right: 30px;">Listar</button>
+                        <button (click)="LimpiarLista()" style="scroll-margin-left: 30px;">Limpiar lista</button>
+                        <br><br>
 
-<div class = "listar">
-    <h2>LISTAR</h2>
-    <form (ngSubmit)="listarCat(1)" [formGroup]="listaCatalogos">
-        <button type = "submit" style="margin-right: 30px;">Listar</button>
-        <button (click)="LimpiarLista()" style="scroll-margin-left: 30px;">Limpiar lista</button>
-        <br><br>
+                        <h2>{{ tituloCat }}</h2>
+                        <table>
+                            <thead>
 
-        <h2>{{ tituloCat }}</h2>
-        <table>
-            <thead>
+                                <th>{{ tablaCat[0] }}</th>
+                                <th>{{ tablaCat[1] }}</th>
+                                <th>{{ tablaCat[2] }}</th>
+                            
+                            </thead>
 
-                <th>{{ tablaCat[0] }}</th>
-                <th>{{ tablaCat[1] }}</th>
-                <th>{{ tablaCat[2] }}</th>
-            
-            </thead>
+                            <tbody>
+                                <tr *ngFor="let catt of cat">
 
-            <tbody>
-                <tr *ngFor="let catt of cat">
+                                    <th>{{ catt.idCatalogo }}</th>
+                                    <th>{{ catt.nombreCat }}</th>
+                                    <th>{{ catt.catalogo }}</th>
 
-                    <th>{{ catt.idCatalogo }}</th>
-                    <th>{{ catt.nombreCat }}</th>
-                    <th>{{ catt.catalogo }}</th>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </form>
+                </div>
+                <br />
 
-                </tr>
-            </tbody>
-        </table>
-    </form>
-</div>
-
-<!------------------------------------------------------------------------->
-<!-- Para mostrar catalogo ------------------------>
-
-<div class="buscar">
-    <h2>MOSTRAR</h2>
-    <form (ngSubmit)="buscarCatalogo()" [formGroup]="filtrarCat">
-        Catalogo
-        <select class="dropdown" formControlName="combofiltro" (click)="Filtro2()">
-            <option disabled selected value="value1">Tipos</option>
-            <option *ngFor="let cl of combo2" [value]="cl.idCatalogo" >
+                <!------------------------------------------------------------------------->
+                <div class="Buscar">
+                    <h2>MOSTRAR</h2>
+                    <form (ngSubmit)="buscarCatalogo()" [formGroup]="filtrarCat">
+                        Catalogo
+                        <select class="dropdown" formControlName="combofiltro" (click)="Filtro2()">
+                            <option disabled selected value="value1">Tipos</option>
+                            <option *ngFor="let cl of combo2" [value]="cl.idCatalogo" >
+                                
+                                {{ cl.nombreCat }}
+                        
+                            </option>
+                        </select>
                 
-                {{ cl.nombreCat }}
-        
-            </option>
-        </select>
-  
-        <br><br>
+                        <br><br>
 
-        <button type ="submit">Buscar</button>
+                        <button type ="submit">Buscar</button>
 
-    </form>
+                    </form>
 
-    <ul>
-        <h2>{{ tituloCatalo }}</h2>
-        <table class = "tabBuscar">
-            <thead>
+                    <ul>
+                        <h2>{{ tituloCatalo }}</h2>
+                        <table class = "tabBuscar">
+                            <thead>
 
-                <th>{{ tablaBusCat[0] }}</th>
-                <th>{{ tablaBusCat[1] }}</th>
-                <th>{{ tablaBusCat[2] }}</th>
+                                <th>{{ tablaBusCat[0] }}</th>
+                                <th>{{ tablaBusCat[1] }}</th>
+                                <th>{{ tablaBusCat[2] }}</th>
 
-            </thead>
+                            </thead>
 
-            <tbody class="filt">
-                <tr *ngFor="let cat of miCat">
-                    
-                    <th>{{ cat.idCatalogo }}</th>
-                    <th>{{ cat.nombreCat }}</th>
-                    <th>{{ cat.catalogo }}</th>
-                    
-                </tr>
-            </tbody>
-        </table>
-    </ul>
-</div>
+                            <tbody class="filt">
+                                <tr *ngFor="let cat of miCat">
+                                    
+                                    <th>{{ cat.idCatalogo }}</th>
+                                    <th>{{ cat.nombreCat }}</th>
+                                    <th>{{ cat.catalogo }}</th>
+                                    
+                                </tr>
+                            </tbody>
+                        </table>
+                    </ul>
+                </div>
+                <br />
 
-<!------------------------------------------------------------------------->
-<!-- Para crear catalogo ------------------------>
+                <!------------------------------------------------------------------------->
+                <div class = "Insertar">
+                    <br><br>
+                    <h2>CREAR</h2>
 
-<div class = "crea">
-    <br><br>
-    <h2>CREAR</h2>
+                    <form (ngSubmit)="insertarCat()" [formGroup]="insertarCatalogo">
+                        Nombre Catalogo
+                        <label for="nCat"><input type="text" name="nCat" id="nCat" formControlName="text1"></label>
+                        
+                        <br><br>
+                        Catalogo
+                        <label for="tCat"><input type="text" name="tCat" id="tCat" formControlName="text2"></label>
+                        
+                        <br><br>
+                        Tipo Catalogo
+                        <select class="dropdown" formControlName="text3" (click)="Filtro2()">
+                            <option disabled selected value="value1">Tipos</option>
+                            <option *ngFor="let catalo of combo2" [value]="catalo.idCatalogo" >
+                                {{ catalo.nombreCat }}
+                            </option>
+                        </select>
+                        <br><br>
+                        <button type="submit">Crear Catalogo</button>
+                    </form>
+                    <br>
+                </div>
+                <br>
 
-    <form (ngSubmit)="insertarCat()" [formGroup]="insertarCatalogo">
-        Nombre Catalogo
-        <label for="nCat"><input type="text" name="nCat" id="nCat" formControlName="text1"></label>
-        
-        <br><br>
-        Catalogo
-        <label for="tCat"><input type="text" name="tCat" id="tCat" formControlName="text2"></label>
-        
-        <br><br>
-        Tipo Catalogo
-        <select class="dropdown" formControlName="text3" (click)="Filtro2()">
-            <option disabled selected value="value1">Tipos</option>
-            <option *ngFor="let catalo of combo2" [value]="catalo.idCatalogo" >
-                {{ catalo.nombreCat }}
-            </option>
-        </select>
+                <!------------------------------------------------------------------------->
+                <div class="Modificar">
+                    <h2>MODIFICAR</h2>
 
-        <br><br>
-        <button type="submit">Crear Catalogo</button>
-    </form>
-    <br>
-</div>
-<br><br><br><br>
+                    <form (ngSubmit)="buscarCat()" [formGroup]="actualizarCatalogo">
+                        
+                        Catalogo
+                        <select class="dropdown" formControlName="filtro1" (click)="Filtro2()" (click)="Filtro3()">
+                            <option disabled selected value="value1">Tipos</option>
+                            <option *ngFor="let ca of combo2" [value]="ca.idCatalogo">
+                                {{ ca.nombreCat }}
+                            </option>
 
-<!------------------------------------------------------------------------->
-<!-- Para modificar un catalogo ------------------------>
+                        </select>
 
-<div class="edit">
-    <h2>MODIFICAR</h2>
+                        Tipos
+                        <select class="dropdown" style="scroll-margin-left: 30px;" formControlName="buscarIdCat">
+                                
+                            <option disabled selected value="value1">Tipos</option>
+                            <option *ngFor="let c of combo3" [value]="c.idCatalogo">
+                                {{ c.nombreCat }}
+                            </option>
+                            
+                        </select>
+                        
+                        <br><br>
+                        <button type="submit" (click)="listarCat(2)" (click)="Filtro2()">Buscar</button>
 
-    
-    <form (ngSubmit)="buscarCat()" [formGroup]="actualizarCatalogo">
-        
-        Catalogo
-        <select class="dropdown" formControlName="filtro1" (click)="Filtro2()" (click)="Filtro3()">
-            <option disabled selected value="value1">Tipos</option>
-            <option *ngFor="let ca of combo2" [value]="ca.idCatalogo">
-                {{ ca.nombreCat }}
-            </option>
+                        <h2>{{TituloEditCat}}</h2>
+                        <li *ngFor="let bCat of miCatalogo">
+                            Nombre Catalogo
+                            <label for="nomCat"><input type="text" name="nomCat" id="nomCat" value="{{bCat.nombreCat}}" [(ngModel)]="bCat.nombreCat" formControlName="ntext1"></label>
+                            <br><br>
+                            Catalogo
+                            <label for="tipo"><input type="text" name="tipo" id="tipo" value="{{bCat.tipoCatalogo}}" [(ngModel)]="bCat.tipoCatalogo" formControlName="ntext2"></label>
+                            
+                            <br><br>
+                            Tipo Catalogo
+                            <select class="dropdown" formControlName="ntext3" [(ngModel)]="bCat.llaveForanea" >
+                                
+                                <option *ngFor="let catalo of combo2" [value]="catalo.idCatalogo" >
+                                    {{ catalo.nombreCat }}
+                                </option>
+                            </select>
+                            
+                        </li>
+                        <br>
+                        <button (click)="actualizarCat()">Modificar</button>
+                    </form>
+                </div>
+            <br />
+        </div>
 
-        </select>
-
-        Tipos
-        <select class="dropdown" style="scroll-margin-left: 30px;" formControlName="buscarIdCat">
-                
-            <option disabled selected value="value1">Tipos</option>
-            <option *ngFor="let c of combo3" [value]="c.idCatalogo">
-                {{ c.nombreCat }}
-            </option>
-            
-        </select>
-        
-        <br><br>
-        <button type="submit" (click)="listarCat(2)" (click)="Filtro2()">Buscar</button>
-
-        <h2>{{TituloEditCat}}</h2>
-        <li *ngFor="let bCat of miCatalogo">
-            Nombre Catalogo
-            <label for="nomCat"><input type="text" name="nomCat" id="nomCat" value="{{bCat.nombreCat}}" [(ngModel)]="bCat.nombreCat" formControlName="ntext1"></label>
-            <br><br>
-            Catalogo
-            <label for="tipo"><input type="text" name="tipo" id="tipo" value="{{bCat.tipoCatalogo}}" [(ngModel)]="bCat.tipoCatalogo" formControlName="ntext2"></label>
-            
-            <br><br>
-            Tipo Catalogo
-            <select class="dropdown" formControlName="ntext3" [(ngModel)]="bCat.llaveForanea" >
-                
-                <option *ngFor="let catalo of combo2" [value]="catalo.idCatalogo" >
-                    {{ catalo.nombreCat }}
-                </option>
-            </select>
-            
-        </li>
-        <br>
-
-        <button (click)="actualizarCat()">Modificar</button>
-    </form>
-
-</div>
-<!--------------------------------------------------------------------------------------------->
-
-<div class="direct"> 
-    <h3><a routerLink = "/Inicio">INICIO</a></h3>
-</div>
-
+        <!--Container general-->
+        <!--Footer-->
+        <div class="container-footer">
+            <footer class="my-5 pt-4 text-muted text-center text-small">
+                <p class="mb-1">© 2022 DataSoft</p>
+                <ul class="list-inline">
+                    <li class="list-inline-item"><a href="#">Privacidad</a></li>
+                    <li class="list-inline-item"><a href="#">Terminos</a></li>
+                    <li class="list-inline-item"><a href="#">Condiciones</a></li>
+                    <li class="list-inline-item"><a href="#">Menú Inicio</a></li>
+                </ul>
+            </footer>
+        </div>
+        <!--Footer-->
+    </body>
+</html>

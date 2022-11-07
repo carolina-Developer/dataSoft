@@ -1,221 +1,229 @@
-<div style="text-align: center;">
-    <h1>
-    {{ title }}
-    </h1>
-</div>
-<br><br>
+<html>
+    <body>
+        <!--Navbar-->
+        <div class="container-navar">
+            <div class="container-nav py-4 text-center">
+                <a class="rutaInicio" routerLink="/Inicio">
+                    <img class="logo d-block mx-auto" src="../../assets/img/logo.svg" alt="#">
+                    <p>Contactos</p>
+                </a>
+                <p class="lead">Tú eliges Urban Clothe, nosotros hacemos el resto. </p>
+            </div>
+        </div>
+        <hr>
+        <br />
+        <!--Navbar-->
 
-<!------------------------------------------------------------------------->
-<!-- Para listar los contactos------------------------>
+        <!--Container general-->
+        <div class="container">
+            <!------------------------------------------------------------------------->
+                <div class="Listar">
+                    <h2>LISTAR</h2>
+                    <form (ngSubmit)="listarContact(1)" [formGroup]=" listarContactos">
+                        <button type = "submit" style="margin-right: 30px;">Listar</button>
+                        <button (click)="LimpiarLista()" style="scroll-margin-left: 30px;">Limpiar lista</button>
+                        <br><br>
 
-<div class="listar">
-    <h2>LISTAR</h2>
-    <form (ngSubmit)="listarContact(1)" [formGroup]=" listarContactos">
-        <button type = "submit" style="margin-right: 30px;">Listar</button>
-        <button (click)="LimpiarLista()" style="scroll-margin-left: 30px;">Limpiar lista</button>
-        <br><br>
+                        <h2>{{ tituloContactos }}</h2>
+                        <table>
+                            <thead>
 
-        <h2>{{ tituloContactos }}</h2>
-        <table>
-            <thead>
+                                <th>{{ tablaContac[0] }}</th>
+                                <th>{{ tablaContac[1] }}</th>
+                                <th>{{ tablaContac[2] }}</th>
+                                <th>{{ tablaContac[3] }}</th>
 
-                <th>{{ tablaContac[0] }}</th>
-                <th>{{ tablaContac[1] }}</th>
-                <th>{{ tablaContac[2] }}</th>
-                <th>{{ tablaContac[3] }}</th>
+                            </thead>
 
-            </thead>
+                            <tbody>
+                                <tr *ngFor="let cont of contac">
 
-            <tbody>
-                <tr *ngFor="let cont of contac">
+                                    <th>{{ cont.idContacto }}</th>
+                                    <th>{{ cont.encargado }}</th>
+                                    <th>{{ cont.dato }}</th>
+                                    <th>{{ cont.tipoDato }}</th>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </form>
+                </div>
+                <br />
 
-                    <th>{{ cont.idContacto }}</th>
-                    <th>{{ cont.encargado }}</th>
-                    <th>{{ cont.dato }}</th>
-                    <th>{{ cont.tipoDato }}</th>
+                <!------------------------------------------------------------------------->
+                <div class="Buscar">
+                    <h2>MOSTRAR</h2>
+                    <form (ngSubmit)="buscarContacto()" [formGroup]="filtrarContact">
+                        Contactos
+                        <select class="dropdown" formControlName="combofiltro" (click) = listarContact(2)>
+                            <option disabled selected value="value1">Tipos</option>
+                            <option *ngFor="let contac of comboMostrar" [value]="contac.idContacto">
+                                {{ contac.encargado }} -
+                                {{ contac.tipoDato}}
 
-                </tr>
-            </tbody>
-        </table>
-    </form>
+                            </option>
+                        </select>
+                        <br><br>
+                        <button type ="submit">Buscar</button>
+                    </form>
+                    <ul>
+                        <h2>{{ tituloMostrar }}</h2>
+                        <table>
+                            <thead>
 
-</div>
+                                <th>{{ tablaMostrar[0] }}</th>
+                                <th>{{ tablaMostrar[1] }}</th>
+                                <th>{{ tablaMostrar[2] }}</th>
+                                <th>{{ tablaMostrar[3] }}</th>
 
-<!------------------------------------------------------------------------->
-<!-- Para mostrar contacto ------------------------>
+                            </thead>
+                            <tbody class="filt">
+                                <tr *ngFor="let connt of miContacto">
 
-<div class="buscar">
-    <h2>MOSTRAR</h2>
-    <form (ngSubmit)="buscarContacto()" [formGroup]="filtrarContact">
-        Contactos
-        <select class="dropdown" formControlName="combofiltro" (click) = listarContact(2)>
-            <option disabled selected value="value1">Tipos</option>
-            <option *ngFor="let contac of comboMostrar" [value]="contac.idContacto">
-                {{ contac.encargado }} -
-                {{ contac.tipoDato}}
+                                    <th>{{ connt.idContacto }}</th>
+                                    <th>{{ connt.encargado }}</th>
+                                    <th>{{ connt.dato }}</th>
+                                    <th>{{ connt.tipoDato }}</th>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </ul>
+                </div>
+                <br />
 
-            </option>
-        </select>
-        <br><br>
+                <!------------------------------------------------------------------------->
+                <div class="buscarId">
+                    <h2>MOSTRAR CONTACTO-ENCARGADO</h2>
+                    <form (ngSubmit) = buscarContacEncargado() [formGroup]="filtrarEncargado">
+                        Encargado
+                        <select class="dropdown" formControlName="comboEncargado" (click)="listar2()">
+                            <option disabled selected value="value1">Encargados</option>
+                            <option *ngFor="let c of combo1" [value]="c.idEncargado">
+                                {{ c.encargado }}
 
-        <button type ="submit">Buscar</button>
+                            </option>
+                        </select>
+                        <br><br>
 
-    </form>
+                        <button type = "submit">Buscar contacto</button>
+                    </form>
 
-    <ul>
-        <h2>{{ tituloMostrar }}</h2>
-        <table>
-            <thead>
+                    <ul>
+                        <h2>{{ tituloContacEncar }}</h2>
+                        <table class="tabBuscar">
+                            <thead>
 
-                <th>{{ tablaMostrar[0] }}</th>
-                <th>{{ tablaMostrar[1] }}</th>
-                <th>{{ tablaMostrar[2] }}</th>
-                <th>{{ tablaMostrar[3] }}</th>
+                                <th>{{ tablaConEn[0] }}</th>
+                                <th>{{ tablaConEn[1] }}</th>
+                                <th>{{ tablaConEn[2] }}</th>
+                                <th>{{ tablaConEn[3] }}</th>
 
-            </thead>
-            <tbody class="filt">
-                <tr *ngFor="let connt of miContacto">
+                            </thead>
 
-                    <th>{{ connt.idContacto }}</th>
-                    <th>{{ connt.encargado }}</th>
-                    <th>{{ connt.dato }}</th>
-                    <th>{{ connt.tipoDato }}</th>
+                            <tbody class="filt">
+                                <tr *ngFor="let cEn of miEncargado">
+                                    
+                                    <th>{{ cEn.idContacto }}</th>
+                                    <th>{{ cEn.encargado }}</th>
+                                    <th>{{ cEn.dato }}</th>
+                                    <th>{{ cEn.tipoDato }}</th>
 
-                </tr>
-            </tbody>
-        </table>
-    </ul>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </ul>
+                </div>
+                <br />
 
-</div>
-
-<!------------------------------------------------------------------------->
-<!-- Para mostrar contacto encargado ------------------------>
-
-<div class="buscar">
-    <h2>MOSTRAR CONTACTO-ENCARGADO</h2>
-    <form (ngSubmit) = buscarContacEncargado() [formGroup]="filtrarEncargado">
-        Encargado
-        <select class="dropdown" formControlName="comboEncargado" (click)="listar2()">
-            <option disabled selected value="value1">Encargados</option>
-            <option *ngFor="let c of combo1" [value]="c.idEncargado">
-                {{ c.encargado }}
-
-            </option>
-        </select>
-        <br><br>
-
-        <button type = "submit">Buscar contacto</button>
-    </form>
-
-    <ul>
-        <h2>{{ tituloContacEncar }}</h2>
-        <table class="tabBuscar">
-            <thead>
-
-                <th>{{ tablaConEn[0] }}</th>
-                <th>{{ tablaConEn[1] }}</th>
-                <th>{{ tablaConEn[2] }}</th>
-                <th>{{ tablaConEn[3] }}</th>
-
-            </thead>
-
-            <tbody class="filt">
-                <tr *ngFor="let cEn of miEncargado">
+                <!------------------------------------------------------------------------->
+                <div class="Insertar">
+                    <br><br>
+                    <h2>CREAR</h2>
+                    <form (ngSubmit)="insertContacto()" [formGroup]="insertContact">
                     
-                    <th>{{ cEn.idContacto }}</th>
-                    <th>{{ cEn.encargado }}</th>
-                    <th>{{ cEn.dato }}</th>
-                    <th>{{ cEn.tipoDato }}</th>
+                        Encargado
+                        <select class="dropdown" formControlName="text1" (click)="filtro1()">
+                            <option disabled selected value="value1">Encargados</option>
+                            <option *ngFor="let en of combo2" [value]="en.idEncargado" >
+                                {{ en.encargado }}
+                            </option>
+                        </select>
 
-                </tr>
-            </tbody>
-        </table>
-    </ul>
+                        <br><br>
+                        Dato
+                        <label for="c2"><input type="text" name="c2" id="c2" formControlName="text2"></label>
+                        
+                        <br><br>
+                        Tipo Dato
+                        <select class="dropdown" formControlName="text3" (click)="Filtro2()">
+                            <option disabled selected value="value1">Tipos</option>
+                            <option *ngFor="let f of combo3" [value]="f.idCatalogo" >
+                                {{ f.nombreCat }}
+                            </option>
+                        </select>
+                        <br><br>
+                        <button type="submit">Crear Contacto</button>
+                    </form>
+                </div>
+                <br />
 
-</div>
+                <!------------------------------------------------------------------------->
+                <div class="Modificar">
+                    <h2>MODIFICAR</h2>
+                    <form (ngSubmit)="buscarCont()" [formGroup]="actualizarContact">
+                        Contacto
+                        <select class="dropdown" formControlName="buscarContact" (click)="listarContact(3)">
+                            <option disabled selected value="value1">Encargados</option>
+                            <option *ngFor="let cc of comboModificar" [value]="cc.idContacto">
+                                {{ cc.encargado }} -
+                                {{ cc.tipoDato}}
+                            </option>
+                        </select>
+                        <br><br>
 
-<!------------------------------------------------------------------------->
-<!-- Para crear contactos ------------------------>
+                        <button type="submit" (click)="filtro1()" (click)="Filtro2()">Buscar</button>
 
-<div class="crea">
-    <br><br>
-    <h2>CREAR</h2>
-    <form (ngSubmit)="insertContacto()" [formGroup]="insertContact">
-       
-        Encargado
-        <select class="dropdown" formControlName="text1" (click)="filtro1()">
-            <option disabled selected value="value1">Encargados</option>
-            <option *ngFor="let en of combo2" [value]="en.idEncargado" >
-                {{ en.encargado }}
-            </option>
-        </select>
+                        <h2>{{ tituloModificar }}</h2>
+                        <li *ngFor="let cc2 of misContactos">
+                            Encargado
+                            <select class="dropdown" formControlName="ntext1" [(ngModel)]="cc2.idEncargado">
+                                <option disabled selected value="value1">Encargados</option>
+                                <option *ngFor="let cc3 of combo2" [value]="cc3.idEncargado" >
+                                    {{ cc3.encargado }}
+                                </option>
+                            </select>
 
-        <br><br>
-        Dato
-        <label for="c2"><input type="text" name="c2" id="c2" formControlName="text2"></label>
-        
-        <br><br>
-        Tipo Dato
-        <select class="dropdown" formControlName="text3" (click)="Filtro2()">
-            <option disabled selected value="value1">Tipos</option>
-            <option *ngFor="let f of combo3" [value]="f.idCatalogo" >
-                {{ f.nombreCat }}
-            </option>
-        </select>
-
-        <br><br>
-        <button type="submit">Crear Contacto</button>
-    
-    </form>
-</div>
-
-<!------------------------------------------------------------------------->
-<!-- Para modificar contacto ------------------------>
-
-<div class="edit">
-    <h2>MODIFICAR</h2>
-    <form (ngSubmit)="buscarCont()" [formGroup]="actualizarContact">
-        Contacto
-        <select class="dropdown" formControlName="buscarContact" (click)="listarContact(3)">
-            <option disabled selected value="value1">Encargados</option>
-            <option *ngFor="let cc of comboModificar" [value]="cc.idContacto">
-                {{ cc.encargado }} -
-                {{ cc.tipoDato}}
-            </option>
-        </select>
-        <br><br>
-
-        <button type="submit" (click)="filtro1()" (click)="Filtro2()">Buscar</button>
-
-        <h2>{{ tituloModificar }}</h2>
-        <li *ngFor="let cc2 of misContactos">
-            Encargado
-            <select class="dropdown" formControlName="ntext1" [(ngModel)]="cc2.idEncargado">
-                <option disabled selected value="value1">Encargados</option>
-                <option *ngFor="let cc3 of combo2" [value]="cc3.idEncargado" >
-                    {{ cc3.encargado }}
-                </option>
-            </select>
-
-            <br><br>
-            Dato
-            <label for="m2"><input type="text" name="m2" id="m2" value="{{ cc2.dato }}" [(ngModel)]="cc2.dato" formControlName="ntext2"></label>
-            
-            <br><br>
-            Tipo Dato
-            <select class="dropdown" formControlName="ntext3" [(ngModel)]="cc2.tipoDato">
-                <option disabled selected value="value1">Tipos</option>
-                <option *ngFor="let cc4 of combo3" [value]="cc4.idCatalogo" >
-                    {{ cc4.nombreCat }}
-                </option>
-            </select>
-        </li>
-        <br>
-        <button (click)="actualizarConta()">Modificar</button>
-    </form>
-</div>
-<!--------------------------------------------------------------------------------------------->
-
-<div class="direct"> 
-    <h3><a routerLink = "/Inicio">INICIO</a></h3>
-</div>
+                            <br><br>
+                            Dato
+                            <label for="m2"><input type="text" name="m2" id="m2" value="{{ cc2.dato }}" [(ngModel)]="cc2.dato" formControlName="ntext2"></label>
+                            
+                            <br><br>
+                            Tipo Dato
+                            <select class="dropdown" formControlName="ntext3" [(ngModel)]="cc2.tipoDato">
+                                <option disabled selected value="value1">Tipos</option>
+                                <option *ngFor="let cc4 of combo3" [value]="cc4.idCatalogo" >
+                                    {{ cc4.nombreCat }}
+                                </option>
+                            </select>
+                        </li>
+                        <br>
+                        <button (click)="actualizarConta()">Modificar</button>
+                    </form>
+                </div>
+            <br />
+        </div>
+        <!--Container general-->
+        <!--Footer-->
+        <div class="container-footer">
+            <footer class="my-5 pt-4 text-muted text-center text-small">
+                <p class="mb-1">© 2022 DataSoft</p>
+                <ul class="list-inline">
+                    <li class="list-inline-item"><a href="#">Privacidad</a></li>
+                    <li class="list-inline-item"><a href="#">Terminos</a></li>
+                    <li class="list-inline-item"><a href="#">Condiciones</a></li>
+                    <li class="list-inline-item"><a href="#">Menú Inicio</a></li>
+                </ul>
+            </footer>
+        </div>
+        <!--Footer-->
+    </body>
+</html>

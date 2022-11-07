@@ -1,209 +1,210 @@
 <html>
-
     <body>
-        <div style="text-align: center">
-                <h1>{{ title }}</h1>
-                <img width="300" alt="Logo Proyecto" src="../../assets/img/logo.svg" />
+        <!--Navbar-->
+        <div class="container-navar">
+            <div class="container-nav py-4 text-center">
+                <a class="rutaInicio" routerLink="/Inicio">
+                    <img class="logo d-block mx-auto" src="../../assets/img/logo.svg" alt="#">
+                    <p>Materiales</p>
+                </a>
+                <p class="lead">Tú eliges Urban Clothe, nosotros hacemos el resto. </p>
+            </div>
         </div>
+        <hr>
+        <br />
+        <!--Navbar-->
 
-        <br /><br /><br /><br />
+        <!--Container general-->
+       <div class="container">
+            <!--------------------------------------------------------------------------------------------->
+                <div class="Listar">
+                    <h2>LISTA DE MATERIALES:</h2>
 
-        <!--------------------------------------------------------------------------------------------->
-        <!-- para mostrar el listado de productos -->
+                    <form (ngSubmit)="consultaMaterial(1)" [formGroup]="ListaMaterial">
+                        <button type="submit" style="margin-right: 30px">
+                            Mostrar lista de materiales
+                        </button>
+                        <button (click)="LimpiarLista()">
+                                Limpiar lista de materiales
+                        </button>
 
-        <div class="Listar">
-            <h2>LISTA DE MATERIALES:</h2>
+                        <br /><br />
 
-            <form (ngSubmit)="consultaMaterial(1)" [formGroup]="ListaMaterial">
-                <button type="submit" style="margin-right: 30px">
-                    Mostrar lista de materiales
-                </button>
-                <button (click)="LimpiarLista()">
-                        Limpiar lista de materiales
-                </button>
+                        <h2>{{TituloMateriales}}</h2>
+                        <table>
+                            <thead>
+                                <th>{{ TablaMateriales[0] }}</th>
+                                <th>{{ TablaMateriales[1] }}</th>
+                                <th>{{ TablaMateriales[2] }}</th>
+                                <th>{{ TablaMateriales[3] }}</th>
+                                <th>{{ TablaMateriales[4] }}</th>
+                            </thead>
 
-                <br /><br />
+                            <tbody>
+                                <tr *ngFor="let materiales of Material">
+                                    <th>{{ materiales.idMaterial }}</th>
+                                    <th>{{ materiales.nombreMaterial }}</th>
+                                    <th>{{ materiales.tipoMaterial }}</th>
+                                    <th>{{ materiales.colorMaterial }}</th>
+                                    <th>{{ materiales.existencias }}</th>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </form>
+                </div>
+                <br />
+                
+                <!--------------------------------------------------------------------------------------------->
+                <div class="Buscar">
+                    <h2>MOSTRAR MATERIAL</h2>
 
-                <h2>{{TituloMateriales}}</h2>
-                <table>
-                    <thead>
-                        <th>{{ TablaMateriales[0] }}</th>
-                        <th>{{ TablaMateriales[1] }}</th>
-                        <th>{{ TablaMateriales[2] }}</th>
-                        <th>{{ TablaMateriales[3] }}</th>
-                        <th>{{ TablaMateriales[4] }}</th>
-                    </thead>
+                    <form (ngSubmit)="buscarMaterial()" [formGroup]="filtrarMaterial">
+                        ID del material
+                        <select class="dropdown" formControlName="combofiltro" (click)="consultaMaterial(2)">
+                            <option value="value1">Tipo de material a buscar</option>
+                            <option *ngFor="let material of comboListaMaterial" [value]="material.idMaterial">
+                                {{ material.idMaterial }} -
+                                {{ material.nombreMaterial }}
+                            </option>
+                        </select>
+                        <br /><br />
+                        <button type="submit">Buscar Material</button>
+                    </form>
+                    <ul>
+                        <h2>{{ TituloMaterial }}</h2>
 
-                    <tbody>
-                        <tr *ngFor="let materiales of Material">
-                            <th>{{ materiales.idMaterial }}</th>
-                            <th>{{ materiales.nombreMaterial }}</th>
-                            <th>{{ materiales.tipoMaterial }}</th>
-                            <th>{{ materiales.colorMaterial }}</th>
-                            <th>{{ materiales.existencias }}</th>
-                        </tr>
-                    </tbody>
-                </table>
-            </form>
-        </div>
-        <br /><br />
-        <!--------------------------------------------------------------------------------------------->
-        <!-- para mostrar el un solo Tipo de Documento -->
+                        <table class="tabBuscar">
+                            <thead class="Colb">
+                                <th class="b">{{ TabBusMaterial[0] }}</th>
+                                <th class="b">{{ TabBusMaterial[1] }}</th>
+                                <th class="b">{{ TabBusMaterial[2] }}</th>
+                                <th class="b">{{ TabBusMaterial[3] }}</th>
+                                <th class="b">{{ TabBusMaterial[4] }}</th>
+                            </thead>
 
-        <div class="Buscar">
-            <h2>MOSTRAR MATERIAL</h2>
-
-            <form (ngSubmit)="buscarMaterial()" [formGroup]="filtrarMaterial">
-                ID del material
-                <select class="dropdown" formControlName="combofiltro" (click)="consultaMaterial(2)">
-                    <option value="value1">Tipo de material a buscar</option>
-                    <option *ngFor="let material of comboListaMaterial" [value]="material.idMaterial">
-                        {{ material.idMaterial }} -
-                        {{ material.nombreMaterial }}
-                    </option>
-                </select>
-
-                <br /><br />
-
-                <button type="submit">Buscar Material</button>
-            </form>
-
-            <ul>
-                <h2>{{ TituloMaterial }}</h2>
-
-                <table class="tabBuscar">
-                    <thead class="Colb">
-                        <th class="b">{{ TabBusMaterial[0] }}</th>
-                        <th class="b">{{ TabBusMaterial[1] }}</th>
-                        <th class="b">{{ TabBusMaterial[2] }}</th>
-                        <th class="b">{{ TabBusMaterial[3] }}</th>
-                        <th class="b">{{ TabBusMaterial[4] }}</th>
-                    </thead>
-
-                    <tbody class="Filb">
-                        <tr class="b" *ngFor="let material of MiMaterial">
-                            <th class="b">{{ material.idMaterial }}</th>
-                            <th class="b">{{ material.nombreMaterial }}</th>
-                            <th class="b">{{ material.TipoMaterial }}</th>
-                            <th class="b">{{ material.ColorMaterial }}</th>
-                            <th class="b">{{ material.existencias }}</th>
-                        </tr>
-                    </tbody>
-                </table>
-            </ul>
-        </div>
-        <br /><br />
-
-        <!--------------------------------------------------------------------------------------------->
-        <!-- para crear un  Tipo de documento -->
-
-        <div class="Insertar">
-            <br /><br />
-            <h2>INSERTAR MATERIAL</h2>
-
-            <form (ngSubmit)="InsertarMaterial()" [formGroup]="InsertarGMaterial">
-
-                Nombre material
-                <label for="nomMaterial"><input type="text" name="nomMaterial" id="nomMaterial"
-                        formControlName="textNomMaterial" /></label>
-                <br /><br />
-
-                Tipo de material
-
-                <select class="dropdown" formControlName="textTipMaterial" (click)="filtroTipoMaterial()">
-                    <option value="value1">Tipo de material</option>
-                    <option *ngFor="let material of combo3" [value]="material.idCatalogo">
-                        {{ material.nombreCat }}
-                    </option>
-                </select>
-                <br /><br />
-
-                Color material
-                <select class="dropdown" formControlName="textColor" (click)="filtroTipoColor()">
-                    <option value="value1">Tipo de material</option>
-                    <option *ngFor="let material of combo4" [value]="material.idCatalogo">
-                        {{ material.nombreCat }}
-                    </option>
-                </select>
-                <br /><br />
-
-                Existencias
-                <label for="exMaterial"><input type="text" name="exMaterial" id="exMaterial" formControlName="textExistencias" /></label>
-                <br /><br />
-
-                <button type="submit">Insertar Material</button>
-
-            </form>
-            <br />
-        </div>
-        <br /><br /><br /><br />
-
-        <!--------------------------------------------------------------------------------------------->
-        <!-- para actualizar un tipo de documento -->
-
-        <div class="Modificar">
-            <h2>ACTUALIZAR PRODUCTO</h2>
-
-            <form (ngSubmit)="buscarEditarMaterial()" [formGroup]="ActualizarAMaterial">
-
-                ID material a Editar:
-                <select class="dropdown" formControlName="BuscarIdMaterial" (click)="consultaMaterial(3)">
-                    <option value="value1">Material a editar</option>
-                    <option *ngFor="let material of comboEditarMaterial" [value]="material.idMaterial">
-                        {{ material.idMaterial }} -
-                        {{ material.nombreMaterial }}
-                    </option>
-                </select>
-                <br /><br />
-
-                <button type="submit" (click)="filtroTipoMaterial()" (click)="filtroTipoColor()">Buscar material a editar</button>
-
-                <h2>{{ TituloMaterialEdit }}</h2>
-
-                <li *ngFor="let material of MiMaterialE">
-                    Nombre material
-                    <label for="nMaterial"><input type="text" name="nMaterial" id="nMaterial"
-                            value="{{ material.nombreMaterial }}" [(ngModel)]="material.nombreMaterial"
-                            formControlName="textNewNomMaterial" /></label>
-                    <br /><br />
-
-                    Tipo de material
-                    <select class="dropdown-2" formControlName="textNewTipMaterial" [(ngModel)]="material.tipoMaterial">
-                        <option value="value2">Tipo de material</option>
-                        <option *ngFor="let material of combo3" [value]="material.idCatalogo">
-                            {{ material.nombreCat }}
-                        </option>
-                    </select>
-                    <br /><br />
-
-                    Color material
-                    <select class="dropdown" formControlName="textNewColor" [(ngModel)]="material.colorMaterial">
-                        <option value="value1">Tipo de material</option>
-                        <option *ngFor="let material of combo4" [value]="material.idCatalogo">
-                            {{ material.nombreCat }}
-                        </option>
-                    </select>
-                    <br /><br />
-
-                    Existencia material
-                    <label for="exMaterial"><input type="text" name="exMaterial" id="exMaterial"
-                            value="{{ material.existencias }}" [(ngModel)]="material.existencias"
-                            formControlName="textNewExistencias" /></label>
-                    <br /><br />
-                </li>
+                            <tbody class="Filb">
+                                <tr class="b" *ngFor="let material of MiMaterial">
+                                    <th class="b">{{ material.idMaterial }}</th>
+                                    <th class="b">{{ material.nombreMaterial }}</th>
+                                    <th class="b">{{ material.TipoMaterial }}</th>
+                                    <th class="b">{{ material.ColorMaterial }}</th>
+                                    <th class="b">{{ material.existencias }}</th>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </ul>
+                </div>
                 <br />
 
-                <button (click)="ActualizarMaterial()">Actualizar</button>
-            </form>
+                <!--------------------------------------------------------------------------------------------->
+                <div class="Insertar">
+                    <br /><br />
+                    <h2>INSERTAR MATERIAL</h2>
+
+                    <form (ngSubmit)="InsertarMaterial()" [formGroup]="InsertarGMaterial">
+
+                        Nombre material
+                        <label for="nomMaterial"><input type="text" name="nomMaterial" id="nomMaterial"
+                                formControlName="textNomMaterial" /></label>
+                        <br /><br />
+
+                        Tipo de material
+
+                        <select class="dropdown" formControlName="textTipMaterial" (click)="filtroTipoMaterial()">
+                            <option value="value1">Tipo de material</option>
+                            <option *ngFor="let material of combo3" [value]="material.idCatalogo">
+                                {{ material.nombreCat }}
+                            </option>
+                        </select>
+                        <br /><br />
+
+                        Color material
+                        <select class="dropdown" formControlName="textColor" (click)="filtroTipoColor()">
+                            <option value="value1">Tipo de material</option>
+                            <option *ngFor="let material of combo4" [value]="material.idCatalogo">
+                                {{ material.nombreCat }}
+                            </option>
+                        </select>
+                        <br /><br />
+
+                        Existencias
+                        <label for="exMaterial"><input type="text" name="exMaterial" id="exMaterial" formControlName="textExistencias" /></label>
+                        <br /><br />
+                        <button type="submit">Insertar Material</button>
+                    </form>
+                    <br />
+                </div>
+                <br />
+
+                <!--------------------------------------------------------------------------------------------->
+                <div class="Modificar">
+                    <h2>ACTUALIZAR PRODUCTO</h2>
+
+                    <form (ngSubmit)="buscarEditarMaterial()" [formGroup]="ActualizarAMaterial">
+
+                        ID material a Editar:
+                        <select class="dropdown" formControlName="BuscarIdMaterial" (click)="consultaMaterial(3)">
+                            <option value="value1">Material a editar</option>
+                            <option *ngFor="let material of comboEditarMaterial" [value]="material.idMaterial">
+                                {{ material.idMaterial }} -
+                                {{ material.nombreMaterial }}
+                            </option>
+                        </select>
+                        <br /><br />
+                        <button type="submit" (click)="filtroTipoMaterial()" (click)="filtroTipoColor()">Buscar material a editar</button>
+                        <h2>{{ TituloMaterialEdit }}</h2>
+
+                        <li *ngFor="let material of MiMaterialE">
+                            Nombre material
+                            <label for="nMaterial"><input type="text" name="nMaterial" id="nMaterial"
+                                    value="{{ material.nombreMaterial }}" [(ngModel)]="material.nombreMaterial"
+                                    formControlName="textNewNomMaterial" /></label>
+                            <br /><br />
+
+                            Tipo de material
+                            <select class="dropdown-2" formControlName="textNewTipMaterial" [(ngModel)]="material.tipoMaterial">
+                                <option value="value2">Tipo de material</option>
+                                <option *ngFor="let material of combo3" [value]="material.idCatalogo">
+                                    {{ material.nombreCat }}
+                                </option>
+                            </select>
+                            <br /><br />
+
+                            Color material
+                            <select class="dropdown" formControlName="textNewColor" [(ngModel)]="material.colorMaterial">
+                                <option value="value1">Tipo de material</option>
+                                <option *ngFor="let material of combo4" [value]="material.idCatalogo">
+                                    {{ material.nombreCat }}
+                                </option>
+                            </select>
+                            <br /><br />
+
+                            Existencia material
+                            <label for="exMaterial"><input type="text" name="exMaterial" id="exMaterial"
+                                    value="{{ material.existencias }}" [(ngModel)]="material.existencias"
+                                    formControlName="textNewExistencias" /></label>
+                            <br /><br />
+                        </li>
+                        <br />
+                        <button (click)="ActualizarMaterial()">Actualizar</button>
+                    </form>
+                    <br />
+                </div>
             <br />
+       </div>
+        <!--Container general-->
+        <!--Footer-->
+        <div class="container-footer">
+            <footer class="my-5 pt-4 text-muted text-center text-small">
+                <p class="mb-1">© 2022 DataSoft</p>
+                <ul class="list-inline">
+                    <li class="list-inline-item"><a href="#">Privacidad</a></li>
+                    <li class="list-inline-item"><a href="#">Terminos</a></li>
+                    <li class="list-inline-item"><a href="#">Condiciones</a></li>
+                    <li class="list-inline-item"><a href="#">Menú Inicio</a></li>
+                </ul>
+            </footer>
         </div>
-        <br /><br /><br /><br />
-
-        <!--*************************************************************************-->
-
-        <div class="dir">
-            <h3><a routerLink="/Inicio">Menú Inicio</a></h3>
-        </div>
+        <!--Footer-->
     </body>
-
 </html>
