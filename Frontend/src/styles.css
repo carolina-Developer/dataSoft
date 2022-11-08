@@ -1,10 +1,16 @@
 /*Estilos CRUL*/
-select{
-    display: block;
+table{
+    background-color: rgba(252, 252, 252, 0.984);
 }
-/* form{
-    border-radius: 10px;
-} */
+tr:hover{
+    background-color: rgba(202, 202, 202, 0.982);
+}
+table,tr{
+    border: solid 1.5px gray;
+}
+thead{
+    background-color: #64daf2;   
+}
 h2{
     font-weight: bold;
     font-size: 40px;
