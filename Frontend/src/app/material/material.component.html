@@ -18,14 +18,14 @@
        <div class="container">
             <!--------------------------------------------------------------------------------------------->
                 <div class="Listar">
-                    <h2>LISTA DE MATERIALES:</h2>
+                    <h2>LISTAR</h2>
 
                     <form (ngSubmit)="consultaMaterial(1)" [formGroup]="ListaMaterial">
-                        <button type="submit" style="margin-right: 30px">
-                            Mostrar lista de materiales
+                        <button class="btn btn-light" type="submit" style="margin-right: 30px">
+                            Listar
                         </button>
-                        <button (click)="LimpiarLista()">
-                                Limpiar lista de materiales
+                        <button class="btn btn-light" (click)="LimpiarLista()">
+                                Limpiar lista
                         </button>
 
                         <br /><br />
@@ -56,19 +56,20 @@
                 
                 <!--------------------------------------------------------------------------------------------->
                 <div class="Buscar">
-                    <h2>MOSTRAR MATERIAL</h2>
+                    <h2>MOSTRAR</h2>
 
                     <form (ngSubmit)="buscarMaterial()" [formGroup]="filtrarMaterial">
                         ID del material
                         <select class="dropdown" formControlName="combofiltro" (click)="consultaMaterial(2)">
-                            <option value="value1">Tipo de material a buscar</option>
+                            <option selected disabled value="value1">Tipo de material a buscar</option>
                             <option *ngFor="let material of comboListaMaterial" [value]="material.idMaterial">
                                 {{ material.idMaterial }} -
                                 {{ material.nombreMaterial }}
                             </option>
                         </select>
                         <br /><br />
-                        <button type="submit">Buscar Material</button>
+                        <button class="btn btn-light" type="submit">Buscar</button>
+                        <br><br>
                     </form>
                     <ul>
                         <h2>{{ TituloMaterial }}</h2>
@@ -94,12 +95,11 @@
                         </table>
                     </ul>
                 </div>
-                <br />
+                <br>
 
                 <!--------------------------------------------------------------------------------------------->
                 <div class="Insertar">
-                    <br /><br />
-                    <h2>INSERTAR MATERIAL</h2>
+                    <h2>CREAR</h2>
 
                     <form (ngSubmit)="InsertarMaterial()" [formGroup]="InsertarGMaterial">
 
@@ -111,7 +111,7 @@
                         Tipo de material
 
                         <select class="dropdown" formControlName="textTipMaterial" (click)="filtroTipoMaterial()">
-                            <option value="value1">Tipo de material</option>
+                            <option selected disabled value="value1">Tipo de material</option>
                             <option *ngFor="let material of combo3" [value]="material.idCatalogo">
                                 {{ material.nombreCat }}
                             </option>
@@ -120,7 +120,7 @@
 
                         Color material
                         <select class="dropdown" formControlName="textColor" (click)="filtroTipoColor()">
-                            <option value="value1">Tipo de material</option>
+                            <option selected disabled value="value1">Tipo de material</option>
                             <option *ngFor="let material of combo4" [value]="material.idCatalogo">
                                 {{ material.nombreCat }}
                             </option>
@@ -130,7 +130,7 @@
                         Existencias
                         <label for="exMaterial"><input type="text" name="exMaterial" id="exMaterial" formControlName="textExistencias" /></label>
                         <br /><br />
-                        <button type="submit">Insertar Material</button>
+                        <button class="btn btn-light" type="submit">Insertar Material</button>
                     </form>
                     <br />
                 </div>
@@ -138,20 +138,20 @@
 
                 <!--------------------------------------------------------------------------------------------->
                 <div class="Modificar">
-                    <h2>ACTUALIZAR PRODUCTO</h2>
+                    <h2>MODIFICAR</h2>
 
                     <form (ngSubmit)="buscarEditarMaterial()" [formGroup]="ActualizarAMaterial">
-
-                        ID material a Editar:
+                        Material
                         <select class="dropdown" formControlName="BuscarIdMaterial" (click)="consultaMaterial(3)">
-                            <option value="value1">Material a editar</option>
+                            <option selected disabled value="value1">Material a editar</option>
                             <option *ngFor="let material of comboEditarMaterial" [value]="material.idMaterial">
                                 {{ material.idMaterial }} -
                                 {{ material.nombreMaterial }}
                             </option>
                         </select>
                         <br /><br />
-                        <button type="submit" (click)="filtroTipoMaterial()" (click)="filtroTipoColor()">Buscar material a editar</button>
+                        <button class="btn btn-light" type="submit" (click)="filtroTipoMaterial()" (click)="filtroTipoColor()">Buscar</button>
+                        <br /><br />
                         <h2>{{ TituloMaterialEdit }}</h2>
 
                         <li *ngFor="let material of MiMaterialE">
@@ -163,7 +163,7 @@
 
                             Tipo de material
                             <select class="dropdown-2" formControlName="textNewTipMaterial" [(ngModel)]="material.tipoMaterial">
-                                <option value="value2">Tipo de material</option>
+                                <option selected disabled value="value2">Tipo de material</option>
                                 <option *ngFor="let material of combo3" [value]="material.idCatalogo">
                                     {{ material.nombreCat }}
                                 </option>
@@ -172,7 +172,7 @@
 
                             Color material
                             <select class="dropdown" formControlName="textNewColor" [(ngModel)]="material.colorMaterial">
-                                <option value="value1">Tipo de material</option>
+                                <option selected disabled value="value1">Tipo de material</option>
                                 <option *ngFor="let material of combo4" [value]="material.idCatalogo">
                                     {{ material.nombreCat }}
                                 </option>
@@ -186,7 +186,7 @@
                             <br /><br />
                         </li>
                         <br />
-                        <button (click)="ActualizarMaterial()">Actualizar</button>
+                        <button class="btn btn-light" (click)="ActualizarMaterial()">Modificar</button>
                     </form>
                     <br />
                 </div>

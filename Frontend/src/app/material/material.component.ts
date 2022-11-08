@@ -74,7 +74,7 @@ export class MaterialesComponent implements OnInit {
   
         this.Material = data;
         this.TituloMateriales = 'LISTA DE MATERIALES';
-        this.TablaMateriales[0] = 'ID';
+        this.TablaMateriales[0] = 'Id Material';
         this.TablaMateriales[1] = 'Nombre material';
         this.TablaMateriales[2] = 'Tipo Material';
         this.TablaMateriales[3] = 'Color Material';
@@ -91,7 +91,7 @@ export class MaterialesComponent implements OnInit {
 
               this.Material = data;
               this.TituloMateriales = 'LISTA DE MATERIALES';
-              this.TablaMateriales[0] = 'ID';
+              this.TablaMateriales[0] = 'Id Material';
               this.TablaMateriales[1] = 'Nombre material';
               this.TablaMateriales[2] = "Tipo Material";
               this.TablaMateriales[3] = 'Color Material';
@@ -140,8 +140,8 @@ export class MaterialesComponent implements OnInit {
         (data: {}) => {
           this.MiMaterial = data;
   
-          this.TituloMaterial = 'Tipo de producto seleccionado';
-          this.TabBusMaterial[0] = 'ID';
+          this.TituloMaterial = 'TIPO DE MATERIAL';
+          this.TabBusMaterial[0] = 'Id Material';
           this.TabBusMaterial[1] = 'Nombre material';
           this.TabBusMaterial[2] = 'Tipo Material';
           this.TabBusMaterial[3] = 'Color Material';

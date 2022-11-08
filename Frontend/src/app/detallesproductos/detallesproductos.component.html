@@ -18,12 +18,12 @@
     <div class="container">
       <!-------------------------------------------------------->
       <div class="Listar">
-        <h2>Detalles productos Listados</h2>
+        <h2>LISTAR</h2>
 
         <form (ngSubmit)="consultaDetalle(1)" [formGroup]="ListaDetalle">
 
-          <button type="submit" style="margin-right: 30px"> Mostrar Lista Detalle</button>
-          <button (click)="LimpiarLista()">Limpiar Lista Detalle</button>
+          <button class="btn btn-light" type="submit" style="margin-right: 30px"> Listar</button>
+          <button class="btn btn-light" (click)="LimpiarLista()">Limpiar Lista </button>
 
           <br><br>
 
@@ -57,7 +57,7 @@
 
       <!-------------------------------------------->
       <div class="Buscar">
-        <h2> Detalles productos seleccionado </h2>
+        <h2> MOSTRAR </h2>
 
         <form (ngSubmit)="mostrarDetalle()" [formGroup]="filtrarDetalle">
           Producto
@@ -70,8 +70,8 @@
           </select>
 
           <br><br>
-
-          <button type="submit">Buscar Detalle Producto</button>
+          <button class="btn btn-light" type="submit">Buscar</button>
+          <br><br>
         </form>
 
         <ul>
@@ -102,7 +102,7 @@
 
       <!---------------------------------------------------------------------------------------->
       <div class="Insertar">
-        <h2>Crear Detalle Producto</h2>
+        <h2>CREAR</h2>
         <form (ngSubmit)="insertarDetalle()" [formGroup]="InsertarGDetalle">
           
           Producto
@@ -130,17 +130,17 @@
           Cantidad
           <label for="cProduc"><input type="text" name="cProduc" id="cProduc" formControlName="textDcantidad"></label>
           <br><br>
-          <button type="submit">Insertar Detalle Producto</button>
+          <button class="btn btn-light" type="submit">Crear Detalle Producto</button>
         </form>
-        <br>
+        <br><br>
       </div>
 
       <!---------------------------------------------------------------------------------------->
       <div class="Modificar">
-        <h2> Detalle producto a Editar</h2>
+        <h2>MODIFICAR</h2>
 
         <form (ngSubmit)="buscarEditDetalle()" [formGroup]="ActualizarADetalle">
-          id Detalle Producto
+          Detalle Producto
           <select class="dropdown" formControlName="buscarIdDetalle" (click)="consultaDetalle(3)"
             (click)="filtroMaterial()">
             <option selected disabled value="value1">Detalle Producto a editar</option>
@@ -152,8 +152,8 @@
           </select>
           <br><br>
 
-          <button type="submit" (click)="filtroProducto()">Buscar Produccion a Editar</button>
-
+          <button class="btn btn-light" type="submit" (click)="filtroProducto()">Buscar</button>
+          <br><br>
           <h2>{{TituloDetalleEdit}}</h2>
 
           <li *ngFor="let prod of MiDetalleE">
@@ -185,8 +185,7 @@
                 [(ngModel)]="prod.cantidad" formControlName="textDcantidadA"></label>
             <br><br>
           </li>
-          <br>
-          <button (click)="ActualizarDetalle()">Actualizar</button>
+          <button class="btn btn-light" (click)="ActualizarDetalle()">Modificar</button>
         </form>
         <br>
       </div>

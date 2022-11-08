@@ -5,7 +5,7 @@
             <div class="container-nav py-4 text-center">
                 <a class="rutaInicio" routerLink="/Inicio">
                     <img class="logo d-block mx-auto" src="../../assets/img/logo.svg" alt="#">
-                    <p>catalogos</p>
+                    <p>Catalogos</p>
                 </a>
                 <p class="lead">Tú eliges Urban Clothe, nosotros hacemos el resto. </p>
             </div>
@@ -20,8 +20,8 @@
                 <div class = "Listar">
                     <h2>LISTAR</h2>
                     <form (ngSubmit)="listarCat(1)" [formGroup]="listaCatalogos">
-                        <button type = "submit" style="margin-right: 30px;">Listar</button>
-                        <button (click)="LimpiarLista()" style="scroll-margin-left: 30px;">Limpiar lista</button>
+                        <button class="btn btn-light" type = "submit" >Listar</button>
+                        <button (click)="LimpiarLista()" class="btn btn-light" style="scroll-margin-left: 30px;">Limpiar lista</button>
                         <br><br>
 
                         <h2>{{ tituloCat }}</h2>
@@ -64,8 +64,8 @@
                 
                         <br><br>
 
-                        <button type ="submit">Buscar</button>
-
+                        <button class="btn btn-light" type ="submit">Buscar</button>
+                        <br><br>
                     </form>
 
                     <ul>
@@ -91,17 +91,16 @@
                         </table>
                     </ul>
                 </div>
-                <br />
-
+               
                 <!------------------------------------------------------------------------->
                 <div class = "Insertar">
                     <br><br>
                     <h2>CREAR</h2>
 
                     <form (ngSubmit)="insertarCat()" [formGroup]="insertarCatalogo">
+
                         Nombre Catalogo
                         <label for="nCat"><input type="text" name="nCat" id="nCat" formControlName="text1"></label>
-                        
                         <br><br>
                         Catalogo
                         <label for="tCat"><input type="text" name="tCat" id="tCat" formControlName="text2"></label>
@@ -115,11 +114,11 @@
                             </option>
                         </select>
                         <br><br>
-                        <button type="submit">Crear Catalogo</button>
+                        <button class="btn btn-light" type="submit">Crear Catalogo</button>
                     </form>
                     <br>
                 </div>
-                <br>
+                <br><br>
 
                 <!------------------------------------------------------------------------->
                 <div class="Modificar">
@@ -147,7 +146,8 @@
                         </select>
                         
                         <br><br>
-                        <button type="submit" (click)="listarCat(2)" (click)="Filtro2()">Buscar</button>
+                        <button class="btn btn-light" type="submit" (click)="listarCat(2)" (click)="Filtro2()">Buscar</button>
+                        <br><br>
 
                         <h2>{{TituloEditCat}}</h2>
                         <li *ngFor="let bCat of miCatalogo">
@@ -168,7 +168,7 @@
                             
                         </li>
                         <br>
-                        <button (click)="actualizarCat()">Modificar</button>
+                        <button class="btn btn-light" (click)="actualizarCat()">Modificar</button>
                     </form>
                 </div>
             <br />

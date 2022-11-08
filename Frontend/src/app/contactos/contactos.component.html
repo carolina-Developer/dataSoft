@@ -20,8 +20,8 @@
                 <div class="Listar">
                     <h2>LISTAR</h2>
                     <form (ngSubmit)="listarContact(1)" [formGroup]=" listarContactos">
-                        <button type = "submit" style="margin-right: 30px;">Listar</button>
-                        <button (click)="LimpiarLista()" style="scroll-margin-left: 30px;">Limpiar lista</button>
+                        <button class="btn btn-light" type = "submit" style="margin-right: 30px;">Listar</button>
+                        <button class="btn btn-light" (click)="LimpiarLista()" style="scroll-margin-left: 30px;">Limpiar lista</button>
                         <br><br>
 
                         <h2>{{ tituloContactos }}</h2>
@@ -63,7 +63,8 @@
                             </option>
                         </select>
                         <br><br>
-                        <button type ="submit">Buscar</button>
+                        <button class="btn btn-light" type ="submit">Buscar</button>
+                        <br><br>
                     </form>
                     <ul>
                         <h2>{{ tituloMostrar }}</h2>
@@ -104,7 +105,8 @@
                         </select>
                         <br><br>
 
-                        <button type = "submit">Buscar contacto</button>
+                        <button class="btn btn-light" type = "submit">Buscar</button>
+                        <br><br>
                     </form>
 
                     <ul>
@@ -132,11 +134,10 @@
                         </table>
                     </ul>
                 </div>
-                <br />
 
                 <!------------------------------------------------------------------------->
                 <div class="Insertar">
-                    <br><br>
+                    
                     <h2>CREAR</h2>
                     <form (ngSubmit)="insertContacto()" [formGroup]="insertContact">
                     
@@ -161,10 +162,10 @@
                             </option>
                         </select>
                         <br><br>
-                        <button type="submit">Crear Contacto</button>
+                        <button class="btn btn-light" type="submit">Crear Contacto</button>
                     </form>
                 </div>
-                <br />
+                <br><br>
 
                 <!------------------------------------------------------------------------->
                 <div class="Modificar">
@@ -180,8 +181,8 @@
                         </select>
                         <br><br>
 
-                        <button type="submit" (click)="filtro1()" (click)="Filtro2()">Buscar</button>
-
+                        <button class="btn btn-light" type="submit" (click)="filtro1()" (click)="Filtro2()">Buscar</button>
+                        <br><br>
                         <h2>{{ tituloModificar }}</h2>
                         <li *ngFor="let cc2 of misContactos">
                             Encargado
@@ -206,7 +207,7 @@
                             </select>
                         </li>
                         <br>
-                        <button (click)="actualizarConta()">Modificar</button>
+                        <button class="btn btn-light" (click)="actualizarConta()">Modificar</button>
                     </form>
                 </div>
             <br />

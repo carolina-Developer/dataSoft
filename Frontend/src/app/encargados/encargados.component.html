@@ -20,8 +20,8 @@
                 <div class = "Listar">
                     <h2>LISTAR</h2>
                     <form (ngSubmit) = "listarEncargados(1)" [formGroup]="listaEncargados">
-                        <button type="submit" style="margin-right: 30px;">Listar</button>
-                        <button (click)="LimpiarLista()" style="scroll-margin-left: 30px;">Limpiar lista</button>
+                        <button class="btn btn-light" type="submit" style="margin-right: 30px;">Listar</button>
+                        <button class="btn btn-light" (click)="LimpiarLista()" style="scroll-margin-left: 30px;">Limpiar lista</button>
                         <br><br>
 
                         <h2>{{ tituloListar }}</h2>
@@ -70,8 +70,8 @@
                         </select>
                         <br><br>
 
-                        <button type ="submit">Buscar</button>
-
+                        <button class="btn btn-light" type ="submit">Buscar</button>
+                        <br><br>
                     </form>
 
                     <ul>
@@ -102,7 +102,6 @@
                         </table>
                     </ul>
                 </div>
-                <br />
 
                 <!------------------------------------------------------------------------->
                 <div class="Insertar">
@@ -154,7 +153,7 @@
                         Sueldo
                         <label for="sueEnc"><input type="text" name="sueEnc" id="sueEnc" formControlName="text9"></label>
                         <br><br>
-                        <button type="submit">Crear Encargado</button>
+                        <button class="btn btn-light" type="submit">Crear Encargado</button>
                     </form>
                 </div>
                 <br />
@@ -173,8 +172,8 @@
                         </select>
                         <br><br>
 
-                        <button type="submit" (click)="Filtro1()" (click)="Filtro2()">Buscar</button>
-
+                        <button class="btn btn-light" type="submit" (click)="Filtro1()" (click)="Filtro2()">Buscar</button>
+                        <br><br>
                         <h2>{{ tituloModificar }}</h2>
                         <li *ngFor="let x of misEncargados">
                             Primer Nombre
@@ -220,7 +219,7 @@
                             <label for="slEn"><input type="text" name="slEn" id="slEn" value="{{ x.sueldo }}" [(ngModel)]="x.sueldo" formControlName="ntext9"></label>
                         </li>
                         <br>
-                        <button (click)="actualizarEnc()">Modificar</button>
+                        <button class="btn btn-light" (click)="actualizarEnc()">Modificar</button>
                     </form>
                 </div>
             <br />
