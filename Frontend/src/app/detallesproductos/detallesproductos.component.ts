@@ -94,7 +94,7 @@ export class DetallesproductosComponent implements OnInit {
       let dat= data;
     this.detalle = data;
     this.TituloDetalle = "Detalles Productos";
-    this.TablaDetalle[0]="Indicador";
+    this.TablaDetalle[0]="Id Detalle";
     this.TablaDetalle[1]="Producto";
     this.TablaDetalle[2]="Material";
     this.TablaDetalle[3]="Observaciones";
@@ -117,7 +117,7 @@ export class DetallesproductosComponent implements OnInit {
           let dat = data;
           this.detalle = data;
           this.TituloDetalle = "LISTA DETALLE PRODUCTO";
-          this.TablaDetalle[0]="Indicador";
+          this.TablaDetalle[0]="Id Detalle";
           this.TablaDetalle[1]="Producto";
           this.TablaDetalle[2]="Material";
           this.TablaDetalle[3]="Observaciones";
@@ -168,8 +168,8 @@ public mostrarDetalle ()
   this.servi.getDetalleProd('/' + filtovalor).subscribe((data : {}) => {
     
     this.Midetalle = data;
-    this.TitDetalle = "Detalle Producto Seleccionado";
-    this.TabBusDetalle[0] = "Indicador";
+    this.TitDetalle = "DETALLE PRODUCTO";
+    this.TabBusDetalle[0] = "Id Detalle";
     this.TabBusDetalle[1] = "Producto";
     this.TabBusDetalle[2] = "Material";
     this.TabBusDetalle[3] = "Observaciones";
@@ -235,7 +235,7 @@ buscarEditDetalle()
   this.servi.getDetalleProd('/' + this.BuscarEvalor).subscribe((data: {}) =>{
 
     this.MiDetalleE = data;
-    this.TituloDetalleEdit = "Detalle Producto ";
+    this.TituloDetalleEdit = "DETALLE PRODUCTO";
 
   }, error => {console.log(error) });
 

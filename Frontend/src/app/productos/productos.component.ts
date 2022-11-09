@@ -100,7 +100,7 @@ export class ProductosComponent implements OnInit {
 
       this.Productos = data;
       this.TituloProductos = 'LISTA DE PRODUCTOS';
-      this.TablaProductos[0] = 'ID';
+      this.TablaProductos[0] = 'Id Producto';
       this.TablaProductos[1] = 'Nombre';
       this.TablaProductos[2] = 'Tipo';
       this.TablaProductos[3] = 'Talla';
@@ -116,7 +116,7 @@ export class ProductosComponent implements OnInit {
           if (op == 1) {
             this.Productos = data;
             this.TituloProductos = 'LISTA DE PRODUCTOS';
-            this.TablaProductos[0] = 'ID';
+            this.TablaProductos[0] = 'Id Producto';
             this.TablaProductos[1] = 'Nombre';
             this.TablaProductos[2] = "Tipo";
             this.TablaProductos[3] = 'Talla';
@@ -174,8 +174,8 @@ export class ProductosComponent implements OnInit {
       (data: {}) => {
         this.MiProductos = data;
 
-        this.TituloProducto = 'Tipo de producto seleccionado';
-        this.TabBusProductos[0] = 'ID';
+        this.TituloProducto = 'TIPO DE PRODUCTO';
+        this.TabBusProductos[0] = 'Id Producto';
         this.TabBusProductos[1] = 'Nombre';
         this.TabBusProductos[2] = 'Tipo';
         this.TabBusProductos[3] = 'Talla';
@@ -222,7 +222,7 @@ export class ProductosComponent implements OnInit {
     this.servi.getProductos('/' + this.BuscarEvalor).subscribe(
       (data: {}) => {
         this.MiProductosE = data;
-        this.TituloProductosEdit = 'PRODUCTO A EDITA';
+        this.TituloProductosEdit = 'PRODUCTO A EDITAR';
       },
       (error) => {
         console.log(error);
@@ -263,8 +263,8 @@ export class ProductosComponent implements OnInit {
     this.servi.getProductosTalla(id).subscribe(
         (data: {}) => {
             this.miTalla = data;
-            this.tallaInTitulo = 'REPORTE TALLA';
-            this.tabInTalla[0] = 'ID';
+            this.tallaInTitulo = 'TALLA PRODUCTOS';
+            this.tabInTalla[0] = 'Id Producto';
             this.tabInTalla[1] = 'Nombre';
             this.tabInTalla[2] = 'Tipo';
             this.tabInTalla[3] = 'Talla';
@@ -288,8 +288,8 @@ export class ProductosComponent implements OnInit {
       (data: {}) => {
         this.MiProductoIn = data;
 
-        this.TituloProductoIn = 'INFORME talla tiempo';
-        this.TabInProductos[0] = 'ID Producto';
+        this.TituloProductoIn = 'INFORME TALLA - TIEMPO';
+        this.TabInProductos[0] = 'Id Producto';
         this.TabInProductos[1] = 'Nombre Producto';
         this.TabInProductos[2] = 'Tipo Producto';
         this.TabInProductos[3] = 'Talla';

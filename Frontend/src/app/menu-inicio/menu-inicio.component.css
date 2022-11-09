@@ -1,1 +1,29 @@
+/*Estilos cards*/
+.card-body{
+    padding-top: 8px;
+}
+.card img {
+    width:80px;
+    height:80px;
+}
+.card{ 
+    width:120px;
+    height:130px;
+
+    padding-top: 10px;
+    margin: 10px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container-cards{ 
+    display:grid;
+    justify-content: center;
+}
+.card-text a{
+    color: black;
+}
+/*Estilos navar*/
+
 

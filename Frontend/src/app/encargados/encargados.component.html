@@ -1,236 +1,242 @@
-<div style="text-align: center;">
-    <h1>
-    {{ title }}
-    </h1>
-</div>
-<br><br>
+<html>
+    <body>
+        <!--Navbar-->
+        <div class="container-navar">
+            <div class="container-nav py-4 text-center">
+                <a class="rutaInicio" routerLink="/Inicio">
+                    <img class="logo d-block mx-auto" src="../../assets/img/logo.svg" alt="#">
+                    <p>Encargados</p>
+                </a>
+                <p class="lead">Tú eliges Urban Clothe, nosotros hacemos el resto. </p>
+            </div>
+        </div>
+        <hr>
+        <br />
+        <!--Navbar-->
 
-<!------------------------------------------------------------------------->
-<!-- Para listar los encargados------------------------>
+        <!--Container general-->
+        <div class="container">
+            <!------------------------------------------------------------------------->
+                <div class = "Listar">
+                    <h2>LISTAR</h2>
+                    <form (ngSubmit) = "listarEncargados(1)" [formGroup]="listaEncargados">
+                        <button class="btn btn-light" type="submit" style="margin-right: 30px;">Listar</button>
+                        <button class="btn btn-light" (click)="LimpiarLista()" style="scroll-margin-left: 30px;">Limpiar lista</button>
+                        <br><br>
 
-<div class = "Listar">
-    <h2>LISTAR</h2>
-    <form (ngSubmit) = "listarEncargados(1)" [formGroup]="listaEncargados">
-        <button type="submit" style="margin-right: 30px;">Listar</button>
-        <button (click)="LimpiarLista()" style="scroll-margin-left: 30px;">Limpiar lista</button>
-        <br><br>
+                        <h2>{{ tituloListar }}</h2>
+                        <table class="table">
+                            <thead>
 
-        <h2>{{ tituloListar }}</h2>
-        <table>
-            <thead>
+                                <th>{{ tablaEncargados[0] }}</th>
+                                <th>{{ tablaEncargados[1] }}</th>
+                                <th>{{ tablaEncargados[2] }}</th>
+                                <th>{{ tablaEncargados[3] }}</th>
+                                <th>{{ tablaEncargados[4] }}</th>
+                                <th>{{ tablaEncargados[5] }}</th>
+                                <th>{{ tablaEncargados[6] }}</th>
+                                
+                            </thead>
 
-                <th>{{ tablaEncargados[0] }}</th>
-                <th>{{ tablaEncargados[1] }}</th>
-                <th>{{ tablaEncargados[2] }}</th>
-                <th>{{ tablaEncargados[3] }}</th>
-                <th>{{ tablaEncargados[4] }}</th>
-                <th>{{ tablaEncargados[5] }}</th>
-                <th>{{ tablaEncargados[6] }}</th>
-                
-            </thead>
+                            <tbody>
+                                <tr *ngFor="let encar of listEncargados">
 
-            <tbody>
-                <tr *ngFor="let encar of listEncargados">
+                                    <th>{{ encar.idEncargado }}</th>
+                                    <th>{{ encar.encargado }}</th>
+                                    <th>{{ encar.tipIdent }}</th>
+                                    <th>{{ encar.numIdentificacion }}</th>
+                                    <th>{{ encar.FechaNacimiento }}</th>
+                                    <th>{{ encar.eps }}</th>
+                                    <th>{{ encar.sueldo }}</th>
 
-                    <th>{{ encar.idEncargado }}</th>
-                    <th>{{ encar.encargado }}</th>
-                    <th>{{ encar.tipIdent }}</th>
-                    <th>{{ encar.numIdentificacion }}</th>
-                    <th>{{ encar.FechaNacimiento }}</th>
-                    <th>{{ encar.eps }}</th>
-                    <th>{{ encar.sueldo }}</th>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </form>
+                </div>
+                <br />
 
-                </tr>
-            </tbody>
-        </table>
-    </form>
-</div>
+                <!------------------------------------------------------------------------->
+                <div class="Buscar">
+                    <h2>MOSTRAR</h2>
+                    <form (ngSubmit) = "buscarEncargado()" [formGroup]="filtrarEncargado">
+                        Encargado
+                        <select class="dropdown" formControlName="combofiltro" (click) = "listarEncargados(2)">
+                            <option disabled selected value="value1">Encargados</option>
+                            <option *ngFor="let encarg of comboMostrar" [value]="encarg.idEncargado">
+                                {{ encarg.idEncargado }} -
+                                {{ encarg.encargado }}
+                            </option>
+                        </select>
+                        <br><br>
 
-<!------------------------------------------------------------------------->
-<!-- Para mostrar encargado ------------------------>
+                        <button class="btn btn-light" type ="submit">Buscar</button>
+                        <br><br>
+                    </form>
 
-<div class="buscar">
-    <h2>MOSTRAR</h2>
-    <form (ngSubmit) = "buscarEncargado()" [formGroup]="filtrarEncargado">
-        Encargado
-        <select class="dropdown" formControlName="combofiltro" (click) = "listarEncargados(2)">
-            <option disabled selected value="value1">Encargados</option>
-            <option *ngFor="let encarg of comboMostrar" [value]="encarg.idEncargado">
-                {{ encarg.idEncargado }} -
-                {{ encarg.encargado }}
-            </option>
-        </select>
-        <br><br>
+                    <ul>
+                        <h2>{{ tituloMostrar }}</h2>
+                        <table class="table">
+                            <thead>
+                                <th>{{ tablaMostrar[0] }}</th>
+                                <th>{{ tablaMostrar[1] }}</th>
+                                <th>{{ tablaMostrar[2] }}</th>
+                                <th>{{ tablaMostrar[3] }}</th>
+                                <th>{{ tablaMostrar[4] }}</th>
+                                <th>{{ tablaMostrar[5] }}</th>
+                                <th>{{ tablaMostrar[6] }}</th>
+                            </thead>
 
-        <button type ="submit">Buscar</button>
+                            <tbody class="filt">
+                                <tr *ngFor="let encarga of miEncargado">
+                                    
+                                    <th>{{ encarga.idEncargado }}</th>
+                                    <th>{{ encarga.encargado }}</th>
+                                    <th>{{ encarga.tipIdent }}</th>
+                                    <th>{{ encarga.numIdentificacion }}</th>
+                                    <th>{{ encarga.FechaNacimiento }}</th>
+                                    <th>{{ encarga.eps }}</th>
+                                    <th>{{ encarga.sueldo }}</th>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </ul>
+                </div>
 
-    </form>
+                <!------------------------------------------------------------------------->
+                <div class="Insertar">
+                    <br><br>
+                    <h2>CREAR</h2>
+                    <form (ngSubmit)="inseEncargado()" [formGroup]="insertarEncargado">
+                        Primer Nombre
+                        <label for="pEnc"><input type="text" name="pEnc" id="pEnc" formControlName="text1"></label>
 
-    <ul>
-        <h2>{{ tituloMostrar }}</h2>
-        <table class="tabBuscar">
-            <thead>
-                <th>{{ tablaMostrar[0] }}</th>
-                <th>{{ tablaMostrar[1] }}</th>
-                <th>{{ tablaMostrar[2] }}</th>
-                <th>{{ tablaMostrar[3] }}</th>
-                <th>{{ tablaMostrar[4] }}</th>
-                <th>{{ tablaMostrar[5] }}</th>
-                <th>{{ tablaMostrar[6] }}</th>
-            </thead>
+                        <br><br>
+                        Segundo Nombre
+                        <label for="sEnc"><input type="text" name="sEnc" id="sEnc" formControlName="text2"></label>
+                        
+                        <br><br>
+                        Primer Apellido
+                        <label for="prEnc"><input type="text" name="prEnc" id="prEnc" formControlName="text3"></label>
 
-            <tbody class="filt">
-                <tr *ngFor="let encarga of miEncargado">
+                        <br><br>
+                        Segundo Apellido
+                        <label for="segEnc"><input type="text" name="segEnc" id="segEnc" formControlName="text4"></label>
+
+                        <br><br>
+                        Tipo Identificacion
+                        <select class="dropdown" formControlName="text5" (click)="Filtro1()">
+                            <option disabled selected value="value1">Tipos</option>
+                            <option *ngFor="let filtr of combo1" [value]="filtr.idCatalogo" >
+                                {{ filtr.nombreCat }}
+                            </option>
+                        </select>
+
+                        <br><br>
+                        Numero Identificacion
+                        <label for="numEnc"><input type="text" name="numEnc" id="numEnc" formControlName="text6"></label>
+                        
+                        <br><br>
+                        Fecha Nacimiento
+                        <label for="fecEnc"><input type="date" name="fecEnc" id="fecEnc" formControlName="text7"></label>
                     
-                    <th>{{ encarga.idEncargado }}</th>
-                    <th>{{ encarga.encargado }}</th>
-                    <th>{{ encarga.tipIdent }}</th>
-                    <th>{{ encarga.numIdentificacion }}</th>
-                    <th>{{ encarga.FechaNacimiento }}</th>
-                    <th>{{ encarga.eps }}</th>
-                    <th>{{ encarga.sueldo }}</th>
+                        <br><br>
+                        Eps
+                        <select class="dropdown" formControlName="text8" (click)="Filtro2()">
+                            <option disabled selected value="value1">Tipos</option>
+                            <option *ngFor="let f of combo2" [value]="f.idCatalogo" >
+                                {{ f.nombreCat }}
+                            </option>
+                        </select>
 
-                </tr>
-            </tbody>
-        </table>
-    </ul>
+                        <br><br>
+                        Sueldo
+                        <label for="sueEnc"><input type="text" name="sueEnc" id="sueEnc" formControlName="text9"></label>
+                        <br><br>
+                        <button class="btn btn-light" type="submit">Crear Encargado</button>
+                    </form>
+                </div>
+                <br />
 
-</div>
+                <!------------------------------------------------------------------------->
+                <div class="Modificar">
+                    <h2>MODIFICAR</h2>
+                    <form (ngSubmit)="buscarEncarg()" [formGroup]="actualizarEn">
+                        Encargado
+                        <select class="dropdown" formControlName="buscarIdEncargado" (click)="listarEncargados(3)">
+                            <option disabled selected value="value1">Encargado</option>
+                            <option *ngFor="let e of comboModificar" [value]="e.idEncargado">
+                                {{ e.idEncargado }} -
+                                {{ e.encargado }}
+                            </option>
+                        </select>
+                        <br><br>
 
-<!------------------------------------------------------------------------->
-<!-- Para crear encargado ------------------------>
+                        <button class="btn btn-light" type="submit" (click)="Filtro1()" (click)="Filtro2()">Buscar</button>
+                        <br><br>
+                        <h2>{{ tituloModificar }}</h2>
+                        <li *ngFor="let x of misEncargados">
+                            Primer Nombre
+                            <label for="pEn"><input type="text" name="pEn" id="pEn" value="{{ x.primerNom }}" [(ngModel)]="x.primerNom" formControlName="ntext1"></label>
+                            <br><br>
+                            Segundo Nombre
+                            <label for="sEn"><input type="text" name="sEn" id="sEn" value="{{ x.segNom }}" [(ngModel)]="x.segNom" formControlName="ntext2"></label>
+                            <br><br>
+                            Primer Apellido
+                            <label for="prEn"><input type="text" name="prEn" id="prEn" value="{{ x.primApellido }}" [(ngModel)]="x.primApellido" formControlName="ntext3"></label>
+                            <br><br>
+                            Segundo Apellido
+                            <label for="seEn"><input type="text" name="seEn" id="seEn" value="{{ x.segApellido }}" [(ngModel)]="x.segApellido" formControlName="ntext4"></label>
+                            
+                            <br><br>
+                            Tipo Identificacion
+                            <select class="dropdown" formControlName="ntext5" [(ngModel)]="x.tipoIdentificacion">
+                                <option disabled selected value="value1">Tipos</option>
+                                <option *ngFor="let filtr of combo1" [value]="filtr.idCatalogo" >
+                                    {{ filtr.nombreCat }}
+                                </option>
+                            </select>
 
-<div class="crea">
-    <br><br>
-    <h2>CREAR</h2>
-    <form (ngSubmit)="inseEncargado()" [formGroup]="insertarEncargado">
-        Primer Nombre
-        <label for="pEnc"><input type="text" name="pEnc" id="pEnc" formControlName="text1"></label>
+                            <br><br>
+                            Numero Identificacion
+                            <label for="nEn"><input type="text" name="nEn" id="nEn" value="{{ x.numIdentificacion }}" [(ngModel)]="x.numIdentificacion" formControlName="ntext6"></label>
+                            
+                            <br><br>
+                            Fecha Nacimiento
+                            <label for="feEn"><input type="text" name="feEn" id="feEn" value="{{ x.FechaNacimiento }}" [(ngModel)]="x.FechaNacimiento" formControlName="ntext7"></label>
+                            
+                            <br><br>
+                            Eps
+                            <select class="dropdown" formControlName="ntext8" [(ngModel)]="x.eps">
+                                <option disabled selected value="value1">Tipos</option>
+                                <option *ngFor="let f of combo2" [value]="f.idCatalogo" >
+                                    {{ f.nombreCat }}
+                                </option>
+                            </select>
+                            <br><br>
 
-        <br><br>
-        Segundo Nombre
-        <label for="sEnc"><input type="text" name="sEnc" id="sEnc" formControlName="text2"></label>
-        
-        <br><br>
-        Primer Apellido
-        <label for="prEnc"><input type="text" name="prEnc" id="prEnc" formControlName="text3"></label>
-
-        <br><br>
-        Segundo Apellido
-        <label for="segEnc"><input type="text" name="segEnc" id="segEnc" formControlName="text4"></label>
-
-        <br><br>
-        Tipo Identificacion
-        <select class="dropdown" formControlName="text5" (click)="Filtro1()">
-            <option disabled selected value="value1">Tipos</option>
-            <option *ngFor="let filtr of combo1" [value]="filtr.idCatalogo" >
-                {{ filtr.nombreCat }}
-            </option>
-        </select>
-
-        <br><br>
-        Numero Identificacion
-        <label for="numEnc"><input type="text" name="numEnc" id="numEnc" formControlName="text6"></label>
-        
-        <br><br>
-        Fecha Nacimiento
-        <label for="fecEnc"><input type="date" name="fecEnc" id="fecEnc" formControlName="text7"></label>
-    
-        <br><br>
-        Eps
-        <select class="dropdown" formControlName="text8" (click)="Filtro2()">
-            <option disabled selected value="value1">Tipos</option>
-            <option *ngFor="let f of combo2" [value]="f.idCatalogo" >
-                {{ f.nombreCat }}
-            </option>
-        </select>
-
-        <br><br>
-        Sueldo
-        <label for="sueEnc"><input type="text" name="sueEnc" id="sueEnc" formControlName="text9"></label>
-    
-        <br><br>
-        <button type="submit">Crear Encargado</button>
-    
-    </form>
-</div>
-
-<!------------------------------------------------------------------------->
-<!-- Para modificar un encargado ------------------------>
-
-<div class="edit">
-    <h2>MODIFICAR</h2>
-    <form (ngSubmit)="buscarEncarg()" [formGroup]="actualizarEn">
-        Encargado
-        <select class="dropdown" formControlName="buscarIdEncargado" (click)="listarEncargados(3)">
-            <option disabled selected value="value1">Encargado</option>
-            <option *ngFor="let e of comboModificar" [value]="e.idEncargado">
-                {{ e.idEncargado }} -
-                {{ e.encargado }}
-            </option>
-        </select>
-        <br><br>
-
-        <button type="submit" (click)="Filtro1()" (click)="Filtro2()">Buscar</button>
-
-        <h2>{{ tituloModificar }}</h2>
-        <li *ngFor="let x of misEncargados">
-            Primer Nombre
-            <label for="pEn"><input type="text" name="pEn" id="pEn" value="{{ x.primerNom }}" [(ngModel)]="x.primerNom" formControlName="ntext1"></label>
-            <br><br>
-            Segundo Nombre
-            <label for="sEn"><input type="text" name="sEn" id="sEn" value="{{ x.segNom }}" [(ngModel)]="x.segNom" formControlName="ntext2"></label>
-            <br><br>
-            Primer Apellido
-            <label for="prEn"><input type="text" name="prEn" id="prEn" value="{{ x.primApellido }}" [(ngModel)]="x.primApellido" formControlName="ntext3"></label>
-            <br><br>
-            Segundo Apellido
-            <label for="seEn"><input type="text" name="seEn" id="seEn" value="{{ x.segApellido }}" [(ngModel)]="x.segApellido" formControlName="ntext4"></label>
-            
-            <br><br>
-            Tipo Identificacion
-            <select class="dropdown" formControlName="ntext5" [(ngModel)]="x.tipoIdentificacion">
-                <option disabled selected value="value1">Tipos</option>
-                <option *ngFor="let filtr of combo1" [value]="filtr.idCatalogo" >
-                    {{ filtr.nombreCat }}
-                </option>
-            </select>
-
-            <br><br>
-            Numero Identificacion
-            <label for="nEn"><input type="text" name="nEn" id="nEn" value="{{ x.numIdentificacion }}" [(ngModel)]="x.numIdentificacion" formControlName="ntext6"></label>
-            
-            <br><br>
-            Fecha Nacimiento
-            <label for="feEn"><input type="text" name="feEn" id="feEn" value="{{ x.FechaNacimiento }}" [(ngModel)]="x.FechaNacimiento" formControlName="ntext7"></label>
-            
-            <br><br>
-            Eps
-            <select class="dropdown" formControlName="ntext8" [(ngModel)]="x.eps">
-                <option disabled selected value="value1">Tipos</option>
-                <option *ngFor="let f of combo2" [value]="f.idCatalogo" >
-                    {{ f.nombreCat }}
-                </option>
-            </select>
-            <br><br>
-
-            Sueldo
-            <label for="slEn"><input type="text" name="slEn" id="slEn" value="{{ x.sueldo }}" [(ngModel)]="x.sueldo" formControlName="ntext9"></label>
-        
-        </li>
-        <br>
-        <button (click)="actualizarEnc()">Modificar</button>
-
-
-    </form>
-    
-
-
-</div>
-
-<!------------------------------------------------------------------------->
-
-<div class="direct"> 
-    <h3><a routerLink = "/Inicio">INICIO</a></h3>
-</div>
-
+                            Sueldo
+                            <label for="slEn"><input type="text" name="slEn" id="slEn" value="{{ x.sueldo }}" [(ngModel)]="x.sueldo" formControlName="ntext9"></label>
+                        </li>
+                        <br>
+                        <button class="btn btn-light" (click)="actualizarEnc()">Modificar</button>
+                    </form>
+                </div>
+            <br />
+        </div>
+        <!--Container general-->
+        <!--Footer-->
+        <div class="container-footer">
+            <footer class="my-5 pt-4 text-muted text-center text-small">
+                <p class="mb-1">© 2022 DataSoft</p>
+                <ul class="list-inline">
+                    <li class="list-inline-item"><a href="#">Privacidad</a></li>
+                    <li class="list-inline-item"><a href="#">Terminos</a></li>
+                    <li class="list-inline-item"><a href="#">Condiciones</a></li>
+                    <li class="list-inline-item"><a href="#">Menú Inicio</a></li>
+                </ul>
+            </footer>
+        </div>
+        <!--Footer-->
+    </body>
+</html>

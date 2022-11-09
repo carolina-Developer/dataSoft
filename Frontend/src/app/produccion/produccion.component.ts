@@ -102,11 +102,11 @@ export class ProduccionComponent implements OnInit {
             let dat = data;
             this.produccion =  data;
             this.TituloProduccion = "LISTA PRODUCCION";
-            this.TablaProduccion[0] = "Id";
+            this.TablaProduccion[0] = "Id Produccion";
             this.TablaProduccion[1] = "Encargado";
-            this.TablaProduccion[2] = "Productos malos";
+            this.TablaProduccion[2] = "Productos Malos";
             this.TablaProduccion[3] = "Productos Buenos";
-            this.TablaProduccion[4] = "Tipo camiseta";
+            this.TablaProduccion[4] = "Tipo Camiseta";
             this.TablaProduccion[5] = "Fecha";
             this.TablaProduccion[6] = "Total";
           } else if (op == 2) {
@@ -151,12 +151,12 @@ export class ProduccionComponent implements OnInit {
       (data: {}) => {
         this.Miproduccion = data;
 
-        this.TitProduccion = 'Produccion Seleccionada';
-        this.TabBusProduccion[0] = "Id";
+        this.TitProduccion = 'PRODUCCION SELECCIONADA';
+        this.TabBusProduccion[0] = "Id Produccion";
         this.TabBusProduccion[1] = "Encargado";
-        this.TabBusProduccion[2] = "Productos malos";
+        this.TabBusProduccion[2] = "Productos Malos";
         this.TabBusProduccion[3] = "Productos Buenos";
-        this.TabBusProduccion[4] = "Tipo camiseta";
+        this.TabBusProduccion[4] = "Tipo Camiseta";
         this.TabBusProduccion[5] = "Fecha";
         this.TabBusProduccion[6] = "Total";
 
@@ -205,7 +205,7 @@ export class ProduccionComponent implements OnInit {
     this.servi.getTipoProduccion("/" + this.BuscarEvalor).subscribe(
       (data: {}) => {
         this.MiProduccionE = data;
-        this.TituloProduccionEdit = 'Produccion a editar';
+        this.TituloProduccionEdit = 'DATOS';
       },
       (error) => {
         console.log(error);
@@ -243,18 +243,6 @@ export class ProduccionComponent implements OnInit {
     this.ActualizarAProduccion.reset();
   }
 
-  //  /* 
-  //  Actualizar Produccion 
-  //  */
-
-  // public filtroEncargado()
-  // {
-  //   this.server.getEncargados().subscribe((data:any) =>{
-  //     this.combo3 = data;
-  //   },
-  //   error => {console.log(error)});
-  // }
-
   public informeProduccion()
   {
     var info1 = this.informe.getRawValue()['encar'];
@@ -264,11 +252,11 @@ export class ProduccionComponent implements OnInit {
     this.servi.getInforme(info1, info2, info3).subscribe((data:{}) => {
       this.informeD = data;
       this.tituloInforme ="INFORME ENCARGADO-PRODUCCION";
-      this.tablaInforme[0] = "ID Produccion";
+      this.tablaInforme[0] = "Id Produccion";
       this.tablaInforme[1] = "Encargado";
       this.tablaInforme[2] = "Producto Malos";
       this.tablaInforme[3] = "Productos Buenos";
-      this.tablaInforme[4] = "Producto";
+      this.tablaInforme[4] = "Tipo Camiseta";
       this.tablaInforme[5] = "Fecha";
       this.tablaInforme[6] = "Total";
       },
