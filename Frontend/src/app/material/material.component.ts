@@ -219,7 +219,7 @@ export class MaterialesComponent implements OnInit {
           console.log(err);
         });
   
-      this.BuscarEvalor = 0;
+      //this.BuscarEvalor = 0;
       this.ActualizarAMaterial.reset();
     }
   
